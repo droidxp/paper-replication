@@ -1,0 +1,85 @@
+%\documentclass[sigconf, anonymous]{acmart}
+\documentclass[conference]{IEEEtran}
+
+%%\acmConference[ESEC/FSE 2020]{The 28th ACM Joint European Software %%Engineering Conference and Symposium on the Foundations of Software %%Engineering}{8 - 13 November, 2020}{Sacramento, California, United States}
+
+
+% Fonte em português brasileiro
+\usepackage[american]{babel}
+\usepackage[utf8]{inputenc}
+\usepackage{enumerate}
+\usepackage{setspace}
+\usepackage{pgfgantt}
+\usepackage{booktabs}
+\usepackage{listings}
+\usepackage{hyperref}
+\usepackage{xspace}
+%\usepackage{balance}
+% \usepackage[numbers]{natbib}
+% \bibliographystyle{IEEEtranN}
+
+% Default fixed font does not support bold face
+\DeclareFixedFont{\ttb}{T1}{txtt}{bx}{n}{12} % for bold
+\DeclareFixedFont{\ttm}{T1}{txtt}{m}{n}{12}  % for normal
+
+% Custom colors
+\definecolor{keywords}{rgb}{0.5,0,0.35}
+\definecolor{comments}{RGB}{0,0,113}
+\definecolor{red}{RGB}{160,0,0}
+\definecolor{green}{RGB}{0,150,0}
+ 
+\lstset{language=Python, 
+        basicstyle=\ttfamily\small, 
+        keywordstyle=\color{keywords}\bfseries,
+        commentstyle=\color{comments},
+        stringstyle=\color{red},
+        showstringspaces=false,
+        %identifierstyle=\color{red},
+       }
+       
+% Identação e Margens
+\usepackage{fullpage}      % Margens
+\usepackage{indentfirst}   % Autoidentar
+
+% Figuras
+\usepackage{graphicx}       % Pictures
+
+\title{On the Interplay Between Static and Dynamic Analysis for Mining Sandboxes}
+
+ \author{
+ %% \IEEEauthorblockN{Francisco Handrick da Costa}
+ %% \IEEEauthorblockA{
+ %% \textit{Computer Science Department} \\
+ %% \textit{University of Brasília}\\
+ %% Brasília, Brazil\\
+ %% } \and
+ %% \IEEEauthorblockN{Rodrigo Bonif\'{a}cio}
+ %% \IEEEauthorblockA{
+ %% \textit{Computer Science Department} \\
+ %% \textit{University of Brasília}\\
+ %% Brasília, Brazil\\
+ %% }
+}
+%%\IEEEauthorblockA{
+%%  \IEEEauthorrefmark{1}Computer Science Department, University of Bras\'{i}lia, Brazil}
+%%  {francisco.tomaz@aluno.unb.br}
+%%}
+\begin{document}
+\maketitle
+
+\input{abstract}
+\input{introduction}
+\input{malwarescharacterization}
+\input{setup}
+\input{benchmark}
+\input{results}
+\input{motivationexample}
+\input{flowdroid}
+\input{threatsfutureworks}
+\input{conclusion}
+
+%\balance 
+\bibliographystyle{IEEEtran}
+\bibliography{ref}
+
+\end{document}

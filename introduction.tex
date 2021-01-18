@@ -1,0 +1,31 @@
+\section{Introduction}
+
+The use of mobile devices such as smartphones and tablets continues increasing its importance in our daily lives. It is estimated that two-thirds of people on the planet use mobile technologies \cite{Comscore}, and in this context, Android Operating System has dominated this marketplace of smartphones, tablets, and others electronic devices. Due to this growing popularity, the number of incidents related to Android malicious software (malware) has significantly increased \cite{faruki2014android,tan2015securing}. Security issues in application consumption (commonly known as "apps") have become a relevant research topic, and many techniques have been developed to identify vulnerabilities in Android apps \cite{tan2015securing}. Currently, researchers have explored the use of dynamic analysis tools and test case generators to mine sandboxes, whose goal is to protect Android users from malicious behaviors \cite{jamrozik2016mining}.
+
+The main idea of mining sandboxes is to explore the set of calls to sensitive API methods, using automated tools for testing. These tools, explore apps behaviors based on their sensitive APIs. A sandbox builds upon the calls to sensitive Android APIs, during the execution of test cases (exploratory phase). The sandbox could then block future calls to other sensitive resources, which diverge from those found in the exploratory phase. Using this approach, the sandbox accuracy depends on the exploratory power of each testing tool used to compose the sandbox rules.
+
+Previous research studies have investigated the effectiveness of mining sandboxes, using automated testing tools, to compare the performance of each tool to mine sandboxes. For instance, Bao et al. \cite{bao2018mining} present the results of an empirical study comparing 5 automated testing tools: DroidMate \cite{jamrozik2016droidmate}, Monkey \cite{Monkey}, GUIRipper \cite{amalfitano2012using}, Puma \cite{hao2014puma}, and Droidbot \cite{li2017droidbot}. The study measured the efficiency of each tool, as well as if the combination of one or more of them could lead to performance improvements. That research work consisted of performing experiments in pairs of apps, one benign and one malign that piggybacks the corresponding benign app, leading to malicious behavior. The dataset used comprised of 102 pairs of benign and malign apps (B/M). This study indicates that the use of tools for dynamic analysis was efficient in identifying at most 70\% of the malware in this dataset and also reports that, after combining 5 test generator tools, it was possible to detect 80\% of malicious behavior. Nonetheless, the field of automatic test generation of mobile apps is everything but listless---many promising automatic test generation tools have been recently proposed
+~\cite{cai2020longitudinal,li2019deep}, which might outperform previous tools that have been used to mine sandboxes.
+
+Jamrozik et al. \cite{jamrozik2016mining} discuss that dynamic analysis exceeds static analysis on mining Android sandboxes domain, although your point of view has not been validated empirically, and there was no effective discussion about the possibility of combination of both proposals, even though in some preliminary results, we found that some analysis static algorithms can complements analysis dynamic performance in mining sandbox task.
+
+In this paper, we further dig into the role of static analysis order for malware detecting. Specifically, we aim at understanding how static analysis might be useful and help dynamic analysis in the process of mining android sandboxes. To this end, we conducted a non-exact replication of the study of Bao et al, supported by a benchmark solution, called DroidXP \cite{dadroidxp}, whose main objective is  assist researchers and practitioners to integrate test case generation tools and compare their performance on mining android sandboxes. Our study differs from the original in the following aspects. First, we refined the dataset used, analyzing 96 pairs of apps (B/M). Second, we introduced in our study, two recent tools that were not considered in the previous work. Finally, we evaluate the role of each kind of analysis, static and dynamic, regarding the performance of the analyzed tools.
+
+Thus, this paper contributes to comprehend the role of each of the analyzes in the malware detection task by:
+
+\begin{enumerate}[(1)]
+ \item presenting a non-exact replication of the study of the efficiency of test generation tools for mining android sandboxes, using a benchmark solution developed for this specific purpose.
+ 
+ \item discovering which are the contribution installments of types of analysis for malware detection task.
+ 
+ \item presenting which are malware characteristics, that was not detected by any tool in our analysis dynamic and static experiment.
+ 
+ \item presenting data that indicate that static analysis can improve the mining sandboxes process for malware detection.
+ \end{enumerate}
+ 
+We organize the remainder of this paper as follows. Section 2 describes all the apps malware used in our experiment, presenting their characterization. Section 3 introduces the benchmark solution used to replicate the study presented in this paper. Section 4 describes the original experiment, its replication, and its results as well. Section 5 highlights some motivation malware example, discovered in our research, and its attack strategy. In section 6 we present the use of a promising static analysis tool, in our motivation example. Finally, Sections 7 and 8, summarizes the paper, discussing our ideas for future works, and presenting the final conclusions.
+ 
+
+
+%% Our objective is to assist researchers and practitioners in reproducing research studies in this field. Altogether, the main contribution of \droidxp  is to facilitate the reproduction of empirical studies, and allowing
+%% researchers to integrate test case generation tools ratify.}
