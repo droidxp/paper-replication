@@ -1,3 +1,81 @@
+@article{10.1145/2666356.2594299,
+author = {Arzt, Steven and Rasthofer, Siegfried and Fritz, Christian and Bodden, Eric and Bartel, Alexandre and Klein, Jacques and Le Traon, Yves and Octeau, Damien and McDaniel, Patrick},
+title = {FlowDroid: Precise Context, Flow, Field, Object-Sensitive and Lifecycle-Aware Taint Analysis for Android Apps},
+year = {2014},
+issue_date = {June 2014},
+publisher = {Association for Computing Machinery},
+address = {New York, NY, USA},
+volume = {49},
+number = {6},
+issn = {0362-1340},
+url = {https://doi.org/10.1145/2666356.2594299},
+doi = {10.1145/2666356.2594299},
+abstract = {Today's smartphones are a ubiquitous source of private and confidential data. At the same time, smartphone users are plagued by carelessly programmed apps that leak important data by accident, and by malicious apps that exploit their given privileges to copy such data intentionally. While existing static taint-analysis approaches have the potential of detecting such data leaks ahead of time, all approaches for Android use a number of coarse-grain approximations that can yield high numbers of missed leaks and false alarms.In this work we thus present FlowDroid, a novel and highly precise static taint analysis for Android applications. A precise model of Android's lifecycle allows the analysis to properly handle callbacks invoked by the Android framework, while context, flow, field and object-sensitivity allows the analysis to reduce the number of false alarms. Novel on-demand algorithms help FlowDroid maintain high efficiency and precision at the same time.We also propose DroidBench, an open test suite for evaluating the effectiveness and accuracy of taint-analysis tools specifically for Android apps. As we show through a set of experiments using SecuriBench Micro, DroidBench, and a set of well-known Android test applications, FlowDroid finds a very high fraction of data leaks while keeping the rate of false positives low. On DroidBench, FlowDroid achieves 93% recall and 86% precision, greatly outperforming the commercial tools IBM AppScan Source and Fortify SCA. FlowDroid successfully finds leaks in a subset of 500 apps from Google Play and about 1,000 malware apps from the VirusShare project.},
+journal = {SIGPLAN Not.},
+month = jun,
+pages = {259–269},
+numpages = {11}
+}
+
+@inproceedings{arzt:pldi-2014,
+author = {Arzt, Steven and Rasthofer, Siegfried and Fritz, Christian and Bodden, Eric and Bartel, Alexandre and Klein, Jacques and Le Traon, Yves and Octeau, Damien and McDaniel, Patrick},
+title = {FlowDroid: Precise Context, Flow, Field, Object-Sensitive and Lifecycle-Aware Taint Analysis for Android Apps},
+year = {2014},
+isbn = {9781450327848},
+publisher = {Association for Computing Machinery},
+address = {New York, NY, USA},
+url = {https://doi.org/10.1145/2594291.2594299},
+doi = {10.1145/2594291.2594299},
+booktitle = {Proceedings of the 35th ACM SIGPLAN Conference on Programming Language Design and Implementation},
+pages = {259–269},
+numpages = {11},
+location = {Edinburgh, United Kingdom},
+series = {PLDI '14}
+}
+
+
+
+@inproceedings{rahaman:ccs-2019,
+author = {Rahaman, Sazzadur and Xiao, Ya and Afrose, Sharmin and Shaon, Fahad and Tian, Ke and Frantz, Miles and Kantarcioglu, Murat and Yao, Danfeng (Daphne)},
+title = {CryptoGuard: High Precision Detection of Cryptographic Vulnerabilities in Massive-Sized Java Projects},
+year = {2019},
+isbn = {9781450367479},
+publisher = {Association for Computing Machinery},
+address = {New York, NY, USA},
+url = {https://doi.org/10.1145/3319535.3345659},
+doi = {10.1145/3319535.3345659},
+booktitle = {Proceedings of the 2019 ACM SIGSAC Conference on Computer and Communications Security},
+pages = {2455–2472},
+numpages = {18},
+keywords = {accuracy, static program analysis, benchmark, false negative, Java, cryptographic API misuses, false positive},
+location = {London, United Kingdom},
+series = {CCS '19}
+}
+
+@inproceedings{krueger:ecoop-2018,
+  author    = {Stefan Kr{\"{u}}ger and
+               Johannes Sp{\"{a}}th and
+               Karim Ali and
+               Eric Bodden and
+               Mira Mezini},
+  editor    = {Todd D. Millstein},
+  title     = {CrySL: An Extensible Approach to Validating the Correct Usage of Cryptographic
+               APIs},
+  booktitle = {32nd European Conference on Object-Oriented Programming, {ECOOP} 2018,
+               July 16-21, 2018, Amsterdam, The Netherlands},
+  series    = {LIPIcs},
+  volume    = {109},
+  pages     = {10:1--10:27},
+  publisher = {Schloss Dagstuhl - Leibniz-Zentrum f{\"{u}}r Informatik},
+  year      = {2018},
+  url       = {https://doi.org/10.4230/LIPIcs.ECOOP.2018.10},
+  doi       = {10.4230/LIPIcs.ECOOP.2018.10},
+  timestamp = {Tue, 11 Feb 2020 15:52:14 +0100},
+  biburl    = {https://dblp.org/rec/conf/ecoop/KrugerS0BM18.bib},
+  bibsource = {dblp computer science bibliography, https://dblp.org}
+}
+
+
 @misc{Logcat,
   title = {Logcat},
   howpublished = {\url{https://http://developer.android.com/tools/help/logcat.html}},
