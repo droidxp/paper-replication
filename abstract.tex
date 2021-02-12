@@ -1,9 +1,13 @@
 \begin{abstract}
-The popularization of Android platform and the growing number of Android apps that manage sensitive data, brought several security threats. Over the past years, researchers and practitioners have investigated techniques addressing Android's security issues, including techniques that leverage dynamic analysis to mine Android Sandboxes. Mining sandboxes through test generation tools is not a new strategy, and has been investigated before, however a potential combination with static analysis has not been sufficiently explored yet.
 
-In this paper we investigate whether or not the use of static analysis might complement and increase the performance of dynamic analysis tools for mining Android sandboxes. Therefore, we first conducted a non-exact replication of a previous study \cite{DBLP:conf/wcre/BaoLL18} that compares dynamic test case generation tools for mining sandboxes, isolating all possible effects on the results of the static analysis tools the original work leverage to instrument the Android apps. We then conducted a new study to investigate the performance of tainted analysis algorithms for mining sandboxes.
+The popularization of the Android platform and the growing number of Android apps that manage sensitive data turned the Android ecosystem into an attractive target for malicious software. For this reason, researchers and practitioners have investigated new approaches to address Android's security issues, including techniques that leverage dynamic analysis to mine Android Sandboxes. 
 
-Our results demonstrate that static analysis has an important contribution to the sandbox mining process, and its combination with dynamic analysis has the potential to improve malware detection techniques.
+Although the use of dynamic analysis for mining Android sandboxes has been investigated before, the potential benefits of using static and dynamic analysis for mining sandboxes are still unclear. 
+
+In this paper, we investigate whether or not static analysis might complement and increase the performance of dynamic analysis tools for mining Android sandboxes. 
+
+We first conducted a non-exact replication of the Bao et al. work \cite{DBLP:conf/wcre/BaoLL18}, which compares the performance of test case generation tools for mining Android sandboxes. Differently from the original work, here we isolate the effect of the static analysis tool (DroidFax) the authors of the original work used to instrument the Android apps in their experiments. Our motivation for this decision is that the use of DroidFax could have improved the dynamic analysis tools' performance through specific static analysis algorithms. In our second study, we conduct a new experiment to investigate the performance of tainted analysis algorithms for mining Android sandboxes. To this end, we executed the FlowDroid tool to mine and compared the source-sink flows of benign/malign pairs of Android apps in the Bao et al. dataset. Results. The first study reveals that DroidFax alone (static analysis) can detect 43.75\% of the malwares in the dataset of the Bao et al. work, increasing the dynamic analysis tools' performance substantially. The second study results show that (static) tainted analysis is also practical for mining sandboxes, with a performance similar to dynamic analysis tools.
+
 
 
 \end{abstract}
