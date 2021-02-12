@@ -1,5 +1,6 @@
 \section{Study Settings}
 
+\kn{This paragraph requires a motivation. The details of Boa's study must be described upfront. Something like "Boa et al.'s study performs ..... Since their study also involved a static analysis component whose impact was not measured, we perform a non-exact replication to understand the impact static analysis may have had in the results...}
 In this section, we present the settings of our study, whose main goal is to perform a non-exact replication of the work of Bao et al.~\cite{DBLP:conf/wcre/BaoLL18} and thus build
 a general understanding of the implications of static analysis algorithms in their results. We also investigate how static analysis can improve
 the performance of mining sandboxes, in the task of identifying malicious behavior.
@@ -7,6 +8,7 @@ the performance of mining sandboxes, in the task of identifying malicious behavi
 To achieve these general goals, we intend to answer the following research questions.
 
 \begin{enumerate}[(RQ1)]
+ \kn{Droidfax comes out of nowhere. We should introduce this or if already introduced earlier, remind the readers of where it stands with the Bao study in the first line of this section when describing boas study}
  \item What is the impact of the DroidFax static analysis algorithms in the Bao et al. study?
   
  \item What is the effective performance of each test generation tool, in terms of the number of detected malware, in the Bao et al. study, disregarding the DroidFax
@@ -15,7 +17,7 @@ To achieve these general goals, we intend to answer the following research quest
  \item What are the benefits of using tainted analysis algorithms to complement the dynamic analysis provided by test generation tools for mining sandboxes?
 \end{enumerate}
 
-Answering the research questions RQ1 and RQ2 allows us to disclose a possible overestimation of the performance of test generation tools for mining sandboxes,
+Answering the research questions RQ1 and RQ2 allows us to disclose a possible overestimation \kn{of what} of the performance of test generation tools for mining sandboxes,
 as reported by Bao et all.~\cite{DBLP:conf/wcre/BaoLL18}, which might introduce a possible threat to their conclusions. Answering the third research question
 allows us to open up the possibility of finding new strategies for designing mining sandbox techniques, complementing the performance of
 dynamic analysis through the use of static analysis algorithms.
@@ -24,8 +26,8 @@ We conducted two studies to answer the research questions above. First we perfor
 For that purpose, we initially selected four test generation tools: Droidbot~\cite{DBLP:conf/icse/LiYGC17},
 DroidMate~\cite{DBLP:conf/icse/JamrozikZ16}, Monkey~\cite{Monkey}, and Humanoid~\cite{DBLP:conf/kbse/LiY0C19}. The first three have
 been explored in the original work of Bao et al.~\cite{DBLP:conf/icse/JamrozikZ16}. We selected Droidbot and DroiMate because they achieved
-the best performance on detecting malicious behavior in the original work. We also selected Monkey because it is the most popular test
-generation tool for Android, coming up with the Android SDK installation. Finally, we selected Humanoid  because it is a recent test generation tool,
+the best performance on detecting malicious behavior in the original work \kn{Whats the original work. Best in comparison to what? }. We also selected Monkey because it is the most popular test
+generation tool for Android \kn{cite}, coming up with the Android SDK installation. Finally, we selected Humanoid  because it is a recent\kn{There are many recent, why this? Is it  the most recent? } test generation tool,
 which generates human-like test inputs using deep learning techniques and promises to achieve higher code coverage
 than state-of-the-art test generation tool. 
 For this non-exact replication, we also used the DroidXP benchmark~\cite{DBLP:conf/scam/CostaMCMVBC20},
