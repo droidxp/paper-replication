@@ -1,4 +1,3 @@
-%\documentclass[sigconf, anonymous]{acmart}
 \documentclass[conference]{IEEEtran}
 
 %%\acmConference[ESEC/FSE 2020]{The 28th ACM Joint European Software %%Engineering Conference and Symposium on the Foundations of Software %%Engineering}{8 - 13 November, 2020}{Sacramento, California, United States}
@@ -15,7 +14,19 @@
 \usepackage{hyperref}
 \usepackage{xspace}
 \usepackage{todonotes}
+\usepackage{mdframed}
 
+\newmdtheoremenv [
+ outerlinewidth = 2 ,
+ roundcorner = 10pt,
+ leftmargin = 1,
+ rightmargin = 1,
+ backgroundcolor = yellow!20,
+ outerlinecolor = blue!70!black,
+ %innertopmargin = \topskip, 
+ %splittopskip = \topskip ,
+ ntheorem = false,
+] {finding}{Finding}
 %\usepackage{balance}
 % \usepackage[numbers]{natbib}
 % \bibliographystyle{IEEEtranN}

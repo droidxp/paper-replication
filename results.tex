@@ -54,52 +54,20 @@ Next we discuss the result of each individual test generation tool.
 \subsubsection*{Droimate} in the first execution led to a sandbox that detected 64 apps with malicious behavior (66.66\%). Contrasting, in the original study Droidmate detected 54 among 102 (52.94\%). A possible explanation for this difference is that here we use the more recent version of Droidmate. In the second execution, without the DroidFax static analysis algorithms, the resulting sandbox's performance drops by 25\%, being able to detect 48 out of the 96 pairs of Android apps. 
 
 
-\rb{I have read the paper until this point.}
+\subsubsection*{Humanoid} presented the worse performance, even though a previous
+work~\cite{DBLP:conf/kbse/LiY0C19} shows that it presents the highest lines coverage in comparison to Monkey, DroidBot, and DroidMate. In the first execution (Exec. (I)), the resulting Humanoid sandbox identified 49 malwares in our dataset (51.04\%). Since Bao et al. did not explored Humanoid in their study, we do not hava a baseline for comparison. Regarding the second execution, without static analysis, Humanoid was the most affected by disabling the DroidFax static analysis algorithm, losing 69.38\% of its effectiveness, and being able to detect just 15 malwares.
 
-\subsubsection*{Humanoid} at the first step of our study had the worse performance, identifying a little more than half of the pairs analyzed, 49 (51.04\%). It is the only tool not present at Bao et al work, so we could not compare our results with its work. Regarding the second part of the study, without static analysis, Humanoid was the most affected by this new situation, losing 69.38\% of its effectiveness, being able to detect just 15 pair apps malicious.
+\subsubsection*{\joke} is our fake test case generation tool that we use to help us understand the performance of the DroidFax static analysis algorithm for mining sandboxes. We integrated \joke into the DroidXP benchmark as an additional test generation tool that does not run the Android apps during the benchmark execution. As a result, the analysis using \joke reveals the performance of DroidFax static analysis algorithms only. For the first execution, with the DroidFax static algorithms enabled, even though \joke does not execute the Android apps, its resulting sandbox detected 43.75\% of the malwares. For the second execution, that is, disabling the DroidFax static analysis algorithm, the resulting \joke sandbox was unable to detect any malware. This result was expected, since \joke does not analyse the Android apps during the benchmark execution.
 
-\subsubsection*{\joke}, as described, is a fake tool, that simulates a test tool that does not execute Android apps during a benchmark execution, considering just static analysis results. Even though Joke tool does not execute the Android apps, it was responsible to detect 43.75\% of malware, only aided by static analysis Droidfax, at the default configuration. Ignoring the influence of static analysis, since Joke tool depends exclusively on static analysis Droidfax, we suppose that it sandbox was unable to detect malware at our data set, result confirmed in our study, where Joke was unable to detect any malware, reducing its sandbox accuracy in 100\%.
-
-Except for the \joke dummy tool, our studies show that 73.95\%-51.04\% of malicious pairs apps investigated, can be detected by the sandboxes constructed by others selected test generation tools, with de DroidXP default configuration. This first setup of our first study also shows that all the constructed sandboxes did not identify the malware in 19 pairs among 96 (19.79\%). These 19 malicious apps, according to Euphony tool \cite{hurier2017euphony}, that infer a single label per malicious application based on VirusTotal, were: 13 adwares, 3 trojans, 2 PUP (Potentially Unwanted Program) and 1 exploit. Table \ref{tab:malware} presents the number of malware detected by the sandboxes designed for each test case generation tool, with DroidXP default configuration, with static analysis Droidfax aid.
-
-\begin{table}[ht]
-\centering
-\begin{tabular}{lcc}\toprule
- Test Generation Tool & Malwares & \\
- & Detected & \% \\ \midrule
- Monkey & 71 & 73.95 \\
- Droidmate & 64 &  66.66  \\
- Humanoid & 49 & 51.04  \\
- Joke & 42 & 43.75  \\
- Droidbot & 68 & 70.83  \\\midrule
- 
-\end{tabular} 
-\caption{Malwares detected in 96 pair (B/M)}
-\label{tab:malware}
-\end{table}
-
-Disabling the Droidfax static analysis algorithm, to investigate the number of malware detected by the sandbox, ignoring the influence of static analysis, the sandboxes constructed, except for Joke tool, detected 56.25\%-15.62\% of malicious pair apps investigated, evidencing an average total reduction of 47.78\% of sandboxes efficiency constructed without the static analysis aid. Table \ref{tab:malwareWithout} displays the results of the number of malware detected by the sandboxes, without static analysis Droidfax aid. 
-
-\begin{table}[ht]
-\centering
-\begin{tabular}{lccc}\toprule
- Test Generation & Malwares & & Reduction (\%)\\
- Tool & Detected  & \% & Without s.a.\\ \midrule
- Monkey & 54 & 56.25 & 23.94\\
- Droidmate & 48 &  50.00 & 25 \\
- Humanoid & 15 & 15.62 & 69.38  \\
- Joke & 0 & 0 & 100 \\
- Droidbot & 54 & 56.25 & 20.58  \\\midrule
- 
-\end{tabular} 
-\caption{Malwares detected in 96 pair (B/M) without static analysis aid}
-\label{tab:malwareWithout}
-\end{table}
+Ignoring the \joke tool, our study show that 51.04\%-73.95\% of the malicious apps investigatedin our study can be detected using the sandboxes constructed running the test case generation tools with the support of DroidFax static analysis algorithms. Besides that, in the first execution none of the resulting sandboxes could detect 19 malwares in our dataset (19.79\%). According to the Euphony tool~\cite{hurier2017euphony}, 13 of these 19 malwares are adwares, three are trojans, two are PUP (Potentially Unwanted Program), and one is an exploit. 
 
 
-When analyzing the number of pairs apps, which none of the sandboxes could identify malware, the results are the same as the first step of this study, evidencing that static analysis provided by Droidfax, could not be useful in the task of detecting malware at this specific set of pairs.
+\rb{This is an interesting point to present the details of two or three malwares in this set of 19 malwares that had not been detected by any tool.}
 
+
+\begin{finding}
 Based on these results, we provide evidence that, although static analysis Droidfax, do not affect detection malware at 19 specific pair apps, its absence impact on sandboxes performance, impairing the accuracy of all of them.
+\end{finding}
 
 \subsection{Result of the second study: Tainted analysis algorithms.}\label{sec:res-ss}
 
