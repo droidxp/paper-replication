@@ -83,7 +83,7 @@ Android sandboxes.
 
 \begin{figure}[htb]
   \centering{
-  \includegraphics[trim=60 20 0 50,scale=0.7]{images/venn-plot-1.pdf}}
+  \includegraphics[trim=60 20 0 50,scale=0.7]{images/venn-plot-s1-1.pdf}}
   \caption{Venn Diagram highlighting how the sandboxes from the tools can
     complement each other.}
   \label{fig:venn-plot1}
@@ -110,35 +110,62 @@ In this second study we used a tainted analysis approach to mine differences bet
 \end{finding}
 
 Additionally, we investigate if we could benefit from combining
-the results from FlowDroid and DroidFax. Figure~\ref{}
-shows the results.
-Considering the static analysis provided by DroidFax and FlowDroid, our results showed that both were able to detect 33 pairs in common (34.37\%), and there were 29 pairs that both were not able to detect (30.20\%). We also realized that just 9 pairs were detected by DroidFax and do not by FlowDroid, while 25 pairs were detected by FlowDroid, and do not by DroidFax, evincing a better accuracy of tainted analysis algorithm.
+the results from FlowDroid and DroidFax. Figure~\ref{fig:venn-plot2} shows a
+Venn-diagram summarizing the results. So, when combining
+the results from FlowDroid and DroidFax, we were able to detect
+67 of the malicious apps (69.79\%), a performance compatible
+to that we found as response to the first execution of the
+test case generation tools---which also considers the DroidFax
+static analysis algorithms. More interesting, from those 67
+malicious apps identified, 33 pairs had been found by
+both tools (FlowDroid and DroidFax), even though they follow
+a completely different static analysis approach. Furthermore,
+FlowDroid shows to bem more effective than DroidFax, detecting 25 malicious
+apps that had not been detected by DroidFax (while DroidFax detected nine
+malicious apps that had not been detected by FlowDroid).
 
+\begin{finding}
+  Integrating the results of static analysis tools
+  (such as FlowDroid and DroidFax) seems promising,
+  leading to a performance similar to that achievend
+  when combining test case generation tools with the
+  DroidFax tool. 
+\end{finding}
 
-The first results show that with tainted analysis, we had an analysis processing cost of 32.08 seconds per app pair on average, totaling a processing time of 52 minutes to analyze all the pairs. The processing time depends on the size of the app, and the pair that took the fastest time analyzed in 3 seconds and the longest 437 seconds. 
+\begin{figure}
+  \centering{
+  \includegraphics[trim=60 20 0 50,scale=0.7]{images/venn-plot-s2-1.pdf}}
+  \caption{Venn Diagram highlighting the possible benefits of
+    integrating FlowDroid and DroidFax.}
+  \label{fig:venn-plot2}
 
+\end{figure}
 
-Table \ref{tab:comparison} compile the results of this comparison.
+The execution of FlowDroid is also feasible: the analysis takes only
+32.08 seconds per app on average, totaling a processing time of 52
+minutes to analyze all 96 pairs of Android apps.
+Even though the time to execute the FlowDroid analysis depends on the size
+of the app, the longest run took only 437 seconds. 
 
-\begin{table}[htb]
-\centering
-\begin{tabular}{lcc}\toprule
+Finally, we can highlight that FlowDroid was able to detect four malwares among the 19 malicious Android apps that had not
+been detected by the sandboxes constructed in the first study. Among these
+four malwares, two are \emph{trojans}, 1 is an \emph{exploit}, and 1
+is an \emph{adware}.
 
-Detected by  & Malwares detected & \%   \\ 
-(DroidFax/FlowDroid) & (Among 96 pair) & \\ \midrule
-Both tools & 33 & 34.37\%  \\
-Just DroidFax & 9 &  \\
-Just FlowDroid & 25 &  \\
-None & 29 & 30.20\% \\\midrule
- 
-\multicolumn{1}{r}{Total} &   96 \\ \bottomrule
-\end{tabular} 
-\caption{Comparison between DroidFax and FlowDroid algorithms}
-\label{tab:comparison}
-\end{table}
+\begin{finding}
+  Although FlowDroid presents a performance similar
+  to that of using the dynamic analysis approach for mining sandboxes,
+  it was able to detect only four additional malwares (out of the
+  19) that had not been detected in the first study. 
+\end{finding}
 
+\rb{This is a nice place to present some details about the malwares
+  that FlowDroid had detected, showin the additional source-sink pairs
+  that emmerged. A discussion about these aforementioned four pairs would
+  also be relevant.}
 
-Furthermore, we can highlight that among 19 pair apps that at first study, were not detected by the sandboxes constructed by test generation tool, and static analysis DroidFax miner, 4 were detected by FlowDroid; P35, P38, P56, and P94, therefore exposing better accuracy of the tainted analysis algorithms. Among these 4 pairs detected, 2 were trojans, 1 was the exploit, and 1 was adware.
+\rb{I finished my first review until this place. Tomorrow I will continue
+from here.} 
 
 
 \subsection{Discussion}\label{sec:discussion}

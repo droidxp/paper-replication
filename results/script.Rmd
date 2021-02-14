@@ -1,0 +1,95 @@
+---
+title: "Analysis"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+knitr::opts_chunk$set(fig.width=6, fig.height=4, fig.path='../images/', dev=c('png', 'pdf'))
+
+require(sqldf)
+require(ggplot2)
+require(xtable)
+require(VennDiagram)
+require(ggvenn)
+```
+
+## Load the Summary Dataset for Study 1
+
+```{r}
+ds <- read.csv("./execution01.csv", head=T, sep=",")
+ds["Improvement"] = (ds$WithDroidFax - ds$WithoutDroidFax) * 100 / ds$WithDroidFax
+xtable(ds)
+```
+
+## Load the Complete Dataset for Study 1
+
+```{r venn-plot-s1}
+ds <- read.csv("./report_withStatic.csv", head=T, sep=",")
+
+sets <- sqldf("select tool, app from ds where malware = 'True'")
+monkey = sets[sets$tool=="monkey", c("app")]
+humanoid = sets[sets$tool=="humanoid", c("app")]
+droidmate = sets[sets$tool=="droidmate", c("app")]
+droidbot = sets[sets$tool=="droidbot", c("app")]
+joker = sets[sets$tool=="joke", c("app")]
+
+
+venn.diagram(
+  x = list(monkey, humanoid, droidmate, droidbot, joker),
+  category.names = c("Monkey" , "Humanoid" , "DroidMate", "DroidBot", "Joker"),
+  filename = './venn.png',
+  output=TRUE
+)
+
+x <- list(
+  Monkey = monkey,
+  Humanoid = humanoid, 
+  DroidMate = droidmate,
+  DroidBot = droidbot
+)
+
+ggvenn(
+ x,
+ fill_color = c("#0073C2FF", "#EFC000FF", "#868686FF", "#CD534CFF","#CD534CAA"),
+   stroke_size = 0.5, set_name_size = 4, text_size=2
+)
+```
+
+## Total of malwares detected by at least one tool
+
+```{r}
+sqldf("select count(distinct app) from ds where malware = 'True'")
+```
+
+## Load the Complete Dataset for Study 2
+
+```{r venn-plot-s2}
+ ds <- read.csv("allreportResults.csv", head=T, sep=",")
+sets <- sqldf("select tool, app 
+                  from ds 
+                  where malware = 1 
+                    and (tool='flowdroid' or tool = 'joke')")
+
+notDetected <- sqldf("select distinct app from ds where 
+                      app not in (select app from sets)")
+
+# subsets
+notDetected
+
+flowdroid = sets[sets$tool=="flowdroid", c("app")]
+droidfax = sets[sets$tool=="joke", c("app")]
+notDetected = sets[, c("app")]
+
+x <- list(
+  FlowDroid = flowdroid,
+  DroidFax = droidfax
+)
+
+ggvenn(
+ x,
+ fill_color = c("#0073C2FF", "#EFC000FF"),
+   stroke_size = 0.5, set_name_size = 4, text_size=2.5
+)
+
+```
