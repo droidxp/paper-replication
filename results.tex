@@ -7,15 +7,7 @@ implications of our study.
 \subsection{Result of the first study: A non-exact replication}\label{sec:res-fs}
 
 Our first study performed a non-exact replication of Bao et al work.
-\kn{We should introduce an abbreviation for the Bao et al work and reuse it everywhere. What do you think? }
-Our study differs from the original because here we isolated the effect
-of the DroidFax static analysis algorithms in the performance to
-identify malicious apps using the test case generation tools for
-mining sandboxes. In addition, we discarded six pairs of
-Android apps we were not able to instrument---out of the $102$ pairs used in the \original work.
-\rb{All of this following information should be detailed in
-the study settings, and not repeated here if it is already there.} {\color{red}We also introduced a recent test generator tool, that has not been considered at previous work, Humanoid, and different from the original study, we expand the execution time of each test generation tool, executing each app at each tool for three minutes, while the original study executed for just one minute. The purpose of this time expansion is to check if the test generation tool code coverage results are consistent with Bao et al. results.}
-
+%\kn{We should introduce an abbreviation for the Bao et al work and reuse it everywhere. What do you think? }. 
 As discussed in the previous section, we first executed the analysis using the DroidXP benchmark with its default configuration. After that, we executed the analysis again though disabling the DroidFax static analysis algorithm, so that we could better estimate the performance of the dynamic analysis tools for mining Android sandboxes. Table~\ref{tab:fs} summarizes the results of the execution. The columns Exec. (I) and Exec. (II) 
 show the number of malwares identified when executing each tool (I) with the
 support of the DroidFax static analysis algorithms and (II) without the support

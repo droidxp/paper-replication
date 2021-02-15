@@ -23,11 +23,13 @@ as reported by Bao et al., which might introduce a possible threat to their conc
 allows us to open up the possibility of finding new strategies for designing mining sandbox techniques, complementing the performance of
 dynamic analysis through the use of static analysis algorithms.
 
-We conducted two studies to answer the research questions above. First we performed a non-exact replication of Bao et al work.
-For that purpose, we initially selected four test generation tools: Droidbot~\cite{DBLP:conf/icse/LiYGC17},
-DroidMate~\cite{DBLP:conf/icse/JamrozikZ16}, Monkey~\cite{Monkey}, and Humanoid~\cite{DBLP:conf/kbse/LiY0C19}. The first three have
-been explored in the original work of Bao et al.~\cite{DBLP:conf/icse/JamrozikZ16}. We selected Droidbot and DroiMate because they achieved
-the best performance on detecting malicious behavior at $102$ pairs of Android apps (B/M) at Bao et al work. We also considered the open source tool from Google, Monkey, because it is the most widely used tool in industry \cite{DBLP:conf/sigsoft/ZengLZXDLYX16}, coming up with the Android SDK installation. Monkey was developed for stress testing and can not perform text input. Therefore, we also selected Humanoid, that emulate realistic users, creating human-like test inputs using deep learning techniques.
+We conducted two studies to answer the research questions above. First we performed a non-exact replication of Bao et al work. Our study differs from the original because here we isolated the effect of the DroidFax static analysis algorithms in the performance to identify malicious apps using the test case generation tools for
+mining sandboxes. In addition, we discarded six pairs of
+Android apps we were not able to instrument---out of the $102$ pairs used in the original work. We also introduced a recent test generator tool, that has not been considered at previous work, Humanoid ~\cite{DBLP:conf/kbse/LiY0C19}, and different from the original study, we expand the execution time of each test generation tool, executing each app at each tool for three minutes, while the original study executed for just one minute.
+
+The other $3$ test generation tools selected were: Droidbot~\cite{DBLP:conf/icse/LiYGC17},
+DroidMate~\cite{DBLP:conf/icse/JamrozikZ16} and Monkey~\cite{Monkey}, all explored at the original work of Bao et al.~\cite{DBLP:conf/icse/JamrozikZ16}. We selected Droidbot and DroiMate because they achieved
+the best performance on detecting malicious behavior at $102$ pairs of Android apps (B/M) at Bao et al work. We also considered the open source tool from Google, Monkey, because it is the most widely used tool in industry \cite{DBLP:conf/sigsoft/ZengLZXDLYX16}, coming up with the Android SDK installation. Since Monkey was developed for stress testing, and can not perform text input, we also considered Humanoid, that emulate realistic users, creating human-like test inputs using deep learning techniques.
 For this non-exact replication, we also used the DroidXP benchmark~\cite{DBLP:conf/scam/CostaMCMVBC20},
 which helped us to reproduce the original work.
 
@@ -47,12 +49,12 @@ default configuration, that is, enabling the DroidFax
 static analysis algorithms and the test generation tools.
 
 We investigate the four test case generation tools described earlier and added a fake test
-case generation tool (named Joke) that simulates a test tool that does not execute
+case generation tool (named Joker) that simulates a test tool that does not execute
 the Android apps during a benchmark execution. Using this tool, the results
 of the dynamic analysis are not considered and we can compute the results with
 only the static analysis component of DroidFax (RQ1). Our study executed each pairs of
-Android app (B/M) in each one of the five test generation tools, including Joke,
-for three minutes. We then investigate the performance of each tool to detect
+Android app (B/M) in each one of the five test generation tools, including Joker,
+for $3$ minutes. We then investigate the performance of each tool to detect
 malicious behaviors in the sandbox modeled by the test generation tool
 under analysis.
 
