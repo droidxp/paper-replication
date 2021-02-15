@@ -17,6 +17,58 @@ pages = {259–269},
 numpages = {11}
 }
 
+
+@inproceedings{weiissta,
+author = {Huang, Wei and Dong, Yao and Milanova, Ana and Dolby, Julian},
+title = {Scalable and Precise Taint Analysis for Android},
+year = {2015},
+isbn = {9781450336208},
+publisher = {Association for Computing Machinery},
+address = {New York, NY, USA},
+url = {https://doi.org/10.1145/2771783.2771803},
+doi = {10.1145/2771783.2771803},
+abstract = { We propose a type-based taint analysis for Android. Concretely, we present DFlow, a context-sensitive information flow type system, and DroidInfer, the corresponding type inference analysis for detecting privacy leaks in Android apps. We present novel techniques for error reporting based on CFL-reachability, as well as novel techniques for handling of Android-specific features, including libraries, multiple entry points and callbacks, and inter-component communication. Empirical results show that our approach is scalable and precise. DroidInfer scales well in terms of time and memory and has false-positive rate of 15.7%. It detects privacy leaks in apps from the Google Play Store and in known malware. },
+booktitle = {Proceedings of the 2015 International Symposium on Software Testing and Analysis},
+pages = {106–117},
+numpages = {12},
+keywords = {information flow, Taint analysis, Android, CFL-reachability},
+location = {Baltimore, MD, USA},
+series = {ISSTA 2015}
+}
+
+
+@inproceedings{boddenesec,
+author = {Pauck, Felix and Bodden, Eric and Wehrheim, Heike},
+title = {Do Android Taint Analysis Tools Keep Their Promises?},
+year = {2018},
+isbn = {9781450355735},
+publisher = {Association for Computing Machinery},
+address = {New York, NY, USA},
+url = {https://doi.org/10.1145/3236024.3236029},
+doi = {10.1145/3236024.3236029},
+abstract = {In recent years, researchers have developed a number of tools to conduct taint analysis of Android applications. While all the respective papers aim at providing a thorough empirical evaluation, comparability is hindered by varying or unclear evaluation targets. Sometimes, the apps used for evaluation are not precisely described. In other cases, authors use an established benchmark but cover it only partially. In yet other cases, the evaluations differ in terms of the data leaks searched for, or lack a ground truth to compare against. All those limitations make it impossible to truly compare the tools based on those published evaluations.  We thus present ReproDroid, a framework allowing the accurate comparison of Android taint analysis tools. ReproDroid supports researchers in inferring the ground truth for data leaks in apps, in automatically applying tools to benchmarks, and in evaluating the obtained results. We use ReproDroid to comparatively evaluate on equal grounds the six prominent taint analysis tools Amandroid, DIALDroid, DidFail, DroidSafe, FlowDroid and IccTA. The results are largely positive although four tools violate some promises concerning features and accuracy. Finally, we contribute to the area of unbiased benchmarking with a new and improved version of the open test suite DroidBench.},
+booktitle = {Proceedings of the 2018 26th ACM Joint Meeting on European Software Engineering Conference and Symposium on the Foundations of Software Engineering},
+pages = {331–341},
+numpages = {11},
+keywords = {Benchmarks, Tools, Empirical Studies, Reproducibility, Android Taint Analysis},
+location = {Lake Buena Vista, FL, USA},
+series = {ESEC/FSE 2018}
+}
+
+@article{ZHANG2021102161,
+title = {An efficient approach for taint analysis of android applications},
+journal = {Computers and Security},
+volume = {104},
+pages = {102161},
+year = {2021},
+issn = {0167-4048},
+doi = {https://doi.org/10.1016/j.cose.2020.102161},
+url = {https://www.sciencedirect.com/science/article/pii/S016740482030434X},
+author = {Jie Zhang and Cong Tian and Zhenhua Duan},
+keywords = {Android, Security, Static analysis, Taint analysis, Privacy},
+abstract = {In recent years, sensitive data leaks of Android system attracted significant attention. The traditional facilities proposed for detecting these leaks, i.e. taint analysis, mostly focus on the precision and recall of the result with few of them addressing the importance of the cost and efficiency. As a matter of fact, the high costs of these tools often make them fail in analyzing large-scale apps and thus block them from wide usage in practice. In this paper, we propose FastDroid, an efficient and precise approach for taint analysis in Android apps with flow and context-sensitivity. First, upon groups of taint rules, a preliminary flow-insensitive taint analysis is conducted to construct the taint value graph which is an abstraction defined to describe the process of taint propagation in an app. Then, potential taint flows are extracted from the taint value graphs and further checked on the control flow graph to acquire the real taint flows. FastDroid is evaluated on the benchmark DroidBench, 1517 apps from Google Play store and 1022 apps from AndroZoo. The results show that the F-measure scores of FastDroid on DroidBench 2.0 and 3.0 are 0.89 and 0.75 respectively, the performance is better than the state-of-the-art tool FlowDroid. Further, a comparison on runtime with FlowDroid shows that FastDroid improves the efficiency significantly.}
+}
+
 @inproceedings{arzt:pldi-2014,
 author = {Arzt, Steven and Rasthofer, Siegfried and Fritz, Christian and Bodden, Eric and Bartel, Alexandre and Klein, Jacques and Le Traon, Yves and Octeau, Damien and McDaniel, Patrick},
 title = {FlowDroid: Precise Context, Flow, Field, Object-Sensitive and Lifecycle-Aware Taint Analysis for Android Apps},
