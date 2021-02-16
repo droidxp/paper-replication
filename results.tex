@@ -8,16 +8,17 @@ implications of our study.
 
 Our first study performed a non-exact replication of Bao et al work.
 %\kn{We should introduce an abbreviation for the Bao et al work and reuse it everywhere. What do you think? }. 
-As discussed in the previous section, we first executed the analysis using the DroidXP benchmark with its default configuration. After that, we executed the analysis again though disabling the DroidFax static analysis algorithm, so that we could better estimate the performance of the dynamic analysis tools for mining Android sandboxes. Table~\ref{tab:fs} summarizes the results of the execution. The columns Exec. (I) and Exec. (II) 
-show the number of malwares identified when executing each tool (I) with the
-support of the DroidFax static analysis algorithms and (II) without the support
-of DroidFax static analysis algorithms. The Improvement column shows the impact
+As discussed in the previous section, we first executed the analysis using the DroidXP benchmark with its default configuration. After that, we executed the analysis again by disabling the DroidFax static analysis algorithm, so that we could better estimate the performance of the dynamic analysis tools for mining Android sandboxes. Table~\ref{tab:fs} summarizes the results of the execution. The columns Exec. (WS) and Exec. (WOS) 
+show the number of malwares identified when executing each tool with the
+support of the DroidFax static analysis algorithms(WS) and without the support
+of DroidFax static analysis algorithms(WOS). \kn{I have changed the I and II to Ws and WOS because I and II makes it sound like we ran the experiments two times which we have not yet done. }The Improvement column shows the impact
 (in percentage) of DroidFax static analysis algorithms in the results.
+\kn{Is this really improvement? Is this not "contribution" of droidfax. Improvement happens when an earlier approach detected malware without support of droidfax. Here 23\% of malwares are simply detected by the presence of droidfax (so IMO it should be impact or contribution) not improvement}
 In the previous work~\cite{}, the authors do not present a
 discussion about the influence of DroidFax in the results, even
-though here we report that this difference is in the
+though here we report that the impact of DroidFax to the results is significant in the
 range from 23.94\% (Monkey) to 69.39\% (Humanoid)---discarding our
-\joke tool for which DroidFax improves its performance in 100\% (as expected).
+\joke tool for which DroidFax improves its performance by 100\% (as expected).
 Next we discuss the result of each individual test generation tool. 
 
 \begin{table}[ht]
@@ -26,7 +27,7 @@ Next we discuss the result of each individual test generation tool.
   \begin{small}
  \begin{tabular}{lrrr}
    \toprule
-   Tool & Exec. (I) & Exec. (II) & Improvement (\%) \\   \midrule
+   Tool & Exec. (WS) & Exec. (WOS) & Improvement (\%) \\   \midrule
   Monkey &  71 &  54 & 23.94 \\ 
   DroidMate &  64 &  48 & 25.00 \\ 
   DroidBot &  68 &  54 & 20.59 \\ 
@@ -39,12 +40,12 @@ Next we discuss the result of each individual test generation tool.
 \end{table}
 
 
-\subsubsection*{Monkey} sandbox for the first execution (Exec. (I)) detected more apps with malicious behavior than any other tool considered in our study (71 out of the 96 pairs of Android apps). Contrasting, in the original study, Monkey got the third-best performance, detecting 48 malwares within the 102 pairs (47.05\%). This difference might be due to the Monkey randomly strategy for test case generation. \rb{I am not convinced that the other tools do not employ any randomness.} For our second execution (Exec. (II)), there is a reduction of 23.94\% in the Monkey's performance, totaling 54 malware detected---which matches the performance of DroidBot for Exec. (II). \rb{Considering only one run for each configuration, that is Exec. (I) and Exec. (II), we cannot assure that the difference is due to disabling the DroidFax static analysis algorithms.}
+\subsubsection*{Monkey} sandbox for the execution WS detected more apps with malicious behavior than any other tool considered in our study (71 out of the 96 pairs of Android apps). Contrasting, in the original study, Monkey got the third-best performance, detecting 48 malwares within the 102 pairs (47.05\%). This difference might be due to the Monkey using strategy that incorporates randomness for test case generation. \rb{I am not convinced that the other tools do not employ any randomness.} For our second execution (Exec WOS), there is a reduction of 23.94\% in the Monkey's performance, totaling 54 malware detected---which matches the performance of DroidBot for Exec. (II). \rb{Considering only one run for each configuration, that is Exec. (I) and Exec. (II), we cannot assure that the difference is due to disabling the DroidFax static analysis algorithms.}
 
 
-\subsubsection*{DroidBot} in the first execution (Exec. (I)) its resulting sandbox detected a total of 68 malware among $96$ pairs analyzed (70.83\%). Interesting, this is the same performance of the original study---although the original study analyzed $102$ pairs of Android apps. Also, in the original study, DroidBot was the test case generation tool whose resulting sandbox detected the largest number of malicious apps. However, in our second execution (Exec. (II)), its performance decreased in 20.58 \%. \rb{Not sure if the following sentence is right.} Despite this reduction, it achieved the largest number of malicious apps detected in the second execution.
+\subsubsection*{DroidBot} in the first execution (Exec. WS) its resulting sandbox detected a total of 68 malware among $96$ pairs analyzed (70.83\%). Interesting, this is the same performance of the original study---although the original study analyzed $102$ pairs of Android apps. Also, in the original study, DroidBot was the test case generation tool whose resulting sandbox detected the largest number of malicious apps. However, in our second execution (Exec WOS), its performance decreased to 20.58 \%. \rb{Not sure if the following sentence is right.} Despite this reduction, it detected the largest number of malicious apps in the Exec. WOS.
 
-\subsubsection*{DroidMate} in the first execution led to a sandbox that detected 64 apps with malicious behavior (66.66\%). Contrasting, in the original study DroidMate detected 54 among 102 (52.94\%). A possible explanation for this difference is that here we use the more recent version of DroidMate. In the second execution, without the DroidFax static analysis algorithms, the resulting sandbox's performance drops by 25\%, being able to detect 48 out of the 96 pairs of Android apps. 
+\subsubsection*{DroidMate} in the first execution(WS) led to a sandbox that detected 64 apps with malicious behavior (66.66\%). Contrasting, in the original study DroidMate detected 54 among 102 (52.94\%). A possible explanation for this difference is that here we use the more recent version of DroidMate. In the second execution(WOS), without the DroidFax static analysis algorithms, the resulting sandbox's performance drops by 25\%, being able to detect only 48 out of the 96 pairs of Android apps. 
 
 
 \subsubsection*{Humanoid} presented the worse performance, even though a previous
