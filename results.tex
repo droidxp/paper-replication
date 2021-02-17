@@ -94,7 +94,7 @@ detected using the sandboxes generated after running the test case tools with th
 
 \subsection{Result of the second study: Tainted analysis algorithms.}\label{sec:res-ss}
 
-In this second study we used a tainted analysis approach to mine differences between the benign and malicious versions of each of the 96 Android apps in our dataset. To this end we leverage the FlowDroid tool, which tracks how sensitive information flows through the apps using tainted analysis algorithms. Regarding accuracy, the tainted analysis approach detected 58 out of the 96 pairs in our dataset (60,42\%), that is, the FlowDroid approach leads to a better performance than any sandbox originated in the second execution of the dynamic analysis tools (without the DroidFax static analysis algorithms).
+In this second study we used a tainted analysis approach to mine differences between the benign and malicious versions of each of the 96 Android apps in our dataset. To this end we leverage the FlowDroid tool, which tracks how sensitive information flows through the apps using taint analysis. Regarding accuracy, the taint analysis approach detected 58 out of the 96 pairs in our dataset (60,42\%), that is, the FlowDroid approach leads to a better performance than any sandbox originated in the execution of the dynamic analysis tools without DroidFax support (WOS).
 
 \begin{finding}
   The performance of FlowDroid to identify malicious behavior
@@ -102,6 +102,8 @@ In this second study we used a tainted analysis approach to mine differences bet
   mining sandbox approach supported by dynamic analysis only---without
   the DroidFax static analysis algorithms.
 \end{finding}
+
+\kn{What does "our" approach mean in the finding box. I thought we simply study the malware detection under various settings With/without Droidfax and now with flowdroid} 
 
 Additionally, we investigate if we could benefit from combining
 the results from FlowDroid and DroidFax. Figure~\ref{fig:venn-plot2} shows a
