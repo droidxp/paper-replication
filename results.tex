@@ -202,14 +202,16 @@ is an \emph{adware}.
   19) that had not been detected in the first study. 
 \end{finding}
 
-\rb{This is a nice place to present some details about the malwares
-  that FlowDroid had detected, showin the additional source-sink pairs
-  that emmerged. A discussion about these aforementioned four pairs would
-  also be relevant.}
+Here we present details about one of the malwares that Flowdroid had detected. At this example, the malicious and benign apps have the same sink, however they access different sources, therefore configuring additional source-sink pairs, and hence a possible malicious behaviours. The pictures \ref{fig:sourcesink}, presents the paths source (blue border) and sink (orange border) from benign and malicious apps.
 
-\rb{I finished my first review until this place. Tomorrow I will continue
-from here.} 
-
+\begin{figure}[h]%
+    \centering
+    \subfloat[\centering Path source/sink from benign app]{{\includegraphics[width=5cm]{images/pathbenign.png} }}%
+    \qquad
+    \subfloat[\centering Path source/sink from malicious app]{{\includegraphics[width=5cm]{images/pathmalicious.png} }}%
+    \caption{Pairs source/sink different (B/M)}%
+    \label{fig:sourcesink}%
+\end{figure}
 
 \subsection{Discussion}\label{sec:discussion}
 
@@ -231,6 +233,7 @@ sandboxes can be further boosted when coupled with new static analysis technique
 \caption{Malwares detected in 96 pair (B/M) increased by Tainted analysis Algorithms}
 \label{tab:tanted}
 \end{table}
+
 
 %%here we also have to write about the intersection between droidfax and tainted analysis now, and about what 1 reveled and other dont, and otherwise. 
 
