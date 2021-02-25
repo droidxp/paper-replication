@@ -1,6 +1,8 @@
 ---
 title: "Analysis"
-output: html_document
+output:
+  html_document: default
+  pdf_document: default
 ---
 
 ```{r setup, include=FALSE}
@@ -14,33 +16,44 @@ require(VennDiagram)
 require(ggvenn)
 ```
 
-## Load the Summary Dataset for Study 1
-
-```{r}
-ds <- read.csv("./execution01.csv", head=T, sep=",")
-ds["Improvement"] = (ds$WithDroidFax - ds$WithoutDroidFax) * 100 / ds$WithDroidFax
-xtable(ds)
-```
 
 ## Load the Complete Dataset for Study 1
 
-```{r venn-plot-s1}
-ds <- read.csv("./report_withStatic.csv", head=T, sep=",")
+```{r}
+ds <- read.csv("allreportResults.csv", head=T, sep=",")
 
-sets <- sqldf("select tool, app from ds where malware = 'True'")
+staticAnalysis <- sqldf("select tool, count(distinct app) totalWith
+                        from ds 
+                        where malware = 1 and static = 1 and tool != 'flowdroid'
+                        group by tool")
+
+withoutStaticAnalysis <-  sqldf("select tool, count(distinct app) totalWithout
+                                  from ds 
+                                  where malware = 1 and static = 0
+                                  group by tool")
+
+res <- merge(staticAnalysis, withoutStaticAnalysis, all.x=T)
+
+res[is.na(res)] <- 0
+res["Improvement"] = (res$totalWith  - res$totalWithout) * 100 / res$totalWith 
+xtable(res[order(-res$totalWith),])
+```
+
+## Compare the performance of the different tools (with DroidFax)
+
+```{r, venn-plot-s1}
+
+colnames(ds)
+sets <- sqldf("select tool, app, count(*) total 
+                  from ds 
+                  where malware = 1 and static = 1
+                  group by tool, app")
+
 monkey = sets[sets$tool=="monkey", c("app")]
 humanoid = sets[sets$tool=="humanoid", c("app")]
 droidmate = sets[sets$tool=="droidmate", c("app")]
 droidbot = sets[sets$tool=="droidbot", c("app")]
 joker = sets[sets$tool=="joke", c("app")]
-
-
-venn.diagram(
-  x = list(monkey, humanoid, droidmate, droidbot, joker),
-  category.names = c("Monkey" , "Humanoid" , "DroidMate", "DroidBot", "Joker"),
-  filename = './venn.png',
-  output=TRUE
-)
 
 x <- list(
   Monkey = monkey,
@@ -59,13 +72,18 @@ ggvenn(
 ## Total of malwares detected by at least one tool
 
 ```{r}
-sqldf("select count(distinct app) from ds where malware = 'True'")
+sqldf("select count(distinct app) from ds where malware = 1")
 ```
 
 ## Load the Complete Dataset for Study 2
 
-```{r venn-plot-s2}
- ds <- read.csv("allreportResults.csv", head=T, sep=",")
+```{r}
+ds <- read.csv("allreportResults.csv", head=T, sep=",")
+```
+
+## Compare the performance of FlowDroid and DroidFax (Joker tool)
+
+```{r, venn-plot-s2}
 sets <- sqldf("select tool, app 
                   from ds 
                   where malware = 1 
@@ -74,8 +92,6 @@ sets <- sqldf("select tool, app
 notDetected <- sqldf("select distinct app from ds where 
                       app not in (select app from sets)")
 
-# subsets
-notDetected
 
 flowdroid = sets[sets$tool=="flowdroid", c("app")]
 droidfax = sets[sets$tool=="joke", c("app")]
