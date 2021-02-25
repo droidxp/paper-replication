@@ -2,7 +2,7 @@
 
 %\kn{This paragraph requires a motivation. The details of Boa's study must be described upfront. Something like "Boa et al.'s study performs ..... Since their study also involved a static analysis component whose impact was not measured, we perform a non-exact replication to understand the impact static analysis may have had in the results...}
 
-\blls explored the effectiveness of test generation tools to construct sandboxes, based on sensitive APIs called by apps under analysis. Since their study also involved a static analysis component, performed by Droidfax as we described at introduction, and whose impact was not measured, we perform a non-exact replication to understand the static analysis impact may have had in the results. Thus, this section present the settings of our study, whose goal is to perform this non-exact replication, and thus build a general understanding of the implications of static analysis algorithms in their results. We also investigate how static analysis can improve the performance of mining sandboxes, in the task of identifying malicious behavior.
+\blls explored the effectiveness of test generation tools to construct sandboxes, based on sensitive APIs called by apps under analysis. Since their study also involved a static analysis component, performed by Droidfax as we described at introduction, and whose impact was not measured, we replicated its work to understand the static analysis impact may have had in their results. Thus, this section present the settings of our study, whose goal is to perform this replication, and thus build a general understanding of the implications of static analysis algorithms in the results. We also investigate how static analysis can improve the performance of mining sandboxes, in the task of identifying malicious behavior.
 
 To achieve these general goals, we intend to answer the following research questions.
 
@@ -23,27 +23,26 @@ as reported in \blls, which might introduce a possible threat to their conclusio
 allows us to open up the possibility of finding new strategies for designing mining sandbox techniques, complementing the performance of
 dynamic analysis through the use of static analysis algorithms.
 
-We conducted two studies to answer the research questions above. First we performed a non-exact replication of the \blls. Our study differs from the original because here we isolated the effect of the DroidFax static analysis algorithms in the performance to identify malicious apps using the test case generation tools for
-mining sandboxes. In addition, we discarded $6$ pairs of
-Android apps we were not able to instrument---out of the $102$ pairs used in the original work. We also introduced a recent test generator tool, that has not been considered at previous work, Humanoid ~\cite{DBLP:conf/kbse/LiY0C19}, and different from the original study, we expand the execution time of each test generation tool, executing each app at each tool for three minutes, while the original study executed for just one minute.
+We conducted two studies to answer the research questions above. First we replicated the \blls. However, our study differs from the original because here we isolated the effect of the DroidFax static analysis algorithms, in the task to identify malicious apps. In addition, we discarded $6$ pairs of
+Android apps we were not able to instrument---out of the $102$ pairs used in the original work. We also introduced a recent test generator tool, that has not been considered at previous work, Humanoid ~\cite{DBLP:conf/kbse/LiY0C19}, and different from the original study, we expand the execution time of each test generation tool, executing each app at each tool for three minutes, and repeated all the execution more 2 times, therefore totaling three executions. The original study executed each app at each tool, for just one minute, and just one time.
 
 The others $3$ test generation tools selected were: Droidbot~\cite{DBLP:conf/icse/LiYGC17},
 DroidMate~\cite{DBLP:conf/icse/JamrozikZ16} and Monkey~\cite{Monkey}, all explored at \blls. We selected Droidbot and DroiMate because they achieved
 the best performance on detecting malicious behavior at $102$ pairs of Android apps (B/M) in the \blls. We also considered the open source tool from Google, Monkey, because it is the most widely used tool in industry \cite{DBLP:conf/sigsoft/ZengLZXDLYX16}. It is part of the Android SDK, and does not require any additional installation effort. Since Monkey was developed for stress testing, and can not perform text input, only generating
 UI events, we also considered Humanoid, that emulate realistic users, creating human-like test inputs using deep learning techniques.
-For this non-exact replication, we also used the DroidXP benchmark~\cite{DBLP:conf/scam/CostaMCMVBC20},
+For the replication, we also used our benchmark tool, DroidXP ~\cite{DBLP:conf/scam/CostaMCMVBC20},
 which helped us to reproduce the original work.
 
 In the second study we leverage FlowDroid~\cite{DBLP:conf/pldi/ArztRFBBKTOM14} to execute
 tainted analysis algorithms in Android apps, in order to identify pairs of \emph{sources and sinks}. In this case,
 our goal is to investigate the performance on detecting malicious
 behavior using static taint analysis of Android apps. We use two metrics in this second study: the number
-of source-sink flows that FlowDroid identifies when considering the pairs of Android apps (B/M) and the
+of source-sink flows that FlowDroid identifies when considering the pairs of Android apps (B/M), and the
 execution time of the analysis for each app.
 For both studies, we employed the same dataset $96$ pairs of Android apps (B/M),
 shared by the AndroZoo \cite{DBLP:conf/msr/AllixBKT16} project. We detail the procedures of each study in what follows.
 
-\subsection{First Study: A non-exact replication}
+\subsection{First Study: A replication \blls}
 
 In the first study we executed the DroidXP benchmark with its
 default configuration, that is, enabling the DroidFax
@@ -55,8 +54,7 @@ the Android apps during a benchmark execution. Using this tool, the results
 of the dynamic analysis are not considered and we can compute the results with
 only the static analysis component of DroidFax (RQ1). Our study executed each pairs of
 Android app (B/M) in each one of the five test generation tools, including Joker,
-for $3$ minutes. We then investigate the performance of each tool to detect
-malicious behaviors in the sandbox modeled by the test generation tool
+for three minutes, and for three times. We then investigate the performance of each tool to detect malicious behaviors in the sandbox modeled by the test generation tool
 under analysis. Figure \ref{fig:setup} shows this experimental setup.
 
 \begin{figure}[ht]
@@ -66,10 +64,7 @@ under analysis. Figure \ref{fig:setup} shows this experimental setup.
    \label{fig:setup}
  \end{figure}
 
-After that, we replicated the study using a configuration of DroidXP that
-disables the DroidFax static analysis algorithm. With this new configuration,
-we executed the benchmark one more time, using the same dataset of Android
-apps, the same execution time, and the same test case generation tools.
+After that, we replicated the study using a configuration of DroidXP that disables the DroidFax static analysis algorithm. With this new configuration, we executed the benchmark again, using the same dataset of Android pairs apps, the same execution time, and the same test case generation tools.
 The results of this replication allow us to compute the effective performance
 of the dynamic analysis tools (RQ2)---that is, ignoring the influence of the
 DroidFax static analysis algorithms.
