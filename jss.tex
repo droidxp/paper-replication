@@ -1,0 +1,108 @@
+\documentclass[review]{elsarticle}
+
+%%\acmConference[ESEC/FSE 2020]{The 28th ACM Joint European Software %%Engineering Conference and Symposium on the Foundations of Software %%Engineering}{8 - 13 November, 2020}{Sacramento, California, United States}
+
+
+% Fonte em português brasileiro
+\usepackage[american]{babel}
+\usepackage[utf8]{inputenc}
+\usepackage{enumerate}
+\usepackage{setspace}
+\usepackage{pgfgantt}
+\usepackage{booktabs}
+\usepackage{listings}
+\usepackage{hyperref}
+\usepackage{xspace}
+\usepackage{todonotes}
+\usepackage{mdframed}
+
+\newmdtheoremenv [
+ outerlinewidth = 1 ,
+ roundcorner = 1pt,
+ leftmargin = 1,
+ rightmargin = 1,
+ backgroundcolor = gray!20,
+ outerlinecolor = blue!70!black,
+ %innertopmargin = \topskip, 
+ %splittopskip = \topskip ,
+ ntheorem = false,
+] {finding}{Finding}
+%\usepackage{balance}
+% \usepackage[numbers]{natbib}
+% \bibliographystyle{IEEEtranN}
+
+% Default fixed font does not support bold face
+\DeclareFixedFont{\ttb}{T1}{txtt}{bx}{n}{12} % for bold
+\DeclareFixedFont{\ttm}{T1}{txtt}{m}{n}{12}  % for normal
+
+% Custom colors
+\definecolor{keywords}{rgb}{0.5,0,0.35}
+\definecolor{comments}{RGB}{0,0,113}
+\definecolor{red}{RGB}{160,0,0}
+\definecolor{green}{RGB}{0,150,0}
+ 
+\lstset{language=Python, 
+        basicstyle=\ttfamily\small, 
+        keywordstyle=\color{keywords}\bfseries,
+        commentstyle=\color{comments},
+        stringstyle=\color{red},
+        showstringspaces=false,
+        %identifierstyle=\color{red},
+       }
+       
+% Identação e Margens
+\usepackage{fullpage}      % Margens
+\usepackage{indentfirst}   % Autoidentar
+
+
+
+% Figuras
+\usepackage{graphicx}       % Pictures
+\usepackage{subfig}
+\usepackage{venndiagram}
+
+\newcommand\kn[1]{\textcolor{red}{KN: #1}}
+\newcommand\rb[1]{\textcolor{blue}{RB: #1}}
+
+\newcommand{\original}{original\xspace}
+
+\newcommand{\joke}{Joker\xspace}
+\newcommand{\blls}{BLL-Study\xspace}
+
+\begin{document}
+
+\begin{frontmatter}
+\title{Mining Android Sandboxes Using Dynamic and Static Analysis: a Non-exact Replication Study}
+
+
+\author[1]{Francisco Handrick da Costa}
+\author[1]{Ismael Medeiros}
+\author[1]{Thales Menezes}
+\author[1]{Jo\~{a}o Victor da Silva}
+\author[1]{Ingrid Lorraine da Silva}
+\author[1]{Rodrigo Bonif\'{a}cio}
+\author[2]{Krishna Narasimhan}
+
+\address[1]{Computer Science Department, University of Bras\'{i}lia, Brazil}
+\address[2]{Software Technology Group, TU Darmstadt, Germany}
+
+\input{abstract-jss}
+
+
+\end{frontmatter}
+
+
+\input{introduction}
+\input{background}
+%\input{malwarescharacterization}
+\input{setup}
+\input{results}
+%\input{flowdroid}
+\input{threats}
+\input{conclusionfutureworks}
+
+%\balance 
+\bibliographystyle{elsarticle-num}
+\bibliography{ref}
+
+\end{document}
