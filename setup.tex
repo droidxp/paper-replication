@@ -28,9 +28,9 @@ Android apps we were not able to instrument---out of the $102$ pairs used in the
 
 The others $3$ test generation tools selected were: Droidbot~\cite{DBLP:conf/icse/LiYGC17},
 DroidMate~\cite{DBLP:conf/icse/JamrozikZ16} and Monkey~\cite{Monkey}, all explored at \blls. We selected Droidbot and DroiMate because they achieved
-the best performance on detecting malicious behavior at $102$ pairs of Android apps (B/M) in the \blls. We also considered the open source tool from Google, Monkey, because it is the most widely used tool in industry \cite{DBLP:conf/sigsoft/ZengLZXDLYX16}. It is part of the Android SDK, and does not require any additional installation effort. Since Monkey was developed for stress testing, and can not perform text input, only generating
+the best performance on detecting malicious behavior at $102$ pairs of Android apps (B/M) in the \blls. At our study, we considered Droidmate-2~\footnote{In this paper, we will use Droidmate to represent Droidmate at version 2} \cite{DBLP:conf/kbse/BorgesHZ18}, because it extend the explore engine of previous version, including a new explorer set, that decide the next events to be performed. We also considered the open source tool from Google, Monkey, because it is the most widely used tool in industry \cite{DBLP:conf/sigsoft/ZengLZXDLYX16}. It is part of the Android SDK, and does not require any additional installation effort. Since Monkey was developed for stress testing, and can not perform text input, only generating
 UI events, we also considered Humanoid, that emulate realistic users, creating human-like test inputs using deep learning techniques.
-For the replication, we also used our benchmark tool, DroidXP ~\cite{DBLP:conf/scam/CostaMCMVBC20},
+For the replication, we also used our benchmark tool, droidXP ~\cite{DBLP:conf/scam/CostaMCMVBC20},
 which helped us to reproduce the original work.
 
 In the second study we leverage FlowDroid~\cite{DBLP:conf/pldi/ArztRFBBKTOM14} to execute
@@ -40,7 +40,63 @@ behavior using static taint analysis of Android apps. We use two metrics in this
 of source-sink flows that FlowDroid identifies when considering the pairs of Android apps (B/M), and the
 execution time of the analysis for each app.
 For both studies, we employed the same dataset $96$ pairs of Android apps (B/M),
-shared by the AndroZoo \cite{DBLP:conf/msr/AllixBKT16} project. We detail the procedures of each study in what follows.
+shared by the AndroZoo \cite{DBLP:conf/msr/AllixBKT16} project. We detail our benchmark tool, droidXP, and the procedures of each study in what follows.
+
+\subsection{The Benchmark - DroidXP}
+
+\begin{figure*}[ht]
+  \includegraphics[width=1\textwidth]{images/benchmark4.png}
+  \label{benchArq}
+  \caption{Benchmark architecture}
+  \label{fig:benchArq}
+\end{figure*}
+
+
+To systematically assess and compare test generation tools for mining android sandboxes, we used our benchmark solution, called DroidXP. It relies on a simple \emph{Command Line Interface} (CLI) that favors the execution and configuration of the benchmark. It also relies on DroidFax, that instruments Android apps and collects relevant information about their execution, like the set of sensitive APIs a given
+app calls during a test execution. DroidFax also collects inter-component communication (ICC) intent  tracing  using  static  program analysis.
+
+The DroidXP CLI provides two commands: a command that lists all test case
+generation tools (executing the project with the option ``list-tools'') that had been
+integrated into the benchmark; and a command that performs the execution of the benchmark,
+which can be configured using the following parameters:
+
+\begin{itemize}
+    \item \texttt{-tools}: Specifies the test tools used in the experiment
+    \item \texttt{-t}: Specifies the threshold (in seconds) for the execution time in the experiment
+    \item \texttt{-r}: Specifies the number of repetitions used in the experiment
+    \item \texttt{-output-format}: Specifies the output format
+    \item \texttt{--debug}: Specifies to run in DEBUG mode (default: false)
+    \item \texttt{--disable-static}: Disable DroidFax static analysis (default: false)
+    
+    
+\end{itemize}
+
+The DroidXP architecture relies on the pipes-and-filters architectural style \cite{architecture-book} (Figure \ref{fig:benchArq}),
+and includes three main components; where each component is responsible for a specific phase of the
+benchmark (instrumentation, execution, and result analysis).
+
+\subsubsection{Phase 1: Instrumentation}
+
+In the first phase, a researcher must define the corpus of APK files droidXP should consider during a benchmark execution. After that, DroidXP starts the DroidFax service that instruments each APK file, so that DroidXP would be able to collect data about each execution. To improve the performance of the benchmark, the instrumentation phase runs only once for each APK. In this phase, the DroidFax tool also runs some static analysis procedures.
+
+\subsubsection{Phase 2: Execution}
+
+In this phase, DroidXP installs an (already instrumented) APK file into
+an Android emulator, and then executes a test case generation tool
+during a period of time. This process repeats for every test case generation
+tool and APK files. To provide repeatability of the experiment, DroidXP removes all data stored in the emulator before starting
+a new execution. That is, every execution uses a \emph{fresh} emulator,
+without any information that might have been kept during
+previous executions. 
+
+The benchmark is relatively easy to add new test
+case generation tools. To achieve this goal, it leverage the Strategy Design pattern \cite{patterns-book}, which sets a contract between a family of classes that, in our case, abstracts the specificities for running each tool we want to integrate into DroidXP. To performance our study replication we integrated successfully all test generation tools previously mentioned into DroidXP. 
+
+\subsubsection{Phase 3: Result Analysis}
+
+During the execution, all the data that is required to compute the results are provided by Logcat \cite{Logcat}, one of the Android SDK's native tools and is a command-line tool that dumps a log from the Android emulator. Thus, the only part of the log that is analyzed in this phase is the messages sent by the methods inside the Android app that were instrumented on the first phase using the DroidFax tool. 
+
+Droidfax computes the coverage each test achieved and which sensitive API was accessed during the execution of that test. That last information is required to compute the test generator performance in identifying malicious apps by spotting differences between the sensitive API accessed by each version of an app. This information is vital to the measurement of the test generator performance and qualification. After this phase, the benchmark outputs the results of the experiment, which is informing the performance of one or more testing generator tools in mining sandboxes.
 
 \subsection{First Study: A replication \blls}
 
