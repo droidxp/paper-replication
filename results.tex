@@ -280,19 +280,19 @@ Here we present details about one of the malware that Flowdroid had detected. At
 
 \subsection{Discussion}\label{sec:discussion}
 
-First we find that static analysis summaries had impact in the Bao et al. study. It was responsible for improving the results of the tools by 47.78\% than its executions alone, answering our first research question (RQ1). Second, Table \ref{tab:malwareWithout} summarizes our findings addressing the second research question (RQ2). We realized that disregarding the static analysis algorithms, and discarding Joke tool, among the tools analyzed in your study, Humanoid had the biggest performance drop, and the least affected was DroidBot, proving be the tool with better effective performance, in terms of the number of detected malware. Finally, we answered our last research question (RQ3) when we leverage sandboxes, complementing the dynamic analysis provided by test generation tool with tainted analysis algorithms. Our experiment highlight that 69.79\%-81.25\% of malware in dataset can be now uncovered by the complement of tainted analysis algorithms, evidencing that 
-sandboxes can be further boosted when coupled with new static analysis techniques. We found that the number of identified malicious apps detected is increased for all cases, achieving at the best case, 81.25\% with Monkey, a better performance than all five tools explored at Bao et al., even when they combined all the tools together at theirs work 75.49\%. Table \ref{tab:tanted} display the increase of all tools explored at our research.
+First we find that static analysis summaries had impact in the \blls. It was responsible for improving the results of the tools, between $16.44\%$ and $51.79\%$, discarding our Joker tool, answering our first research question (RQ1). Second, Table \ref{tab:fs} also summarizes our findings addressing the second research question (RQ2). We realized that disregarding the static analysis algorithms, and discarding Joker tool, among the tools analyzed in your study, Humanoid had the biggest performance drop, obtaining an effective performance of $28.12\%$, 27 malicious apps, among 96. The least affected was DroidBot, proving be the tool with better effective performance, in terms of the number of detected malware, obtaining an effective performance of $63.54\%$, 61 malicious apps, among 96 . Finally, we answered our last research question (RQ3) when we leverage sandboxes, complementing the dynamic analysis provided by test generation tool with tainted analysis algorithms. Our experiment highlight that $69.79\%$-$82.29\%$ of malware in dataset can be now uncovered by the complement of tainted analysis algorithms, evidencing that 
+sandboxes can be further boosted when coupled with new static analysis techniques. We found that the number of identified malicious apps detected is increased for all cases, achieving at the best case, $82.29\%$ with DroidBot, a better performance than all five tools explored at \blls, even when they constructed a sandbox by combining all test generation tools at theirs work $75.49\%$. Table \ref{tab:tanted} display the increase of all tools explored at our research.
 
 \begin{table}[ht]
 \centering
 \begin{tabular}{lccc}\toprule
  Test Generation & FlowDroid & Total & \%\\
  Tool & Increase  &  & \\ \midrule
- Monkey & 7 & 78 & 81.25\\
- DroidMate & 10 &  74 & 77.08 \\
- Humanoid & 20 & 69 & 71.87  \\
- Joke & 25 & 67 & 69.79 \\
- DroidBot & 9 & 77 & 80.20  \\\midrule
+ DroidBot & 6 & 79 & 82.29\\
+ Monkey & 7 &  78 & 81.25 \\
+ DroidMate & 7 & 75 & 78.12  \\
+ Humanoid & 16 & 72 & 75.00 \\
+ Joker & 25 & 67 & 69.79  \\\midrule
  
 \end{tabular} 
 \caption{Malwares detected in 96 pair (B/M) increased by Tainted analysis Algorithms}
