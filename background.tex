@@ -4,9 +4,9 @@ A sandbox is an isolated environment on an electronic device within which applic
 
 %It also guarantees an unbiased testing environment, ensuring the same pre-configured beginning status of the environment \kn{I dont understand what a pre-configured beginning status is}.
 
-The Android Mining Sandbox concept is a sandboxing technique that consists of mining rules from an android app, and use these rules to ensure system security. The sandboxing technique comprises of two steps. First, rules are miner and will compose the sandbox,
+The Android Mining Sandbox concept is a sandboxing technique that consists of mining rules from an android app, and use these rules to ensure system security. The sandboxing technique comprises of two steps. First, rules are mined and will compose the sandbox,
 %\kn{I thought sandbox was an environment, now it is comprised of rules?}%
-through test generator tools. These tools explore program behavior and monitor access to sensitive APIs. The second stage ensures that resources not accessed, or accessed differently, at first stage, are denied access. So, if a malicious app requires access to resources, different from what was previously mined, the sandbox will prohibit this access.
+through test generator tools \kn{This sentence seems to miss something "what" happens through test generation tools.} . These tools explore program behavior and monitor access to sensitive APIs. The second stage ensures that resources not accessed, or accessed differently than first stage, are denied access. So, if a malicious app requires access to resources, different from what was previously mined, the sandbox will prohibit this access.
 
 Automatically mining software resources or components, to infer behavior is not new, and has been discussed before. For instance, Whaley et al. \cite{DBLP:conf/issta/WhaleyML02} combine dynamic and static analysis for API mining and so extract interface from software components. Ammons et al \cite{DBLP:conf/popl/AmmonsBL02} propose a machine learning
 approach, called specification mining, to discover temporal and data-dependence relationships that a program follows when interacting with an API or abstract data type.
