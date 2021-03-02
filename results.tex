@@ -17,7 +17,7 @@ of DroidFax static analysis algorithms (WOS).
 The Impact column shows the impact
 (in percentage) of DroidFax static analysis algorithms in the results. \kn{Define impact formally, may be as a ratio}
 
-\kn{The following ssentence is kind of stating the obviouss and comes off as an attack already. THis should bee a conclusion box. Also mention why joke has 100\% not just as a result number}
+\kn{The following ssentence is kind of stating the obviouss and comes off as an attack already. THis should bee a conclusion box. Did we introduce joke in study? If not please introduce. If yes, please use joke by saying "joke, our ..... improves its performance by"}
 Note that, in the \blls, the authors do not present a
 discussion about the influence of DroidFax in the results, even
 though here we report that the impact of DroidFax in the results is significant, ranging
@@ -63,14 +63,14 @@ Next we discuss the result of each individual test generation tool.
     without the DroidFax static analysis algorithms, the resulting sandbox's performance drops by $23.53$\%, being able to detect
     52 out of the 96 pairs of Android apps.
     
-  \item[Humanoid] showed the worse performance, even though a previous work~\cite{DBLP:conf/kbse/LiY0C19} presented that it leads to
+  \item[Humanoid] showed the worst performance, even though a previous work~\cite{DBLP:conf/kbse/LiY0C19} presented that it leads to
     the highest number of lines coverage in comparison to Monkey, DroidBot, and DroidMate. In the first execution (Exec. WS),
     the resulting Humanoid sandbox identified $56$ malwares in our dataset ($58.33$\%). Humanoid was the most affected in the second
     execution (Exec. WOS), whose resulting sandbox presents a redunction of $51.79$\%  in the number of detected malwares.
     Since the \blls did not explore Humanoid,
     we do not have a baseline for comparison with the previous work.
 
-  \item[\joke] is our fake test case generation tool that help us understand the performance of the DroidFax static analysis algorithm for mining sandboxes.
+  \item[\joke] is our fake test case generation tool that help us understand the performance of the DroidFax static analysis algorithm for mining sandboxes. \kn{joke seems to be defined here but used before}
     We integrated \joke into the DroidXP benchmark as an additional test case generation tool that does not run the Android apps during the benchmark execution.
     As a result, the analysis using \joke reveals the performance of DroidFax static analysis algorithms alone. For the first execution, with the DroidFax static
     algorithms enabled, even though \joke does not execute the Android apps, its resulting sandbox detected 43.75\% of the malwares. For the second execution,
@@ -96,7 +96,7 @@ out of the 78 identified by at least one sandbox. In addition, the DroidBot sand
 any malware that had not been detected by the other tools. Differently, the Monkey sandbox detected
 three malwares that had not been detected by any other sandbox, the DroidBot sandbox detected two malwares
 that had not been detected by any other sandbox, and the Humanoid sandbox detected one malware that had not
-been detected by any other sandbox. Contrasting with the \blls,
+been detected by any other sandbox. \kn{Do our results vary from the results of BLL study or the results claimed by the individual papers themselves. We should talk about this. } Contrasting with the \blls,
 our results suggest that using DroidBot in combination with Monkey, DroidMate, and Humanoid
 does not improve the general performance of an integrated environment for mining
 Android sandboxes.
@@ -130,7 +130,7 @@ The DroidBot and Humanoid sandboxes detected the malicious version of the app
 \texttt{com.andoop.flyracing}. In this particular case,
 the malicious version changed the Android Manifest file,
 adding permissions to receive and send SMS messages
-(Listing~\ref{lst:androidManifest}). Moreover, after decompiling
+(Listing~\ref{lst:androidManifest}). \kn{Is this the only app where the manifest was changed. If yes, I am not sure we can make broad claims about manifest being a serious place of vulnerabilities.} Moreover, after decompiling
 this malware, we also observed that the malicious version of the
 \texttt{MainService} class introduced a
 behavior that collects sensitive information (the International Mobile
@@ -210,12 +210,15 @@ revenue to another destination.
 
 \subsection{Result of the second study: Tainted analysis algorithms.}\label{sec:res-ss}
 
-In this second study we used a tainted analysis approach to mine differences between the benign and malicious versions of each of the 96 Android apps in our dataset. To this end we leverage the FlowDroid tool, which tracks how sensitive information flows through the apps using tainted analysis algorithms. Regarding accuracy, the tainted analysis approach detected $58$ out of the $96$ pairs in our dataset ($60,42$\%), that is, the FlowDroid approach leads to a better performance than any sandbox originated in the second execution of the dynamic analysis tools (without the DroidFax static analysis algorithms).
+In this second study we used a tainted analysis approach to mine differences between the benign and malicious versions of each of the 96 Android apps in our dataset. To this end we leverage the FlowDroid\kn{ Have we cited flowdroid before. If yes, ignore my comment} tool, which tracks how sensitive information flows through the apps using tainted analysis algorithms. Regarding accuracy, the tainted analysis approach detected $58$ out of the $96$ pairs in our dataset ($60,42$\%), that is, the FlowDroid approach leads to a better performance than any sandbox originated in the second execution of the dynamic analysis tools (without the DroidFax static analysis algorithms).
+
+
+\kn{I see this as a bonus insight. We set out to understand whether static analysis can complement and improve dynamic analysis. But we seem to also have proven that static analysis alone is superior to dynamic analysis. If no other work has touched this topic, we should mention this. I cant recollect any work that compared static analysis tools to dynamic analysis tools. If they have actually done, we should report them}
 
 \begin{finding}
   The performance of FlowDroid to identify malicious behavior
   is superior than the performance of the
-  mining sandbox approach supported by dynamic analysis only---without
+  mining sandbox approach supported by dynamic analysis only i.e without
   the DroidFax static analysis algorithms.
 \end{finding}
 
