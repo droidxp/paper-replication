@@ -8,16 +8,17 @@ implications of our study.
 
 Our first study is a replication of the \blls.
 As discussed in the previous section, to this end, we first executed the analysis using the DroidXP benchmark with its default
-configuration. After that, we executed the analysis again, though disabling the DroidFax static analysis algorithm.
+configuration. After that, we executed the analysis again, by disabling the DroidFax static analysis algorithm.
 In this way, we could better estimate the performance of the dynamic analysis tools for mining Android sandboxes.
 Table~\ref{tab:fs} summarizes the results of the executions. The columns Exec. (WS) and Exec. (WOS) 
 show the number of malwares identified when executing each tool with the
 support of the DroidFax static analysis algorithms (WS) and without the support
 of DroidFax static analysis algorithms (WOS). 
 The Impact column shows the impact
-(in percentage) of DroidFax static analysis algorithms in the results.
+(in percentage) of DroidFax static analysis algorithms in the results. \kn{Define impact formally, may be as a ratio}
 
-Note taht, in the \blls, the authors do not present a
+\kn{The following ssentence is kind of stating the obviouss and comes off as an attack already. THis should bee a conclusion box. Also mention why joke has 100\% not just as a result number}
+Note that, in the \blls, the authors do not present a
 discussion about the influence of DroidFax in the results, even
 though here we report that the impact of DroidFax in the results is significant, ranging
 from 16.44\% (DroidBot) to 51.79\% (Humanoid)---discarding our
