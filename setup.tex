@@ -2,7 +2,7 @@
 
 %\kn{This paragraph requires a motivation. The details of Boa's study must be described upfront. Something like "Boa et al.'s study performs ..... Since their study also involved a static analysis component whose impact was not measured, we perform a non-exact replication to understand the impact static analysis may have had in the results...}
 
-\blls explored the effectiveness of test generation tools to construct sandboxes, based on sensitive APIs called by apps under analysis. Since their study also involved a static analysis component, performed by Droidfax as we described at introduction, and whose impact was not measured, we replicated its work to understand the static analysis impact may have had in their results. Thus, this section present the settings of our study, whose goal is to perform this replication, and thus build a general understanding of the implications of static analysis algorithms in the results. We also investigate how static analysis can improve the performance of mining sandboxes, in the task of identifying malicious behavior.
+\blls explored the effectiveness of test generation tools to construct sandboxes, based on sensitive APIs called by apps under analysis. Since their study also involved a static analysis component, performed by Droidfax as we described in Section~\ref{sec:introduction}, and whose impact was not measured, we replicated its work to understand the static analysis impact may have had in their results. Thus, this section present the settings of our study, whose goal is to perform this replication, and thus build a general understanding of the implications of static analysis algorithms in the results. We also investigate how static analysis can improve the performance of mining sandboxes, in the task of identifying malicious behavior.
 
 To achieve these general goals, we intend to answer the following research questions.
 
@@ -13,12 +13,12 @@ To achieve these general goals, we intend to answer the following research quest
  \item What is the effective performance of each test generation tool, in terms of the number of detected malware, in \blls, disregarding the DroidFax
   static analysis algorithms?
 
- \item What are the benefits of using tainted analysis algorithms to complement the dynamic analysis provided by test generation tools for mining sandboxes?
+ \item What are the benefits of using tainted\kn{Is it tainted analysis or taint analysis?} analysis algorithms to complement the dynamic analysis provided by test generation tools for mining sandboxes?
 \end{enumerate}
 
 %\kn{Droidfax comes out of nowhere. We should introduce this or if already introduced earlier, remind the readers of where it stands with the Bao study in the first line of this section when describing boas study}
 
-Answering the research questions RQ1 and RQ2 allows us to disclose a possible overestimation performance of test generation tools for mining sandboxes,
+Answering the research questions RQ1 and RQ2 allows us to expose a possible overestimation\kn{Over estimation of what?} in performance of test generation tools for mining sandboxes,
 as reported in \blls, which might introduce a possible threat to their conclusions. Answering the third research question
 allows us to open up the possibility of finding new strategies for designing mining sandbox techniques, complementing the performance of
 dynamic analysis through the use of static analysis algorithms.
