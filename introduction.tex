@@ -11,31 +11,32 @@ other sensitive resources which diverge from those found in the exploratory phas
 used to mine the sandbox.
   
 Jamrozik et al.~\cite{DBLP:conf/icse/JamrozikSZ16} argue in favor of dynamic analysis for mining sandboxes, instead of using static analysis.
-The authors argue that dynamic analysis exceeds static analysis on mining Android sandboxes because the analysis must often
+The authors state that dynamic analysis exceeds static analysis on mining Android sandboxes because the analysis must often
 assume that additional behaviors are possible than actually would be.
 %\kn{Ok. In the first paragraph we discuss static analysis in general to detect vulnerabilities and now without mentioning it prior we seem to mention static analysis can also mine sandboxes. The overall flow of definitions needs some thought}
 Otherwise, static analysis might determine that some behavior is impossible and therefore no longer needs to be checked at runtime. In addition,
 code that uses dynamic features (such as reflection) poses additional challenges to static analysis algorithms---even though \emph{dynamic features}
 of programming languages are often used to introduce malicious behavior. Even though these claims
-seem reasonable, Jamrozik et al. do not present an empirical validation about the limitations of static analysis to mine sandboxes.
+seem reasonable, previous research do not present empirical assessments about the limitations of static analysis to mine sandboxes.
 Consequently, it is not clear whether and how both approaches (dynamic and static analysis) could complement each other in the process of mining Android sandboxes.
 
 The same lack of understanding about the role of static analysis also appears in the work of Bao et al.~\cite{DBLP:conf/wcre/BaoLL18} (hereafter \blls), which presents an empirical study that compares different dynamic analysis tools for testing and mining Android sandboxes. Their study leverages DroidFax~\cite{DBLP:conf/icsm/CaiR17a} to instrument $102$ pairs of Android apps (each pair comprising a benign and a malign version of an App) (B/M) and to collect the information needed to mine sandboxes (that is, the calls to sensitive APIs).
 Although the authors report a precision of at most 70\% of dynamic analysis tools to differentiate the benign and malicious versions of the apps, the authors ignore the fact that DroidFax statically analyzes the Android apps and also records calls to sensitive APIs (besides instrumenting the apps), which might lead to an over estimation of the performance of the dynamic analysis tools for mining sandboxes and introduce a possible threat to the conclusions of that work.
 
 Our goal in this paper is to understand how static analysis
-algorithms might complement dynamic analysis approaches in the process of mining Android sandboxes. To this end, we performed two studies. In the
-first, we conduct a replication of the \blls. Our research differs from the original work in three aspects: (a)
-we isolate the effect of the static analysis component of DroidFax, (b) we consider in our study more recent dynamic analysis tools for testing Android apps,
+algorithms might complement dynamic analysis approaches in the process of mining Android sandboxes. Here we
+present the results of two empirical studies that aim to
+address our research goal. In the
+first study, we conduct a replication of the \blls, though our research differs from the original work in three aspects: (a)
+we isolate the effect of the static analysis component of DroidFax, (b) we included a recent dynamic analysis tool for testing Android apps,
 and (c) we extend the execution time and the number of executions of each test case generator tool for all apps
-in our dataset. In the second study, we leverage FlowDroid~\cite{DBLP:conf/pldi/ArztRFBBKTOM14} to understand how a more advanced static analysis approach
-(based on taint analysis) can complement dynamic analysis in the task of mining sandboxes.
+in our dataset. Differently, in the second study we explore how a more advanced static analysis approach
+(based on taint analysis) can complement dynamic analysis in the task of mining sandboxes---using
+the FlowDroid~\cite{DBLP:conf/pldi/ArztRFBBKTOM14} infrastructure for analysing Android apps.
 
-Here we also use DroidXP to integrate different dynamic analysis tools and then build a
-general understanding about the use of dynamic and static analysis tools for mining
-Android sandboxes. Although we presented and evaluated DroidXP in a conference paper~\cite{DBLP:conf/scam/CostaMCMVBC20},
-here we discuss the results of a broader investigation
-that uses DroidXP to explains the performance of static and dynamic analysis
+We presented and evaluated DroidXP in a conference paper~\cite{DBLP:conf/scam/CostaMCMVBC20},
+and here we discuss the results of a broader investigation
+that also uses DroidXP to explains the performance of static and dynamic analysis
 approaches for mining sandboxes.
 
 %Altogether, this paper brings the following contributions:
