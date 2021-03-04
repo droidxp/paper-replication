@@ -22,7 +22,7 @@ Note that, in the \blls, the authors do not present a
 discussion about the influence of DroidFax in the results, even
 though here we report that the impact of DroidFax in the results is significant, ranging
 from 16.44\% (DroidBot) to 51.79\% (Humanoid)---discarding our
-\joke tool for which DroidFax improves its performance by 100\%. This result is
+\joke tool, the fake tool that does not execute apps during a benchmark execution, for which DroidFax improves its performance by 100\%. This result is
 expected, since the \joke tool does not execute any dynamic analysis.
 Next we discuss the result of each individual test generation tool. 
 
@@ -70,8 +70,9 @@ Next we discuss the result of each individual test generation tool.
     Since the \blls did not explore Humanoid,
     we do not have a baseline for comparison with the previous work.
 
-  \item[\joke] is our fake test case generation tool that help us understand the performance of the DroidFax static analysis algorithm for mining sandboxes. \kn{joke seems to be defined here but used before}
-    We integrated \joke into the DroidXP benchmark as an additional test case generation tool that does not run the Android apps during the benchmark execution.
+  \item[\joke] is our fake test case generation tool that help us understand the performance of the DroidFax static analysis algorithm for mining sandboxes. 
+  %\kn{joke seems to be defined here but used before}
+    We integrated \joke into the DroidXP benchmark as an additional test case generation tool that does not run the Android apps.
     As a result, the analysis using \joke reveals the performance of DroidFax static analysis algorithms alone. For the first execution, with the DroidFax static
     algorithms enabled, even though \joke does not execute the Android apps, its resulting sandbox detected 43.75\% of the malwares. For the second execution,
     that is, disabling the DroidFax static analysis algorithm, the resulting \joke sandbox was not able to detect any malware. This result
@@ -127,7 +128,9 @@ the Euphony tool~\cite{hurier2017euphony}, $12$ of these $18$ malwares are \emph
 PUPs (\emph{Potentially Unwanted Program}), and one is an \emph{exploit}.
 
 The DroidBot and Humanoid sandboxes detected the malicious version of the app \texttt{com.andoop.flyracing}. In this particular case, the malicious version changed the Android Manifest file, adding permissions to receive and send SMS messages
-(Listing~\ref{lst:androidManifest}). With these permissions, malicious apps may get money fraudulently by sending messages without user confirmation, or may monitor messages or delete them without showing them to user. \kn{Is this the only app where the manifest was changed. If yes, I am not sure we can make broad claims about manifest being a serious place of vulnerabilities.} Moreover, after decompiling this malware, we also observed that the malicious version of the
+(Listing~\ref{lst:androidManifest}). With these permissions, malicious apps may get money fraudulently by sending messages without user confirmation, or may monitor messages or delete them without showing them to user. 
+%\kn{Is this the only app where the manifest was changed. If yes, I am not sure we can make broad claims about manifest being a serious place of vulnerabilities.} 
+Moreover, after decompiling this malware, we also observed that the malicious version of the
 \texttt{MainService} class introduced a
 behavior that collects sensitive information (the International Mobile
 Equipment Identity, IMEI) and sends it using an SMS message
@@ -182,7 +185,7 @@ Equipment Identity, IMEI) and sends it using an SMS message
 %% 1:M > const-string v3, "\u65e0\u6cd5\u542f\u52a8\u5e94\u7528\u201c"
 %% \end{lstlisting}
 
-Now its an interesting case, because none of the computed sandboxes detected the malicious version of the app \texttt{com.andoop.flyracing}. Indeed, the malicious version only changes the Android Manifest file, modifying the meta-data \texttt{ADMOB\_PUBLISHER\_ID}. However, the AdMob is a monetization service provided by Google, and changing the AdMob \emph{publisher identifier} account redirects the advertisement's revenue to another destination. 
+Now we show an interesting case, because none of the computed sandboxes detected the malicious version of the app \texttt{com.andoop.flyracing}. Indeed, the malicious version only changes the Android Manifest file, modifying the meta-data \texttt{ADMOB\_PUBLISHER\_ID}. However, the AdMob is a monetization service provided by Google, and changing the AdMob \emph{publisher identifier} account redirects the advertisement's revenue to another destination. 
 
 \begin{lstlisting}[caption={Diff in the file \texttt{com.andoop.flyracing}
       AndroidManifest file of the malicious version.
@@ -211,7 +214,7 @@ Differently, the next malicious version app \texttt{com.happymaau.MathRef} was d
 \end{lstlisting}
 
 
-We also observed that the malicious version of the \texttt{d} class, indeed introduced a method \texttt{a}, that collects network and wifi information, like Mac address and network state. (Listing~\ref{lst:d})
+We also observed that the malicious version of the \texttt{d} class, introduced a method \texttt{a}, that collects network and wifi information, like Mac address and network state. (Listing~\ref{lst:d})
 
 \begin{lstlisting}[caption={Diffs in the malicious version
       of the class \texttt{com.mn.vymq.b.d}
@@ -240,7 +243,7 @@ We also observed that the malicious version of the \texttt{d} class, indeed intr
 123:M > }
 \end{lstlisting}
 
-Our last example is from malicious version app \texttt{ru.qixi.android.smartrabbits}. It also was detected by all computed sandboxes, and such as the previous malware example, it changed the Android Manifest file, adding this time, permission to access fine location sources. This permission allows access location sources, such as the Global Positioning System (GPS) on the phone, where available. Malicious applications can use this resource to determine where the phone user are, and may consume additional battery power. (Listing~\ref{lst:androidManifest3})
+Our last example is a malicious version app \texttt{ru.qixi.android.smartrabbits}. It also was detected by all computed sandboxes, and such as the previous malware example, it changed the Android Manifest file, adding this time, permission to access location sources. This permission allows access location sources, such as the Global Positioning System (GPS) on the phone, where available. Malicious applications can use this resource to determine where the phone user are, and may consume additional battery power. (Listing~\ref{lst:androidManifest3})
 
 \begin{lstlisting}[caption={Diffs in the \texttt{com.happymaau.MathRef}
       AndroidManifest file of the malicious
@@ -252,7 +255,7 @@ Our last example is from malicious version app \texttt{ru.qixi.android.smartrabb
 9:M >    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"/>
 \end{lstlisting}
 
-This malicious app clandestinely monitors the geographic location user and sink these information. The code that follows, show how the method \texttt{c}, from \texttt{q} class, collects these sensitive resource. (Listing~\ref{lst:c}).
+This malicious app clandestinely monitors the geographic location user and sink these information to a web server. The code that follows, show how the method \texttt{c}, from \texttt{q} class, collects these sensitive resource. (Listing~\ref{lst:c}).
 
 \begin{lstlisting}[caption={Diffs in the malicious version
       of the class \texttt{net.crazymedia.iad.d.q}
@@ -299,7 +302,9 @@ This malicious app clandestinely monitors the geographic location user and sink 
 
 \subsection{Result of the second study: Tainted analysis algorithms.}\label{sec:res-ss}
 
-In this second study we used a tainted analysis approach to mine differences between the benign and malicious versions of each of the 96 Android apps in our dataset. To this end we leverage the FlowDroid\kn{ Have we cited flowdroid before. If yes, ignore my comment} tool, which tracks how sensitive information flows through the apps using tainted analysis algorithms. Regarding accuracy, the tainted analysis approach detected $58$ out of the $96$ pairs in our dataset ($60,42$\%), that is, the FlowDroid approach leads to a better performance than any sandbox originated in the second execution of the dynamic analysis tools (without the DroidFax static analysis algorithms).
+In this second study we used a tainted analysis approach to mine differences between the benign and malicious versions of each of the 96 Android apps in our dataset. To this end we leverage the FlowDroid
+%\kn{ Have we cited flowdroid before. If yes, ignore my comment} 
+tool, which tracks how sensitive information flows through the apps using tainted analysis algorithms. Regarding accuracy, the tainted analysis approach detected $58$ out of the $96$ pairs in our dataset ($60,42$\%), that is, the FlowDroid approach leads to a better performance than any sandbox originated in the second execution of the dynamic analysis tools (without the DroidFax static analysis algorithms).
 
 
 \kn{I see this as a bonus insight. We set out to understand whether static analysis can complement and improve dynamic analysis. But we seem to also have proven that static analysis alone is superior to dynamic analysis. If no other work has touched this topic, we should mention this. I cant recollect any work that compared static analysis tools to dynamic analysis tools. If they have actually done, we should report them}

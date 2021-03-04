@@ -114,7 +114,7 @@ of the dynamic analysis are not considered and we can compute the results with
 only the static analysis component of DroidFax (RQ1). Our study executed each pairs of
 Android app (B/M) in each one of the five test generation tools, including Joker,
 for three minutes, and for three times. We then investigate the performance of each tool to detect malicious behaviors in the sandbox modeled by the test generation tool
-under analysis. Figure \ref{fig:setup} shows this experimental setup.
+under analysis. 
 
 \begin{figure}[ht]
   \centering{
@@ -127,7 +127,7 @@ under analysis. Figure \ref{fig:setup} shows this experimental setup.
 After that, we replicated the study using a configuration of DroidXP that disables the DroidFax static analysis algorithm. With this new configuration, we executed the benchmark again, using the same dataset of Android pairs apps, the same execution time, and the same test case generation tools.
 The results of this replication allow us to compute the effective performance
 of the dynamic analysis tools (RQ2)---that is, ignoring the influence of the
-DroidFax static analysis algorithms.
+DroidFax static analysis algorithms. Figure \ref{fig:setup} shows all the phases of our experimental, that explore all sensitive resources access by both apps (B/M), and the optional configuration DroidXP, that disables Droidfax static analysis.
 
 \subsection{Second Study: Tainted analysis algorithms.}
 
