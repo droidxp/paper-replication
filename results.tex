@@ -4,7 +4,7 @@ In this section we detail the findings of our study. We present the results of t
 second studies in Section~\ref{sec:res-fs} and Section~\ref{sec:res-ss}. In Section~\ref{sec:discussion} we summarize the
 implications of our study. 
 
-\subsection{Result of the first study: A non-exact replication}\label{sec:res-fs}
+\subsection{Result of the first study: A \blls replication}\label{sec:res-fs}
 
 Our first study is a replication of the \blls.
 As discussed in the previous section, to this end, we first executed the analysis using the DroidXP benchmark with its default
@@ -122,7 +122,7 @@ Android sandboxes.
 Altogether, ignoring the \joke tool, our study reveals that from $58.33$\% (Humanoid)
 to $76.04$\% (DroidBot) of the malicious apps investigated in our study can be
 detected using the sandboxes generated after running the test case tools with the support of the
-DroidFax static analysis algorithms. Besides that, in the first execution, none of the
+DroidFax static analysis algorithms. Besides that, in the first execution (WS), none of the
 resulting sandboxes could detect 18 malwares in our dataset ($18.75$\%). According to
 the Euphony tool~\cite{hurier2017euphony}, $12$ of these $18$ malwares are \emph{adwares}, $3$ are \emph{trojans}, $2$ are
 PUPs (\emph{Potentially Unwanted Program}), and one is an \emph{exploit}.
@@ -304,7 +304,7 @@ This malicious app clandestinely monitors the geographic location user and sink 
 
 In this second study we used a tainted analysis approach to mine differences between the benign and malicious versions of each of the 96 Android apps in our dataset. To this end we leverage the FlowDroid
 %\kn{ Have we cited flowdroid before. If yes, ignore my comment} 
-tool, which tracks how sensitive information flows through the apps using tainted analysis algorithms. Regarding accuracy, the tainted analysis approach detected $58$ out of the $96$ pairs in our dataset ($60,42$\%), that is, the FlowDroid approach leads to a better performance than any sandbox originated in the second execution of the dynamic analysis tools (without the DroidFax static analysis algorithms).
+tool, which tracks how sensitive information flows through the apps using tainted analysis algorithms. Regarding accuracy, the tainted analysis approach detected $58$ out of the $96$ pairs in our dataset ($60,42$\%), that is, the FlowDroid approach leads to a better performance than three sandbox originated in the second execution of the dynamic analysis tools (without the DroidFax static analysis algorithms), losing only to sandbox build by Droidbot, that detected $61$ out of the $96$ pairs ($63,54$\%)
 
 
 \kn{I see this as a bonus insight. We set out to understand whether static analysis can complement and improve dynamic analysis. But we seem to also have proven that static analysis alone is superior to dynamic analysis. If no other work has touched this topic, we should mention this. I cant recollect any work that compared static analysis tools to dynamic analysis tools. If they have actually done, we should report them}
@@ -365,7 +365,7 @@ four malwares, $2$ are \emph{trojans}, $1$ is an \emph{exploit}, and 1 is an \em
   18) that had not been detected in the first study. 
 \end{finding}
 
-Here we present details about one of the malware that Flowdroid had detected. At this package (com.yy.fontmaster), from another alternative android market, angeeks~\cite{angeeks}, the malicious and benign apps have the same sink, however they access different sources, therefore configuring additional source-sink pairs, and hence a possible malicious behaviours. The Figure \ref{fig:sourcesink}, presents the paths source (blue border) and sink (orange border) from benign and malicious apps.
+Here we present details about one of the malware that Flowdroid had detected. At this package \texttt{com.yy.fontmaster}, from alternative android market, angeeks~\cite{angeeks}, the malicious and benign apps have the same sink, however they access different sources, therefore configuring additional source-sink pairs, and hence a possible malicious behaviours. The Figure \ref{fig:sourcesink}, presents the paths source (blue border) and sink (orange border) from benign and malicious apps.
 
 \begin{figure}[ht]%
     \centering
