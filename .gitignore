@@ -6,3 +6,5 @@
 *.pdf
 main.synctex.gz
 *.log
+jss.bbl
+jss.blg
