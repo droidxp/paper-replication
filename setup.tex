@@ -13,13 +13,16 @@ To achieve these general goals, we intend to answer the following research quest
  \item What is the effective performance of each test generation tool, in terms of the number of detected malware, in \blls, disregarding the DroidFax
   static analysis algorithms?
 
- \item What are the benefits of using tainted\kn{Is it tainted analysis or taint analysis?} analysis algorithms to complement the dynamic analysis provided by test generation tools for mining sandboxes?
+ \item What are the benefits of using taint
+ %\kn{Is it tainted analysis or taint analysis?} 
+ analysis algorithms to complement the dynamic analysis provided by test generation tools for mining sandboxes?
 \end{enumerate}
 
 %\kn{Droidfax comes out of nowhere. We should introduce this or if already introduced earlier, remind the readers of where it stands with the Bao study in the first line of this section when describing boas study}
 
-Answering the research questions RQ1 and RQ2 allows us to expose a possible overestimation\kn{Over estimation of what?} in performance of test generation tools for mining sandboxes,
-as reported in \blls, which might introduce a possible threat to their conclusions. Answering the third research question
+Answering the research questions RQ1 and RQ2 allows us to expose a possible overestimation in terms of the number of detected malware by each sandbox, constructed by test generation tools explored in \blls
+%\kn{Over estimation of what?} 
+, which might introduce a possible threat to their conclusions. Answering the third research question
 allows us to open up the possibility of finding new strategies for designing mining sandbox techniques, complementing the performance of
 dynamic analysis through the use of static analysis algorithms.
 
@@ -114,7 +117,8 @@ for three minutes, and for three times. We then investigate the performance of e
 under analysis. Figure \ref{fig:setup} shows this experimental setup.
 
 \begin{figure}[ht]
-   \includegraphics[width=0.45\textwidth]{images/setup2.png}
+  \centering{
+   \includegraphics[width=0.75\textwidth]{images/setup3.png}}
    \label{Experiment setup}
    \caption{Experiment setup}
    \label{fig:setup}

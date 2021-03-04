@@ -50,7 +50,7 @@ Next we discuss the result of each individual test generation tool.
   whose resulting sandbox detected the largest number of malicious apps. Moreover, in our second execution (Exec WOS), removing the DroidFax
   static analysis support reduced the DroidBot performance in 16.44\%, the smaller impact we observed among the tools.
 
-  \item [Monkey] in the first execution (Exec. WS) produced a sandbox that detected $71$ out of the $96$ pairs of Android apps.
+  \item[Monkey] in the first execution (Exec. WS) produced a sandbox that detected $71$ out of the $96$ pairs of Android apps.
     Contrasting, in the original study, the Monkey's sandbox detected $48$ malwares within the 102 pairs ($47.05$\%). This difference
     might be due to the fact that Monkey uses a random strategy for test case generation and here we considered the outcomes
     of three executions---while in the \blls, the authors consider the outcomes of one execution. 
@@ -126,12 +126,8 @@ resulting sandboxes could detect 18 malwares in our dataset ($18.75$\%). Accordi
 the Euphony tool~\cite{hurier2017euphony}, $12$ of these $18$ malwares are \emph{adwares}, $3$ are \emph{trojans}, $2$ are
 PUPs (\emph{Potentially Unwanted Program}), and one is an \emph{exploit}.
 
-The DroidBot and Humanoid sandboxes detected the malicious version of the app
-\texttt{com.andoop.flyracing}. In this particular case,
-the malicious version changed the Android Manifest file,
-adding permissions to receive and send SMS messages
-(Listing~\ref{lst:androidManifest}). \kn{Is this the only app where the manifest was changed. If yes, I am not sure we can make broad claims about manifest being a serious place of vulnerabilities.} Moreover, after decompiling
-this malware, we also observed that the malicious version of the
+The DroidBot and Humanoid sandboxes detected the malicious version of the app \texttt{com.andoop.flyracing}. In this particular case, the malicious version changed the Android Manifest file, adding permissions to receive and send SMS messages
+(Listing~\ref{lst:androidManifest}). With these permissions, malicious apps may get money fraudulently by sending messages without user confirmation, or may monitor messages or delete them without showing them to user. \kn{Is this the only app where the manifest was changed. If yes, I am not sure we can make broad claims about manifest being a serious place of vulnerabilities.} Moreover, after decompiling this malware, we also observed that the malicious version of the
 \texttt{MainService} class introduced a
 behavior that collects sensitive information (the International Mobile
 Equipment Identity, IMEI) and sends it using an SMS message
@@ -186,13 +182,7 @@ Equipment Identity, IMEI) and sends it using an SMS message
 %% 1:M > const-string v3, "\u65e0\u6cd5\u542f\u52a8\u5e94\u7528\u201c"
 %% \end{lstlisting}
 
-Differently, none of the computed sandboxes detected the malicious version
-of the app \texttt{com.andoop.flyracing}. Indeed,
-the malicious version {\color{red}only} changes the
-Android Manifest file, modifying the meta-data \texttt{ADMOB\_PUBLISHER\_ID}.
-However, the AdMob is a monetization service provided by Google, and changing the
-AdMob \emph{publisher identifier} account redirects the advertisement's
-revenue to another destination. 
+Now its an interesting case, because none of the computed sandboxes detected the malicious version of the app \texttt{com.andoop.flyracing}. Indeed, the malicious version only changes the Android Manifest file, modifying the meta-data \texttt{ADMOB\_PUBLISHER\_ID}. However, the AdMob is a monetization service provided by Google, and changing the AdMob \emph{publisher identifier} account redirects the advertisement's revenue to another destination. 
 
 \begin{lstlisting}[caption={Diff in the file \texttt{com.andoop.flyracing}
       AndroidManifest file of the malicious version.
@@ -205,6 +195,105 @@ revenue to another destination.
 ---
 1:M > <meta-data android:name="ADMOB_\PUBLISHER_\ID"
                      android:value="a14f099bfbf3c61"/>
+\end{lstlisting}
+
+Differently, the next malicious version app \texttt{com.happymaau.MathRef} was detected by all computed sandboxes. First, the malicious version of package changed the Android Manifest file, adding permissions to access network state and wifi state. These changes allow an app to view the status of all networks and make changes to configured wi-fi networks. (Listing~\ref{lst:androidManifest2}). 
+
+
+\begin{lstlisting}[caption={Diffs in the \texttt{com.happymaau.MathRef}
+      AndroidManifest file of the malicious
+      version}.
+      , language=XML,
+    basicstyle=\fontsize{8}{6}\selectfont\ttfamily,label={lst:androidManifest2}]
+
+165:M >    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
+166:M >    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE"/>
+\end{lstlisting}
+
+
+We also observed that the malicious version of the \texttt{d} class, indeed introduced a method \texttt{a}, that collects network and wifi information, like Mac address and network state. (Listing~\ref{lst:d})
+
+\begin{lstlisting}[caption={Diffs in the malicious version
+      of the class \texttt{com.mn.vymq.b.d}
+      (app \texttt{com.happymaau.MathRef})},
+      language=Java, basicstyle=\fontsize{8}{6}\selectfont\ttfamily,
+      label={lst:d}]
+
+105:M > private String a(Context paramContext)
+106:M > {
+107:M >	String str = ((TelephonyManager)paramContext.getSystemService("phone")).getDeviceId();
+108:M > StringBuilder localStringBuilder = new StringBuilder();
+109:M > localStringBuilder.append(str);
+110:M > paramContext = (WifiManager)paramContext.getSystemService("wifi");
+111:M > if (paramContext == null) {}
+112:M >  for (paramContext = null;; paramContext = paramContext.getConnectionInfo())
+113:M >  {
+114:M >   if (paramContext != null)
+115:M >    {
+116:M >      paramContext = paramContext.getMacAddress();
+117:M >      if (paramContext != null) {
+118:M >       localStringBuilder.append(paramContext);
+119:M >      }
+120:M >    }
+121:M >    return a(localStringBuilder.toString());
+122:M >  }
+123:M > }
+\end{lstlisting}
+
+Our last example is from malicious version app \texttt{ru.qixi.android.smartrabbits}. It also was detected by all computed sandboxes, and such as the previous malware example, it changed the Android Manifest file, adding this time, permission to access fine location sources. This permission allows access location sources, such as the Global Positioning System (GPS) on the phone, where available. Malicious applications can use this resource to determine where the phone user are, and may consume additional battery power. (Listing~\ref{lst:androidManifest3})
+
+\begin{lstlisting}[caption={Diffs in the \texttt{com.happymaau.MathRef}
+      AndroidManifest file of the malicious
+      version}.
+      , language=XML,
+    basicstyle=\fontsize{8}{6}\selectfont\ttfamily,label={lst:androidManifest3}]
+
+8:M >    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION"/>
+9:M >    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"/>
+\end{lstlisting}
+
+This malicious app clandestinely monitors the geographic location user and sink these information. The code that follows, show how the method \texttt{c}, from \texttt{q} class, collects these sensitive resource. (Listing~\ref{lst:c}).
+
+\begin{lstlisting}[caption={Diffs in the malicious version
+      of the class \texttt{net.crazymedia.iad.d.q}
+      (app \texttt{ru.qixi.android.smartrabbits})},
+      language=Java, basicstyle=\fontsize{8}{6}\selectfont\ttfamily,
+      label={lst:c}]
+
+
+65:M > private Location c(Context paramContext)
+66:M > {
+67:M > try
+68:M >  {
+69:M >  if (Arrays.asList(paramContext.getPackageManager().getPackageInfo
+              (paramContext.getPackageName(),4096).requestedPermissions).contains
+              ("android.permission.ACCESS_FINE_LOCATION"))
+
+70:M >   {
+71:M >    paramContext = (LocationManager)paramContext.getSystemService("location");
+72:M >    Criteria localCriteria = new Criteria();
+73:M >    localCriteria.setAccuracy(1);
+74:M >    localCriteria.setAltitudeRequired(false);
+75:M >    localCriteria.setBearingRequired(false);
+76:M >    localCriteria.setCostAllowed(true);
+77:M >    localCriteria.setPowerRequirement(1);
+78:M >    paramContext = paramContext.getLastKnownLocation
+                    (paramContext.getBestProvider(localCriteria, true));
+                    
+79:M >    return paramContext;
+80:M >   }
+81:M >  }
+82:M >  catch (PackageManager.NameNotFoundException paramContext)
+83:M >  {
+84:M >   paramContext.printStackTrace();
+85:M >   return null;
+86:M >  }
+87:M >  catch (Exception paramContext)
+88:M >  {
+89:M >   paramContext.printStackTrace();
+90:M >  }
+91:M >  return null;
+92:M > }
 \end{lstlisting}
 
 
