@@ -37,13 +37,27 @@ the FlowDroid~\cite{DBLP:conf/pldi/ArztRFBBKTOM14} infrastructure for analysing 
 We presented and evaluated DroidXP in a conference paper~\cite{DBLP:conf/scam/CostaMCMVBC20},
 and here we discuss the results of a broader investigation
 that also uses DroidXP to explains the performance of static and dynamic analysis
-approaches for mining sandboxes.
+approaches for mining sandboxes. Altogether, this paper brings the following contributions:
 
-%Altogether, this paper brings the following contributions:
-\todo[inline]{RB.: Later we can enumerate the paper contributions here.}
+\begin{itemize}
+\item A replication of the \blls study that better clarifies the performance of
+  dynamic analysis tools for mining Android sandboxes.
 
-\todo[inline]{RB: review the following paragraph later}
-The rest of the paper is organized as follows. Section 2 we present a background and some related works. Section 3 introduces the study setting of our research and Section 4 complements presenting some results and discussion, highlighting motivation malware examples and the use of a promising static analysis tool, on these examples. Finally, Sections 5 and 6, summarizes the paper, presenting some threats, presenting the final conclusions, and discussing our ideas for future works.
+\item A broad comprehension about the role of static analysis tools for mining
+  sandboxes, showing that we can benefit from using both static and dynamic
+  analysis for detecting Android malwares.
+
+\item Evidence that a well known static analysis approach, based on
+  taint analysis, leads to a performance similar to the dynamic analysis
+  approach for mining sandboxes.
+
+\item A replication package of our study that is available on-line, including
+  scripts for statistic analysis \footnote{https://htmlpreview.github.io/?https://github.com/droidxp/paper-replication-package/blob/master/replication.html}
+  and a benchmark for reproducing and extending our study.\footnote{https://github.com/droidxp/benchmark} 
+\end{itemize}
+
+%% \todo[inline]{RB: review the following paragraph later}
+%% The rest of the paper is organized as follows. Section 2 we present a background and some related works. Section 3 introduces the study setting of our research and Section 4 complements presenting some results and discussion, highlighting motivation malware examples and the use of a promising static analysis tool, on these examples. Finally, Sections 5 and 6, summarizes the paper, presenting some threats, presenting the final conclusions, and discussing our ideas for future works.
 
 
 
