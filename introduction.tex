@@ -4,12 +4,6 @@ Almost two-thirds of the world population use mobile technologies~\cite{Comscore
 
 Other approaches rely on the use of dynamic analysis to mine Android sandboxes~\cite{DBLP:conf/icse/JamrozikSZ16}. In this case, during an exploratory phase, one leverages an automatic test case generator tool that runs a benign version of an Android app and collects the set of calls made to sensitive APIs. This set of calls comprises a sandbox infrastructure. The sandbox might then monitor any call to sensitive APIs while the app is running, blocking calls that have not been identified during the exploratory phase---thereby protecting Android users from additional malicious behavior~\cite{DBLP:conf/icse/JamrozikSZ16}.
 
-That is, the main idea of mining sandboxes is to explore the set of calls to sensitive API methods of an app, using different approaches
-for automatically testing Android applications. The analysis explores the apps behavior and records all calls to sensitive APIs.
-A sandbox builds upon these calls during the exploratory phase. The sandbox could then block future calls to
-other sensitive resources which diverge from those found in the exploratory phase. Therefore, the sandbox accuracy depends on the exploratory capabilities of each testing tool
-used to mine the sandbox.
-  
 Jamrozik et al.~\cite{DBLP:conf/icse/JamrozikSZ16} argue in favor of dynamic analysis for mining sandboxes, instead of using static analysis.
 The authors state that dynamic analysis exceeds static analysis on mining Android sandboxes because the analysis must often
 assume that additional behaviors are possible than actually would be.
@@ -36,11 +30,11 @@ the FlowDroid~\cite{DBLP:conf/pldi/ArztRFBBKTOM14} infrastructure for analysing 
 
 We presented and evaluated DroidXP in a conference paper~\cite{DBLP:conf/scam/CostaMCMVBC20},
 and here we discuss the results of a broader investigation
-that also uses DroidXP to explains the performance of static and dynamic analysis
+that also uses DroidXP to explain the performance of static and dynamic analysis
 approaches for mining sandboxes. Altogether, this paper brings the following contributions:
 
 \begin{itemize}
-\item A replication of the \blls study that better clarifies the performance of
+\item A replication of the \blls that better clarifies the performance of
   dynamic analysis tools for mining Android sandboxes.
 
 \item A broad comprehension about the role of static analysis tools for mining
