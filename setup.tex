@@ -181,15 +181,16 @@ resources access by both apps (B/M), and the optional configuration DroidXP, tha
    \label{fig:setup}
  \end{figure}
 
-\subsection{Second Study: Use of Taint Analysis Algorithms for Mining Sandboxes}\label{sec:set2}
+\subsection{Second Study: Use of Taint Analysis for Malware Identification}\label{sec:set2}
 
 In the second study 
 we investigate whether or not a more advanced static analysis approach is promising for
-mining Android sandboxes. To this end, we leverage the FlowDroid
+identifying malwares, given a version of an app that is proved to be secure.
+To this end, we leverage the FlowDroid
 taint analysis algorithms for Android apps, in order to identify paths between
 \emph{sources} and \emph{sinks}. In this case,
 our goal is to investigate if it is possible to detect malicious
-behavior by comparing the source-sink paths that FlowDroid finds in the
+behavior by identifying the divergent source-sink paths that FlowDroid finds in the
 benign / malign versions of the Android apps.
 
 Concerning this second study, a \emph{hit} occurs whenever
@@ -202,12 +203,22 @@ originally shared in the AndroZoo repository~\cite{DBLP:conf/msr/AllixBKT16} and
 also used in the \blls. 
 
 
-We conduct this investigation in three steps. First, we use
-FlowDroid to mine all sources and sinks paths from each benign app, and then enumerate all possible data flows between sources
-and sinks. Next, we repeat the the analysis considering the malicious version
-of the apps. Finally, we compare the sets of source-sink paths between the benign and malicious
+We conduct this investigation in three steps. First, we define
+the set of API calls considered as \emph{source of sensitive information} (e.g.,
+a method that access the address book) or
+that \emph{might share information} (e.g., a method that sends messages
+to external peers). We rely on a the source-sink definitions of a previous
+study~\cite{}. After defining the sources and sinks of interest,
+we run FlowDroid to mine the source-sink paths from each benign app, and then enumerate the
+possible data flows between sources and sinks. These paths are considered valid in
+our analysis. Next, we repeat the the FlowDroid execution considering the malicious version
+of the apps. In the final step, we compare the sets of source-sink paths between the benign and malicious
 version of an app, in order to reveal the existence of additional paths in the
-malicious version. 
+malicious version.
+
+\begin{figure}
+\includegraphics[scale=0.3]{images/second-study-settings.pdf}
+\end{figure}
 
 
 
