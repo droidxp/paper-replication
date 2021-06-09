@@ -8,8 +8,7 @@ implications of our study.
 
 Our first study is a replication of the \blls.
 As discussed in the previous section, we first executed the analysis using the DroidXP benchmark with its default
-configuration. After that, we executed the analysis again, though disabling the DroidFax static analysis algorithm.
-In this way, we could better estimate the performance of the dynamic analysis tools for mining Android sandboxes.
+configuration. Then we repeated the process, however this time we isolate the effect of the static analysis component of DroidFax. In this way, we could better estimate the performance of the dynamic analysis tools for mining Android sandboxes.
 Table~\ref{tab:fs} summarizes the results of the executions. The columns Exec. (WS) and Exec. (WOS) 
 show the number of malwares identified when executing each tool with the
 support of the DroidFax static analysis algorithms (WS) and without the support
@@ -407,8 +406,12 @@ four malwares, $2$ are \emph{trojans}, $1$ is an \emph{exploit}, and 1 is an \em
 
 \subsection{Discussion}\label{sec:discussion}
 
-First we find that static analysis summaries had impact in the \blls. It was responsible for improving the results of the tools, between $16.44\%$ and $51.79\%$, discarding our Joker tool, answering our first research question (RQ1). Second, Table \ref{tab:fs} also summarizes our findings addressing the second research question (RQ2). We realized that disregarding the static analysis algorithms, and discarding Joker tool, among the tools analyzed in your study, Humanoid had the biggest performance drop, obtaining an effective performance of $28.12\%$, 27 malicious apps, among 96. The least affected was DroidBot, proving be the tool with better effective performance, in terms of the number of detected malware, obtaining an effective performance of $63.54\%$, 61 malicious apps, among 96 . Finally, we answered our last research question (RQ3) when we leverage sandboxes, complementing the dynamic analysis provided by test generation tool with tainted analysis algorithms. Our experiment highlight that $69.79\%$-$82.29\%$ of malware in dataset can be now uncovered by the complement of tainted analysis algorithms, evidencing that 
-sandboxes can be further boosted when coupled with new static analysis techniques. We found that the number of identified malicious apps detected is increased for all cases, achieving at the best case, $82.29\%$ with DroidBot, a better performance than all five tools explored at \blls, even when they constructed a sandbox by combining all test generation tools at theirs work $75.49\%$. Table \ref{tab:tanted} display the increase of all tools explored at our research.
+Our research reinforces the importance of exploring, the contributions of each component used in surveys. The \blls suggested a precision of almost $70\%$ of dynamic analysis tools to differentiate between  the benign and malicious app. However, when our work went into the details of the methodology adopted by \blls, it discovered that in their research, the authors ignore the fact that DroidFax tool statically analyzes the Android apps. Thereby, our research isolates the contribution of each analysis component (static and dynamic), and reveals that in the best case, dynamic analysis tools obtained a performance of $63.54\%$, showing an overestimation of the performance of the dynamic analysis tools for mining sandboxes at \blls.
+
+Besides that, we also found that static analysis, performed by taint analysis algorithms, detected $60,42\%$ malware analyzed.  That fact made evident that it is possible to leverage sandboxes, complementing dynamic analysis tools with taint analysis algorithms. Researchers and apps developers could investigate the use of new static analysis techniques, or a combination of different approaches, to help developers on the task of developing safer apps.
+
+Our results show that static analysis in short had an impact on the \blls and were responsible for improving the results of the tools, between $16.44\%$ and $51.79\%$, which answers our first research question (RQ1). Table \ref{tab:fs} also summarizes our findings addressing the second research question (RQ2). We realized that disregarding the static analysis algorithms, Humanoid had the biggest performance drop, obtaining an effective performance of $28.12\%$. The least affected tool was DroidBot, proving to be the tool with better effective performance in terms of the number of detected malware, obtaining an effective performance of $63.54\%$. Finally, we answered our last research question (RQ3) when we leverage the sandbox, complementing the dynamic analysis with taint analysis algorithms, showing that $69.79\%$-$82.29\%$ of malware can be now uncovered by the static analysis  complement. As a result, the number of malicious apps detected increased in all cases, achieving in the best case, $82.29\%$ with DroidBot , evidencing that a sandbox can be further boosted when coupled with new static analysis techniques. Dynamic analysis coupled with taint analysis algorithms showed a better performance than all five tools explored at \blls, even when they constructed a sandbox by combining all test generation tools when they achieved $75.49\%$ of malware detection. Table \ref{tab:tanted} displays an increase of malware detection on all tools explored in our research.
+
 
 \begin{table}[ht]
 \centering
@@ -422,7 +425,7 @@ sandboxes can be further boosted when coupled with new static analysis technique
  Joker & 25 & 67 & 69.79  \\\midrule
  
 \end{tabular} 
-\caption{Malwares detected in 96 pair (B/M) increased by Tainted analysis Algorithms}
+\caption{Malwares detected in 96 pair (B/M) increased by Taint analysis Algorithms}
 \label{tab:tanted}
 \end{table}
 
