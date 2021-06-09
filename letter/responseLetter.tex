@@ -20,7 +20,7 @@
 {\bf Reviewer 1}
 
 \begin{itemize}
-\item In the first place, qhat I missed is an overview of the empirical studies conducted and the relation between 
+\item In the first place, what I missed is an overview of the empirical studies conducted and the relation between 
 first and second experiment. I would recommend to include, before Sections 3.2 and 3.3, a section 
 presenting the overall research methodology and the connections between the studies - in this sense, 
 a figure reporting the various steps would be appreciated; Figure 2 only summarizes the design of the first study.
@@ -28,7 +28,7 @@ a figure reporting the various steps would be appreciated; Figure 2 only summari
 
 \vspace{0.2cm}
   
-{\color{blue}{\bf Answer:} answer}
+{\color{blue}{\bf Answer.} answer}
 
 \vspace{0.2cm}
 
@@ -36,12 +36,12 @@ a figure reporting the various steps would be appreciated; Figure 2 only summari
 true for the second study, where Section 3.3 is a bit shallow. The three steps of the methodology are indeed shortly 
 described without providing enough details, hence possibly precluding verifiability and replicability. In addition, the 
 methodology is not linked to the research questions: I would recommend to restructure Section 3 in order to have 
-data extraction processes and data analysis producedures for each research question.
+data extraction processes and data analysis procedures for each research question.
 
 
 \vspace{0.2cm}
 
-{\color{blue}{\bf Answer:} answer}  
+{\color{blue}{\bf Answer.} answer}  
 
 \vspace{0.2cm}
 
@@ -53,7 +53,7 @@ data and tools available.
 
 \vspace{0.2cm}
 
-{\color{blue}{\bf Answer:} answer}
+{\color{blue}{\bf Answer.} answer}
 
 \vspace{0.2cm}
 
@@ -65,7 +65,7 @@ improve the detection of malwares.
 
 \vspace{0.2cm}
 
-{\color{blue}{\bf Answer:} answer}
+{\color{blue}{\bf Answer.} answer}
 
 \vspace{0.2cm}
 
@@ -74,7 +74,7 @@ improve the detection of malwares.
 
 \vspace{0.2cm}
 
-{\color{blue}{\bf Answer:} answer}
+{\color{blue}{\bf Answer.} answer}
 
 
 \end{itemize}
@@ -90,7 +90,7 @@ include reference in abstract. However, I reserve my opinion since I know it may
 
 \vspace{0.2cm}
 
-{\color{blue}{\bf Answer:} answer}
+{\color{blue}{\bf Answer.} answer}
 
 \vspace{0.2cm}
 
@@ -99,7 +99,7 @@ include reference in abstract. However, I reserve my opinion since I know it may
 
 \vspace{0.2cm}
 
-{\color{blue}{\bf Answer:} answer}
+{\color{blue}{\bf Answer.} answer}
 
 \vspace{0.2cm}
 
@@ -110,20 +110,42 @@ in privacy leakage detection, but what's your justification for saying FlowDroid
 
 \vspace{0.2cm}
 
-{\color{blue}{\bf Answer:} answer}
+{\color{blue}{\bf Answer.} Thanks for raising this question. Here we were intended to say that FlowDroid implements a more advanced static analysis approach than DroidFax. We agree that the sentence is ambiguous, and we fixed that in the new version of the paper (first paragraph
+  of section 3.3).}
 
 \vspace{0.2cm}
 
 \item By definition, mining sandboxes means a technique to confine an application to resources accessed during automatic 
 testing [1]. But in 3.3, you are comparing the source-sink pairs between that of a benign app and its malign twin. It is already 
-not ``Mining Sandboxes''. Also, FlowDroid requires as input the sources and sinks APIs. But you mine ``all sources and sinks 
-paths''. Do you mean all APIs? FlowDroid will never finish running. Assume a set of sensitive sources and sinks are selected, 
+not ``Mining Sandboxes''.
+
+\vspace{0.2cm}
+
+{\color{blue}{\bf Answer.} We totally agree. We changed the title of Section 3.3 and fixed this wrong misconception related to our taint analysis usage, which is used not for mining sandboxes but rather as an alternative approach for identifying malware. Fixing this issue required modifications not only in Section 3.3 but also in many other parts of the paper (including Abstract, Introduction, and Results). Many thanks for raising this issue.}
+
+
+\vspace{0.2cm}
+
+\item Also, FlowDroid requires as input the sources and sinks APIs. But you mine ``all sources and sinks 
+paths''. Do you mean all APIs? FlowDroid will never finish running. 
+\vspace{0.2cm}
+
+{\color{blue}{\bf Answer.} You are right: we actually use a set of sensitive sources and sinks. We changed the second paragraph of Section 3.3 to clarify this point. Thanks. We hope that the current version of our paper fixes this misunderstanding.}
+
+\vspace{0.2cm}
+  
+\item Assume a set of sensitive sources and sinks are selected, 
 FlowDroid is already good in suggesting which one is malign by revealing info flows. What's the point of applying [1]'s setting?
 
 
 \vspace{0.2cm}
 
-{\color{blue}{\bf Answer:} answer}
+{\color{blue}{\bf Answer.} Our idea in the second study is to find divergences in the info flows when considering two executions of FlowDroid: one execution using the benign version and one execution using the malicious version. The source-sink paths collected in the first execution of FlowDroid (benign version)
+ {\bf are not considered suspicious}. Only the paths in the second execution, which do not appear in the first execution, are considered suspect and are used to point out the malware. We changed Section 3.3 to detail our approach better.}
+
+\vspace{0.2cm}
+
+{\color{blue}{\bf Answer.} answer}
 
 \vspace{0.2cm}
 
@@ -134,7 +156,7 @@ It would be more impressive the other way round.
 
 \vspace{0.2cm}
 
-{\color{blue}{\bf Answer:} answer}
+{\color{blue}{\bf Answer.} answer}
 
 \vspace{0.2cm}
 
@@ -144,7 +166,7 @@ comparison combining multiple dynamic tools would improve the performance.
 
 \vspace{0.2cm}
 
-{\color{blue}{\bf Answer:} answer}
+{\color{blue}{\bf Answer.} answer}
 
 \vspace{0.2cm}
 
@@ -154,7 +176,7 @@ conclusions and/or inspirations can be drawn from such listings?
 
 \vspace{0.2cm}
 
-{\color{blue}{\bf Answer:} answer}
+{\color{blue}{\bf Answer.} answer}
 
 \vspace{0.2cm}
 
@@ -164,7 +186,7 @@ Actually, many dynamic testing tools use static analysis to better guide their t
 
 \vspace{0.2cm}
 
-{\color{blue}{\bf Answer:} answer}
+{\color{blue}{\bf Answer.} answer}
 
 \vspace{0.2cm}
 
@@ -177,7 +199,7 @@ Actually, many dynamic testing tools use static analysis to better guide their t
 
 \vspace{0.2cm}
 
-{\color{blue}{\bf Answer:} answer}
+{\color{blue}{\bf Answer.} answer}
 
 \end{itemize}
 
@@ -190,7 +212,7 @@ Actually, many dynamic testing tools use static analysis to better guide their t
 
 \vspace{0.2cm}
 
-{\color{blue}{\bf Answer:} answer}
+{\color{blue}{\bf Answer.} answer}
 
 \vspace{0.2cm}
 
@@ -199,7 +221,7 @@ Actually, many dynamic testing tools use static analysis to better guide their t
 
 \vspace{0.2cm}
 
-{\color{blue}{\bf Answer:} answer}
+{\color{blue}{\bf Answer.} answer}
 
 \vspace{0.2cm}
 
@@ -210,7 +232,7 @@ Please explain
 
 \vspace{0.2cm}
 
-{\color{blue}{\bf Answer:} answer}
+{\color{blue}{\bf Answer.} answer}
 
 \vspace{0.2cm}
 
@@ -220,7 +242,7 @@ What is DroidXP? It should be introduced to a reader who is not familiar.
 
 \vspace{0.2cm}
 
-{\color{blue}{\bf Answer:} answer}
+{\color{blue}{\bf Answer.} answer}
 
 \vspace{0.2cm}
 
@@ -232,7 +254,7 @@ What is rooting?
 
 \vspace{0.2cm}
 
-{\color{blue}{\bf Answer:} answer}
+{\color{blue}{\bf Answer.} answer}
 
 \vspace{0.2cm}
 
@@ -243,7 +265,7 @@ What is rooting?
 
 \vspace{0.2cm}
 
-{\color{blue}{\bf Answer:} answer}
+{\color{blue}{\bf Answer.} answer}
 
 \vspace{0.2cm}
 
@@ -252,7 +274,7 @@ What is rooting?
 
 \vspace{0.2cm}
 
-{\color{blue}{\bf Answer:} answer}
+{\color{blue}{\bf Answer.} answer}
 
 \vspace{0.2cm}
 
@@ -263,7 +285,7 @@ presents a proposal that can generate humans like tests inputs, using deep learn
 
 \vspace{0.2cm}
 
-{\color{blue}{\bf Answer:} answer}
+{\color{blue}{\bf Answer.} answer}
 
 \vspace{0.2cm}
 
@@ -273,7 +295,7 @@ presents a proposal that can generate humans like tests inputs, using deep learn
 
 \vspace{0.2cm}
 
-{\color{blue}{\bf Answer:} answer}
+{\color{blue}{\bf Answer.} answer}
 
 \vspace{0.2cm}
 
@@ -283,7 +305,7 @@ presents a proposal that can generate humans like tests inputs, using deep learn
 
 \vspace{0.2cm}
 
-{\color{blue}{\bf Answer:} answer}
+{\color{blue}{\bf Answer.} answer}
 
 \vspace{0.2cm}
 
@@ -291,7 +313,7 @@ presents a proposal that can generate humans like tests inputs, using deep learn
 
 \vspace{0.2cm}
 
-{\color{blue}{\bf Answer:} answer}
+{\color{blue}{\bf Answer.} answer}
 
 \vspace{0.2cm}
 
@@ -299,7 +321,7 @@ presents a proposal that can generate humans like tests inputs, using deep learn
 
 \vspace{0.2cm}
 
-{\color{blue}{\bf Answer:} answer}
+{\color{blue}{\bf Answer.} answer}
 
 \vspace{0.2cm}
 
@@ -309,7 +331,7 @@ presents a proposal that can generate humans like tests inputs, using deep learn
 
 \vspace{0.2cm}
 
-{\color{blue}{\bf Answer:} answer}
+{\color{blue}{\bf Answer.} answer}
 
 \vspace{0.2cm}
 
@@ -318,7 +340,7 @@ presents a proposal that can generate humans like tests inputs, using deep learn
 
 \vspace{0.2cm}
 
-{\color{blue}{\bf Answer:} answer}
+{\color{blue}{\bf Answer.} answer}
 
 
 
