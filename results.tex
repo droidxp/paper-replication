@@ -116,8 +116,9 @@ Android sandboxes.
 \begin{finding}
   Our results suggest that one might benefit from using  an integrated
   environment that combines Monkey, DroidMate, and Humanoid to
-  mine Android sandboxes. Introducing the DroidMate 
-  tool does not improve the results.
+  mine Android sandboxes. Contrasting with the \blls, introducing the DroidMate 
+  tool does not improve the overall performance for detecting malwares using
+  a mining sandbox approach.
 \end{finding}
 
 
@@ -136,20 +137,33 @@ detected using the sandboxes generated after running the test case tools with th
 DroidFax static analysis algorithms. Besides that, in the first execution (WS), none of the
 resulting sandboxes could detect 18 malwares in our dataset ($18.75$\%). According to
 the Euphony tool~\cite{hurier2017euphony}, $12$ of these $18$ malwares are \emph{adwares}, $3$ are \emph{trojans}, $2$ are
-PUPs (\emph{Potentially Unwanted Program}), and one is an \emph{exploit}. In what follows
-we present more details of representative malwares considered
-in our dataset.
+PUPs (\emph{Potentially Unwanted Program}), and one is an \emph{exploit}.
+At this point, an additional question arises: what are the characteristics
+of the malwares that have (not) been identified using the mining sandbox approach?
+To explore this question, we take advantage of the
+\texttt{dex2jar} tool to reverse-engineer all 96 malwares considered in our analysis and
+computed the \emph{diffs} of the benign/malicious versions of the APPs.
+The results of this activity are available in our replication
+package.\footnote{https://github.com/droidxp/paper-replication-package/blob/master/diff/} 
+In what follows we dissect a few examples of malwares
+that at least one dynamic analysis tool was able to
+identify using the mining sandbox approach. After that,
+we present the characteristics of a malware that none of the tools
+was able to detect. Our goal here is to provide
+a lower-level intuition about the classes of malware the
+mining sandbox approach is able to detect. A reader that
+is not interested in these details could skip to
+Section~\ref{sec:res-ss}.
 
-First, consider the malicious version of the app \texttt{com.andoop.flyracing}---which only the DroidBot and
-Humanoid sandboxes were able to detect. 
-In this particular case, the malicious version changed the Android Manifest file,
+To start with, consider the malicious version of the app \texttt{com.andoop.flyracing}---which both DroidBot and
+Humanoid sandboxes could detect in our analysis. 
+In this particular case, the malicious version changes the Android Manifest file,
 adding permissions to receive and send SMS messages
 (Listing~\ref{lst:androidManifest}). With these permissions, malicious apps may get money
-fraudulently by sending messages without user confirmation, or may monitor messages or delete
-them without showing them to user. 
+fraudulently by sending messages without user confirmation, for instance.
 
-Moreover, after decompiling this malware, we also observed that the malicious version of the
-\texttt{MainService} class introduced a
+After decompiling this malware, we also observed that the malicious version of the
+\texttt{MainService} class introduces a
 behavior that collects sensitive information (the International Mobile
 Equipment Identity, IMEI) and sends it using an SMS message
 (Listing~\ref{lst:mainService}). 
@@ -188,10 +202,10 @@ The malicious version of the app \texttt{com.happymaau.MathRef} also changes
 the manifest file to require additional permissions as well as change
 the behavior of the app (with malicious code). All sandboxes were able to
 detect this malware.
-In this case, the malicious version of the app changed the Android Manifest file,
+In this case, the malicious version of the app changes the Android Manifest file,
 requiring permissions to access the network and WiFi states (Listing~\ref{lst:androidManifest2}).
 These changes allow an app
-to view the status of all networks and make changes to configured WiFi-fi networks. 
+to view the status of all networks and make changes to configured WiFi networks. 
 
 
 \begin{lstlisting}[caption={Diffs in the \texttt{com.happymaau.MathRef}
@@ -205,7 +219,7 @@ to view the status of all networks and make changes to configured WiFi-fi networ
 \end{lstlisting}
 
 
-We also observed that the malicious version introduces a method \texttt{a},
+The malicious version also introduces a method \texttt{a},
 that actually collects network and WiFi information, like Mac address and the network state
 (see Listing~\ref{lst:d}). This information is then shared using an
 HTTP request. 
@@ -238,11 +252,11 @@ HTTP request.
 \end{lstlisting}
 
 
-All computed sandboxes also detected the malicious version of the app \texttt{ru.qixi.android.smartrabbits}.
-This particular malware also changes the Android Manifest file, requesting permission to access location service (Listing~\ref{lst:androidManifest3}).
-This permission allows access location features, such as the Global Positioning System (GPS) on the phone, if it is enabled.
-Malicious applications can use these features to determine where the phone owner is, which is a
-general privacy threat. 
+All resulting sandboxes also detected the malicious version of the app \texttt{ru.qixi.android.smartrabbits}.
+This particular malware also changes the Android Manifest file,
+requesting permission to access the location service (Listing~\ref{lst:androidManifest3}).
+This permission allows access to location features, such as the Global Positioning System (GPS) on the phone, if it is enabled. Malicious applications can use these features to determine where the phone owner is, which is a
+classic and well-documented privacy threat. 
 
 \begin{lstlisting}[caption={Diffs in the \texttt{com.happymaau.MathRef}
       AndroidManifest file of the malicious
@@ -255,8 +269,8 @@ general privacy threat.
 \end{lstlisting}
 
 In addition, the malicious app clandestinely monitors the geographic location of the user and sink
-these information to a web server. Listing~\ref{lst:c} shows how
-the method \texttt{c}, from \texttt{q} class, collects these sensitive information. 
+this information to a web server. Listing~\ref{lst:c} shows how
+the method \texttt{c}, from the class named \texttt{q}, collects this sensitive information. 
 
 \begin{lstlisting}[caption={Diffs in the malicious version
       of the class \texttt{net.crazymedia.iad.d.q}
@@ -300,14 +314,20 @@ the method \texttt{c}, from \texttt{q} class, collects these sensitive informati
 92:M > }
 \end{lstlisting}
 
-
-Finally, the \texttt{com.andoop.flyracing} case is among the apps that none sandbox detected the
-malicious version. Indeed, the malicious version only changes the Android Manifest file,
-modifying the meta-data \texttt{ADMOB\_PUBLISHER\_ID}. Nonetheless, the AdMob is a monetizing
+This pattern of changing the Android Manifest file and including
+new method calls characterizes the classes of malwares for which
+the mining sandbox approach excels. 
+In a different vein, the malicious version of the app
+\texttt{com.andoop.flyracing} is among the apps that none of the sandboxes could
+detect. Indeed, the malicious version only changes the Android Manifest file,
+modifying the meta-data \texttt{ADMOB\_PUBLISHER\_ID}. The AdMob is a monetizing
 service provided by Google, and changing the AdMob \emph{publisher identifier} account redirects
-the advertisement's revenue to another destination. Therefore, it might exist specific
-modifications to the Android manifest file that might complement the mining sandbox
-approach into the task for detecting malwares. 
+the advertisement's revenue to another destination. Based on
+this observation, we envision integrating a different approach that reasons
+about modifications to the Android manifest file and that might complement the mining sandbox
+approach into the task for detecting malwares; since the mining
+sandbox approach is not able to detect malicious packages that
+do not introduce new method calls for sensitive APIs.
 
 \begin{lstlisting}[caption={Diff in the file \texttt{com.andoop.flyracing}
       AndroidManifest file of the malicious version.
@@ -321,7 +341,6 @@ approach into the task for detecting malwares.
 1:M > <meta-data android:name="ADMOB_\PUBLISHER_\ID"
                      android:value="a14f099bfbf3c61"/>
 \end{lstlisting}
-
 
 
 \subsection{Results of the second study: Use of Taint Analysis for Malware Identification}\label{sec:res-ss}
