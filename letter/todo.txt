@@ -1,0 +1,6 @@
+TODO LIST
+
+   * [] Review the paper title
+   * [] Put more emphasis on the relevance of replication in software engineering
+   * [] Review all the paper to highlight that we did not use Taint Analysis for mining sandboxes
+   

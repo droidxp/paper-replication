@@ -1,22 +1,36 @@
-@article{10.1145/2666356.2594299,
-author = {Arzt, Steven and Rasthofer, Siegfried and Fritz, Christian and Bodden, Eric and Bartel, Alexandre and Klein, Jacques and Le Traon, Yves and Octeau, Damien and McDaniel, Patrick},
-title = {FlowDroid: Precise Context, Flow, Field, Object-Sensitive and Lifecycle-Aware Taint Analysis for Android Apps},
-year = {2014},
-issue_date = {June 2014},
-publisher = {Association for Computing Machinery},
-address = {New York, NY, USA},
-volume = {49},
-number = {6},
-issn = {0362-1340},
-url = {https://doi.org/10.1145/2666356.2594299},
-doi = {10.1145/2666356.2594299},
-abstract = {Today's smartphones are a ubiquitous source of private and confidential data. At the same time, smartphone users are plagued by carelessly programmed apps that leak important data by accident, and by malicious apps that exploit their given privileges to copy such data intentionally. While existing static taint-analysis approaches have the potential of detecting such data leaks ahead of time, all approaches for Android use a number of coarse-grain approximations that can yield high numbers of missed leaks and false alarms.In this work we thus present FlowDroid, a novel and highly precise static taint analysis for Android applications. A precise model of Android's lifecycle allows the analysis to properly handle callbacks invoked by the Android framework, while context, flow, field and object-sensitivity allows the analysis to reduce the number of false alarms. Novel on-demand algorithms help FlowDroid maintain high efficiency and precision at the same time.We also propose DroidBench, an open test suite for evaluating the effectiveness and accuracy of taint-analysis tools specifically for Android apps. As we show through a set of experiments using SecuriBench Micro, DroidBench, and a set of well-known Android test applications, FlowDroid finds a very high fraction of data leaks while keeping the rate of false positives low. On DroidBench, FlowDroid achieves 93\% recall and 86\% precision, greatly outperforming the commercial tools IBM AppScan Source and Fortify SCA. FlowDroid successfully finds leaks in a subset of 500 apps from Google Play and about 1,000 malware apps from the VirusShare project.},
-journal = {SIGPLAN Not.},
-month = jun,
-pages = {259–269},
-numpages = {11}
+@article{role-of-replication,
+  author    = {Forrest Shull and
+               Jeffrey C. Carver and
+               Sira Vegas and
+               Natalia Juristo Juzgado},
+  title     = {The role of replications in Empirical Software Engineering},
+  journal   = {Empir. Softw. Eng.},
+  volume    = {13},
+  number    = {2},
+  pages     = {211--218},
+  year      = {2008},
+  url       = {https://doi.org/10.1007/s10664-008-9060-1},
+  doi       = {10.1007/s10664-008-9060-1},
+  timestamp = {Tue, 25 Aug 2020 16:58:47 +0200},
+  biburl    = {https://dblp.org/rec/journals/ese/ShullCVJ08.bib},
+  bibsource = {dblp computer science bibliography, https://dblp.org}
 }
 
+@inproceedings{rasthofer-source-sink,
+  author    = {Siegfried Rasthofer and
+               Steven Arzt and
+               Eric Bodden},
+  title     = {A Machine-learning Approach for Classifying and Categorizing Android
+               Sources and Sinks},
+  booktitle = {21st Annual Network and Distributed System Security Symposium, {NDSS}
+               2014, San Diego, California, USA, February 23-26, 2014},
+  publisher = {The Internet Society},
+  year      = {2014},
+  url       = {https://www.ndss-symposium.org/ndss2014/machine-learning-approach-classifying-and-categorizing-android-sources-and-sinks},
+  timestamp = {Mon, 01 Feb 2021 08:42:18 +0100},
+  biburl    = {https://dblp.org/rec/conf/ndss/RasthoferAB14.bib},
+  bibsource = {dblp computer science bibliography, https://dblp.org}
+}
 
 @inproceedings{weiissta,
 author = {Huang, Wei and Dong, Yao and Milanova, Ana and Dolby, Julian},

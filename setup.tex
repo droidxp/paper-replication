@@ -143,7 +143,7 @@ It is important to note that here we used a new version of DroidMate (DroidMate-
 in comparison to the previous version. We also considered the Google's Monkey open source tool, mostly because it is the most
 widely used test generation tool for Android~\cite{DBLP:conf/sigsoft/ZengLZXDLYX16}. Monkey is part of the Android SDK
 and does not require any additional installation effort. We included Humanoid in our study
-because it emulates realistic users, creating human-like test inputs using deep learning techniques.
+because it is a recent tool that emulates realistic users, creating human-like test inputs using deep learning techniques.
 
 
 
@@ -158,7 +158,7 @@ the Android apps during a benchmark execution. Using this tool, the results
 of the dynamic analysis are not considered and we can compute the results with
 only the static analysis component of DroidFax (RQ1). Our study executed each pair of
 Android app (B/M) in each one of the five test generation tools, including \joke,
-for three minutes, and for three times. We then investigate the performance of each tool to detect malicious behaviors in the sandbox
+for three minutes, and for three times. We then investigated the performance of each tool to detect malicious behaviors in the sandbox
 modeled by the test generation tool
 under analysis. 
 
@@ -184,25 +184,27 @@ resources access by both apps (B/M), and the optional configuration DroidXP, tha
 \subsection{Second Study: Use of Taint Analysis for Malware Identification}\label{sec:set2}
 
 In the second study 
-we investigate whether or not taint-based static analysis approach is also promising for
-identifying malwares, given a version of an app that is proved to be secure.
+we investigate whether or not a taint-based static analysis approach is also promising for
+identifying malwares, given a version of an app that we can assume to be secure.
 To this end, we leverage the FlowDroid
 taint analysis algorithms for Android apps, in order to identify dataflows
 that might lead to the leakage of sensitive information. Our
 goal here is to investigate if it is possible to detect malicious
-behavior by identifying the \emph{divergent} source-sink paths that FlowDroid reveals after
+behavior by means of identifying the \emph{divergent} source-sink paths that FlowDroid reveals after
 analysing a benign and a malign versions of an Android app.
 define.
 
 FlowDroid takes as input an Android Application Package (APK file) and
 a set of API methods marked either as {\bf source}
-or {\bf sink}. Source methods are those that access \emph{sensitive information} (e.g.,
+or {\bf sink} (or both). Source methods are those that access \emph{sensitive information} (e.g.,
 a method that access the address book), while sink methods are those 
 that \emph{might share information with external peers} (e.g., a method that
-sends messages to a recipient). We rely on the source-sink definitions of a previous
-study~\cite{}, which involves ABC source methods and XYZ sink methods.
+sends messages to a recipient). We rely on the source-sink definitions
+of the FlowDroid implementation~\cite{arzt:pldi-2014,rasthofer-source-sink},
+which involves a curate list of source and sink methods (including callbacks and
+other Android API methods of interest).
 FlowDroid then uses a \emph{context, flow, and field
-sensitive analysis} to identify all dataflow paths from sources to sinks~\cite{}.
+sensitive analysis} to identify all dataflow paths from sources to sinks~\cite{arzt:pldi-2014}.
 However, it is important to note that not all source-sink paths are malicious, and then we
 follow a specific methodology to identify malwares in our work: we raise a
 warning (a \emph{hit}) whenever
@@ -212,9 +214,10 @@ has not been identified when analysing the benign version.
 Our research settings involve three steps (see Figure~\ref{fig:settings2}).
 In the first, we execute FlowDroid to mine the source-sink paths from a
 benign version of an app, and then enumerate a set (S1) with the 
-possible dataflows between sources and sinks. All paths in S1 are considered safe in
+possible dataflows between sources and sinks. All paths in S1 are considered secure in
 our analysis. In the second step we repeat the FlowDroid execution, though
-considering the malicious APK version of the app. This leads to a second set (S2) of source-sink paths. In the final step, we compute the difference (S3) between
+considering the malicious APK version of the app.
+This leads to a second set (S2) of source-sink paths. In the final step, we compute the difference (S3) between
 the sets S2 and S1 (i.e., $S3 = S2 \setminus S1$), in order to reveal
 the existence of additional paths in the
 malicious version. If the set S3 is not empty, we conclude that FlowDroid

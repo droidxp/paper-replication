@@ -1,20 +1,27 @@
-\documentclass[12pt,english]{scrlttr2}
+\documentclass[12pt,english]{scrartcl}
 
+\usepackage{scrletter}
 \usepackage[utf8]{inputenc}
 \usepackage[T1]{fontenc}
 \usepackage[]{babel}
+\usepackage[numbers]{natbib}
 
-\newkomavar{fromplace}
-\setkomavar{fromname}{Francisco Handrick da Costa}
-\setkomavar{fromaddress}{Fairytail-Lane 1}
-\setkomavar{fromplace}{12345 Cologne}
+% \usepackage{natbib}
+% \bibliographystyle{unsrtnat}
+
+%% \newkomavar{fromplace}
+%% \setkomavar{fromname}{Francisco Handrick da Costa (on behalf of the authors of the paper}
+%% \setkomavar{fromaddress}{Computer Science Department \\ University of Bras\'{i}lia}
+%% \setkomavar{fromplace}{Brazil}
 
 
-\firsthead{%
-\begin{tabular}{p{0.7\textwidth}p{0.3\textwidth}}
-& \usekomavar{fromname} \newline \usekomavar{fromaddress}  \newline \usekomavar{fromplace} 
-\end{tabular}
-}
+
+
+%% \firsthead{%
+%% \begin{tabular}{p{0.7\textwidth}p{0.3\textwidth}}
+%% & \usekomavar{fromname} \newline \usekomavar{fromaddress}  \newline \usekomavar{fromplace} 
+%% \end{tabular}
+%% }
 
 
 
@@ -23,6 +30,7 @@
 % \usepackage{natbib}
 \usepackage{hyperref}
 \usepackage{xcolor}
+
 \DeclareOldFontCommand{\bf}{\normalfont\bfseries}{\mathbf}
 
 
@@ -33,6 +41,8 @@
 
 
 \begin{document}
+\setkomavar{fromname}{Francisco Handrick da Costa}
+\setkomavar{fromaddress}{Computer Science Department \\ University of Bras\'{i}lia \\ Brazil}
 
 \begin{letter}{Dear JSS Editors,}
   
@@ -75,7 +85,7 @@ data and tools available.
 
 \vspace{0.2cm}
 
-{\color{blue}{\bf Answer.} Thanks for this comment. We make avaiable our tool, datasets and
+{\color{blue}{\bf Answer.} Thanks for this comment. We make available our tool, datasets and
   scripts in the following links:
 
   \begin{itemize}
@@ -83,7 +93,8 @@ data and tools available.
     \item \href{https://htmlpreview.github.io/?https://github.com/droidxp/paper-replication-package/blob/master/replication.html}{datasets and scripts}
   \end{itemize}
   
-\vspace{0.2cm}\newline
+  \vspace{0.2cm}
+  
 At Section 1 (Introduction) we highlight the existence of these 2 repositories that can be useful for other researchers interested in our study.}
 
 \vspace{0.2cm}
@@ -130,7 +141,8 @@ include reference in abstract. However, I reserve my opinion since I know it may
 
 \vspace{0.2cm}
 
-{\color{blue}{\bf Answer.} Thanks for this observation. We change the picture and unify our terminology.}
+{\color{blue}{\bf Answer.} Thanks for this observation. We unified our terminology throughout the current
+  version of the paper.}
 
 \vspace{0.2cm}
 
@@ -141,18 +153,18 @@ in privacy leakage detection, but what's your justification for saying FlowDroid
 
 \vspace{0.2cm}
 
-{\color{blue}{\bf Answer.} Thanks for raising this question. Here we were intended to say that FlowDroid implements a more advanced static analysis approach than DroidFax. We agree that the sentence is ambiguous, and we fixed that in the new version of the paper (first paragraph
-  of section 3.3).}
+{\color{blue}{\bf Answer.} Thanks for raising this question. Here we were intended to say that FlowDroid implements a more advanced static analysis approach than DroidFax. We agree that the sentence is ambiguous, and we fixed that in the new version of the paper (both in Introduction and in the first paragraph
+  of Section 3.3).}
 
 \vspace{0.2cm}
 
 \item By definition, mining sandboxes means a technique to confine an application to resources accessed during automatic 
-testing [1]. But in 3.3, you are comparing the source-sink pairs between that of a benign app and its malign twin. It is already 
+testing~\cite{jamrozikZ16}. But in 3.3, you are comparing the source-sink pairs between that of a benign app and its malign twin. It is already 
 not ``Mining Sandboxes''.
 
 \vspace{0.2cm}
 
-{\color{blue}{\bf Answer.} We totally agree. We changed the title of Section 3.3 and fixed this wrong misconception related to our taint analysis usage, which is used not for mining sandboxes but rather as an alternative approach for identifying malware. Fixing this issue required modifications not only in Section 3.3 but also in many other parts of the paper (including Abstract, Introduction, and Results). Many thanks for raising this issue.}
+{\color{blue}{\bf Answer.} We totally agree. We changed the title of Section 3.3 and fixed this wrong mischaracterization related to our taint analysis usage, which is used not for mining sandboxes but rather as an alternative approach for identifying malware. Fixing this issue required modifications not only in Section 3.3 but also in many other parts of the paper (including Abstract, Introduction, and Results). Many thanks for raising this issue.}
 
 
 \vspace{0.2cm}
@@ -162,58 +174,74 @@ paths''. Do you mean all APIs? FlowDroid will never finish running.
 
 \vspace{0.2cm}
 
-{\color{blue}{\bf Answer.} You are right: we actually use a set of sensitive sources and sinks. We changed the second paragraph of Section 3.3 to clarify this point. Thanks. We hope that the current version of our paper fixes this misunderstanding.}
+{\color{blue}{\bf Answer.} You are right: we actually use a curate set of sensitive sources and sinks
+  that is available in the FlowDroid repository.
+  We changed the second paragraph of Section 3.3 to clarify this point. Thanks.
+  We hope that the current version of our paper fixes this problem.}
 
 \vspace{0.2cm}
   
 \item Assume a set of sensitive sources and sinks are selected, 
-FlowDroid is already good in suggesting which one is malign by revealing info flows. What's the point of applying [1]'s setting?
+  FlowDroid is already good in suggesting which one is malign by revealing info flows. What's the point of
+  applying~\cite{jamrozikZ16}'s setting?
 
 
 \vspace{0.2cm}
 
-{\color{blue}{\bf Answer.} Our idea in the second study is to find divergences in the info flows when considering two executions of FlowDroid: one execution using the benign version and one execution using the malicious version. The source-sink paths collected in the first execution of FlowDroid (benign version)
- {\bf are not considered suspicious}. Only the paths in the second execution, which do not appear in the first execution, are considered suspect and are used to point out the malware. We changed Section 3.3 to detail our approach better.}
+{\color{blue}{\bf Answer.} Our approach in the second study aims to find divergences in the source-sink
+  flows when considering two executions of FlowDroid: one execution using the benign version and
+  one execution using the malicious version. The source-sink paths collected
+  in the first execution of FlowDroid (benign version)
+  {\bf are not considered suspicious}. Only the paths in the second execution, which do not appear in the first execution, are considered suspect and are used to point out the malware. We changed Section 3.3 to
+  detail our approach better.}
 
 \vspace{0.2cm}
 
-\item The significance of this work is questionable. The first study is a mere replication of the existing work [2], except, disabling 
-part of the framework. The finding is that DroidFaX is important part for DroidXP. Well, your proved literature's correctness. 
+\item The significance of this work is questionable. The first study is a mere replication of the existing
+  work~\cite{DBLP:conf/wcre/BaoLL18}, except, disabling 
+part of the framework. The finding is that DroidFax is important part for DroidXP. Well, your proved literature's correctness. 
 It would be more impressive the other way round.
 
 
 \vspace{0.2cm}
 
-{\color{blue}{\bf Answer.} We respectfully disagree with this opinion. The relevance of replication in software enginer has gained much more attention in recent years (including recommendations for that~\cite{role-of-replication,standards}),
+{\color{blue}{\bf Answer.} We respectfully disagree with the ``mere replication''
+  opinion. Indeed, the relevance of replication in software engineer
+  has gained much more attention in recent years~\cite{role-of-replication,shepperd-role-replication},
   not only to validate past results~\cite{msr-replication} but also to generate new insights
-  from previous research results~\cite{} or even refute past conclusions~\cite{topas-replication}.
-  Indeed, we carried out a non-exact replication of~\cite{}, and the results of our study
-  sheds light that the performance of the dynamic analysis tools explored in~\cite{} is
-  actually different from the previous report. We also agree with the perspective of Shullet al.~\cite{},
+  from previous research results~\cite{kohl:icse-2020} or even refute past conclusions~\cite{toplas-replication}.
+  Indeed, we carried out an external, non-exact replication
+  of~\cite{DBLP:conf/wcre/BaoLL18}, and the results of our study
+  shed light that the efficacy of the dynamic analysis tools is
+  actually different from the previous report~\cite{DBLP:conf/wcre/BaoLL18}. That is,
+  although we agree with the perspective of
+  Shullet et al.~\cite{role-of-replication},
   who argue that an exact replication that achieves the same conclusions of an original work
-  is still valuable to generalize the results of a research. Nonetheless, here we go beyond that,
-  because we give evidence that the performance of the dynamic analysis tools in the previous research
-  work had been overestimated. To make this point clear, we changed \ldots}
+  is still valuable to generalize the results of a research, here we go beyond that,
+  and give evidence that the efficacy of the dynamic analysis tools in the previous research
+  work had been overestimated. We review the introduction section to clarify this point.}
 
 \vspace{0.2cm}
 
-\item I find what's written in Finding 2 is not exciting. It is intuitive based on the results of [1] to know that a comprehensive 
+\item I find what's written in Finding 2 is not exciting. It is intuitive based on the results
+  of~\cite{jamrozikZ16} to know that a comprehensive 
 comparison combining multiple dynamic tools would improve the performance.
 
 
 \vspace{0.2cm}
 
-{\color{blue}{\bf Answer.}The \emph{Finding 2 box} summarizes that we achieve the best performance on mining sandboxes when combining Humanoid, Monkey and DroidBot. Adding DroidMate to this configuration does not improve the overall performance. This result is novel and different from the previous research. We have made a slight change in this particular box to stress this point.}
+{\color{blue}{\bf Answer.}\emph{Finding 2} summarizes that we achieve the best performance on mining sandboxes when combining Humanoid, Monkey, and DroidBot. Adding DroidMate to this configuration does not improve the overall performance. This result is novel and different from the previous research. We have made a slight change in this particular box to stress this point.}
 
 \vspace{0.2cm}
 
-\item Listings 1-7 illustrate more details of representative malware in the dataset. But what is the take-away message? What 
+\item Listings 1---7 illustrate more details of representative malware in the dataset. But what is the take-away message? What 
 conclusions and/or inspirations can be drawn from such listings?
 
 
 \vspace{0.2cm}
 
-{\color{blue}{\bf Answer.} answer}
+{\color{blue}{\bf Answer.}The goal of the listings is twofold. First, to explain the characteristics of the malwares for which the mining sandbox approach could correctly identify the malicious behavior. Second, to highlight a particular kind of malwares for which the mining sandbox approach is not practical (last malware example). For the first class of malware, the malicious version of the apps frequently includes changes in the Android manifest file and also modifies the bytecode to include additional method calls that might share sensitive information. The listings show concrete examples of the code after a re-engineering effort, which might help readers understand why the mining sandbox approach works for those cases. Similarly, the last instance of malware only changes the manifest file. Since it does not include any additional method call, the mining sandbox approach could not point out the malicious version of the app as malware. We changed the last paragraphs of Section 4.1 to justify these listings better.
+}
 
 \vspace{0.2cm}
 
@@ -223,7 +251,7 @@ Actually, many dynamic testing tools use static analysis to better guide their t
 
 \vspace{0.2cm}
 
-{\color{blue}{\bf Answer.} We agree. Nonetheless, DroidFax is not part of the dynamic analysis tools. According to Bao et al., their goal on using DroidFax was to instrument the APKs with the intent of collecting calls to sensitive APIs. However, the use of DroidFax in their study actually lead to an increase in the peformance of dynamic analysis tools for mining sandboxes. We did not change any internal component of the dynamic analysis tools, which indeed might include static analysis components. We review the title to mitigate this problem.}
+{\color{blue}{\bf Answer.} We agree. Nonetheless, DroidFax is not part of the dynamic analysis tools. According to Bao et al.~\cite{jamrozikZ16}, their goal on using DroidFax was to instrument the APKs with the intent of collecting calls to sensitive APIs, while executing the dynamic analysis tools. However, the use of DroidFax in their study actually lead to an increase in the performance of dynamic analysis tools for mining sandboxes. We did not change any internal component of the dynamic analysis tools, which indeed might include static analysis components. We reviewed the title to mitigate this problem.}
 
 \vspace{0.2cm}
 
@@ -308,7 +336,7 @@ What is rooting?
 
 \vspace{0.2cm}
 
-\item What are sensitive behaviors? ``showed that Droidbot is able to trigger an amount of sensitive behaviors''
+\item What are sensitive behaviors? ``showed that DroidBot is able to trigger an amount of sensitive behaviors''
 
 
 \vspace{0.2cm}
@@ -318,7 +346,7 @@ What is rooting?
 \vspace{0.2cm}
 
 \item Please rephrase:
-``From the same authors, another test generator tool for Android, described as Humanoid [23], is a Droidbot evolution and
+``From the same authors, another test generator tool for Android, described as Humanoid [23], is a DroidBot evolution and
 presents a proposal that can generate humans like tests inputs, using deep learning.''
 
 
@@ -372,7 +400,7 @@ reviewed the first paragraph of section 3.1 to clarify the importance of DroidXP
 
 \vspace{0.2cm}
 
-{\color{blue}{\bf Answer.} Thanks for raising this issue. Actually our purpose was to present the characteristics of malware that have or have not been identified using the mining sandox approach. Our goal is to provide a lower-level intuition about the classes of malware, the mining sandbox approach is good enough, and which ones it fails. We rephrased the section 4.1 at this point, to clarify this issue about malware discussion.}
+{\color{blue}{\bf Answer.} Thanks for raising this issue. Actually our purpose was to present the characteristics of malware that have or have not been identified using the mining sandbox approach. Our goal is to provide a lower-level intuition about the classes of malware, the mining sandbox approach is good enough, and which ones it fails. We rephrased the section 4.1 at this point, to clarify this issue about malware discussion.}
 
 \vspace{0.2cm}
 
@@ -397,8 +425,9 @@ We want to thank all comments we received. Based on this feedback, we conducted 
 
 \closing{Yours Faithfully,}
 
-% \bibliographystyle{unsrtnat}
-% \bibliography{references}
+
+\bibliographystyle{abbrvnat}
+\bibliography{references}
 
 \end{letter}
 \end{document}
