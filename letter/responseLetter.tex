@@ -1,19 +1,41 @@
-\documentclass{letter}
+\documentclass[12pt,english]{scrlttr2}
 
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[]{babel}
+
+\newkomavar{fromplace}
+\setkomavar{fromname}{Francisco Handrick da Costa}
+\setkomavar{fromaddress}{Fairytail-Lane 1}
+\setkomavar{fromplace}{12345 Cologne}
+
+
+\firsthead{%
+\begin{tabular}{p{0.7\textwidth}p{0.3\textwidth}}
+& \usekomavar{fromname} \newline \usekomavar{fromaddress}  \newline \usekomavar{fromplace} 
+\end{tabular}
+}
+
+
+
+% \documentclass{letter}
+
+% \usepackage{natbib}
 \usepackage{hyperref}
 \usepackage{xcolor}
-
-\signature{Francisco Handrick Tomaz da Costa (on behalf of the authors of the paper)}
-
-\address{Computer Science Department \\ University of Bras\'{i}lia \\ Brazil \\\\ Software Technology Group
- \\ Technical University of Darmstadt \\ Germany}
+\DeclareOldFontCommand{\bf}{\normalfont\bfseries}{\mathbf}
 
 
+% \signature{Francisco Handrick Tomaz da Costa (on behalf of the authors of the paper)}
+
+%\address{Computer Science Department \\ University of Bras\'{i}lia \\ Brazil \\\\ Software Technology Group
+% \\ Technical University of Darmstadt \\ Germany}
 
 
 \begin{document}
 
-\begin{letter}{JSS Editors,}
+\begin{letter}{Dear JSS Editors,}
+  
 \opening{The comments of the reviewers have been very useful. They made us aware that some important points we were trying to convey remained obscure. We have corrected infelicities of presentation and all errors that the reviewers brought to our attention. The text in {\color{blue}blue} indicates how we have dealt with each individual comment.}
 
 
@@ -53,14 +75,14 @@ data and tools available.
 
 \vspace{0.2cm}
 
-{\color{blue}{\bf Answer.} Thanks for this comment. Our tool actually is available at gitHub repository at:
+{\color{blue}{\bf Answer.} Thanks for this comment. We make avaiable our tool, datasets and
+  scripts in the following links:
 
-https://github.com/droidxp/benchmark.
- \vspace{0.2cm}
-
-We also provide data and scripts of our experiments on-line at:
-
-https://htmlpreview.github.io/?https://github.com/droidxp/paper-replication-package/blob/master/replication.html. 
+  \begin{itemize}
+    \item \href{https://github.com/droidxp/benchmark}{GitHub repository}.
+    \item \href{https://htmlpreview.github.io/?https://github.com/droidxp/paper-replication-package/blob/master/replication.html}{datasets and scripts}
+  \end{itemize}
+  
 \vspace{0.2cm}\newline
 At Section 1 (Introduction) we highlight the existence of these 2 repositories that can be useful for other researchers interested in our study.}
 
@@ -137,6 +159,7 @@ not ``Mining Sandboxes''.
 
 \item Also, FlowDroid requires as input the sources and sinks APIs. But you mine ``all sources and sinks 
 paths''. Do you mean all APIs? FlowDroid will never finish running. 
+
 \vspace{0.2cm}
 
 {\color{blue}{\bf Answer.} You are right: we actually use a set of sensitive sources and sinks. We changed the second paragraph of Section 3.3 to clarify this point. Thanks. We hope that the current version of our paper fixes this misunderstanding.}
@@ -161,7 +184,16 @@ It would be more impressive the other way round.
 
 \vspace{0.2cm}
 
-{\color{blue}{\bf Answer.} answer}
+{\color{blue}{\bf Answer.} We respectfully disagree with this opinion. The relevance of replication in software enginer has gained much more attention in recent years (including recommendations for that~\cite{role-of-replication,standards}),
+  not only to validate past results~\cite{msr-replication} but also to generate new insights
+  from previous research results~\cite{} or even refute past conclusions~\cite{topas-replication}.
+  Indeed, we carried out a non-exact replication of~\cite{}, and the results of our study
+  sheds light that the performance of the dynamic analysis tools explored in~\cite{} is
+  actually different from the previous report. We also agree with the perspective of Shullet al.~\cite{},
+  who argue that an exact replication that achieves the same conclusions of an original work
+  is still valuable to generalize the results of a research. Nonetheless, here we go beyond that,
+  because we give evidence that the performance of the dynamic analysis tools in the previous research
+  work had been overestimated. To make this point clear, we changed \ldots}
 
 \vspace{0.2cm}
 
@@ -171,7 +203,7 @@ comparison combining multiple dynamic tools would improve the performance.
 
 \vspace{0.2cm}
 
-{\color{blue}{\bf Answer.} answer}
+{\color{blue}{\bf Answer.}The \emph{Finding 2 box} summarizes that we achieve the best performance on mining sandboxes when combining Humanoid, Monkey and DroidBot. Adding DroidMate to this configuration does not improve the overall performance. This result is novel and different from the previous research. We have made a slight change in this particular box to stress this point.}
 
 \vspace{0.2cm}
 
@@ -191,7 +223,7 @@ Actually, many dynamic testing tools use static analysis to better guide their t
 
 \vspace{0.2cm}
 
-{\color{blue}{\bf Answer.} answer}
+{\color{blue}{\bf Answer.} We agree. Nonetheless, DroidFax is not part of the dynamic analysis tools. According to Bao et al., their goal on using DroidFax was to instrument the APKs with the intent of collecting calls to sensitive APIs. However, the use of DroidFax in their study actually lead to an increase in the peformance of dynamic analysis tools for mining sandboxes. We did not change any internal component of the dynamic analysis tools, which indeed might include static analysis components. We review the title to mitigate this problem.}
 
 \vspace{0.2cm}
 
@@ -204,7 +236,7 @@ Actually, many dynamic testing tools use static analysis to better guide their t
 
 \vspace{0.2cm}
 
-{\color{blue}{\bf Answer.} Sorry about these typos and grammar. We corrected all of them. Thanks.}
+{\color{blue}{\bf Answer.} Sorry about these typos and grammar issues. We corrected all of them. Thanks.}
 
 \end{itemize}
 
@@ -366,6 +398,8 @@ We want to thank all comments we received. Based on this feedback, we conducted 
 
 \closing{Yours Faithfully,}
 
+% \bibliographystyle{unsrtnat}
+% \bibliography{references}
 
 \end{letter}
 \end{document}
