@@ -60,7 +60,7 @@ a figure reporting the various steps would be appreciated; Figure 2 only summari
 
 \vspace{0.2cm}
   
-{\color{blue}{\bf Answer.} answer}
+{\color{blue}{\bf Answer.} answer  }
 
 \vspace{0.2cm}
 
@@ -73,7 +73,7 @@ data extraction processes and data analysis procedures for each research questio
 
 \vspace{0.2cm}
 
-{\color{blue}{\bf Answer.} We changed Section 3.3 to detail our approach better. We also created a picture that can help understand the methodology of our second study.}  
+{\color{blue}{\bf Answer.} We restructured Section 3.3 to detail our approach better. We created sub Section 3.2.1 to present data extraction process of our First study, and 3.2.2 to present data analysis procedure. In some way, we created sub Section 3.3.1 and 3.3.2, to address the same issues, referring to our second study. With this restructuring we better clarify our study setting Section, presenting more details about our first (Section 3.2) and second study (Section 3.3). We also created a picture that can help to understand the methodology of our second study (Figure 3). }  
 
 \vspace{0.2cm}
 
@@ -102,12 +102,13 @@ At Section 1 (Introduction) we highlight the existence of these 2 repositories t
 \item Another point to improve is connected to the implications of the study. While the paper discusses in nice way the 
 results achieved, it does not provide a clear view of how those results can be potentially useful for researchers 
 working on Android sandboxes as well as what are the next steps that the research community should pursue to 
-improve the detection of malwares.
+improve the detection of malware.
 
 
 \vspace{0.2cm}
 
-{\color{blue}{\bf Answer.} answer}
+{\color{blue}{\bf Answer.} We agree. To mitigate this issue, we include at Section 6 (Conclusion and future work Section) one last paragraph that points how our results can be useful for researches at Android sandboxes. In the same paragraph, we also highlight which next steps can contribute to research evolution.}
+
 
 \vspace{0.2cm}
 
@@ -132,7 +133,7 @@ include reference in abstract. However, I reserve my opinion since I know it may
 
 \vspace{0.2cm}
 
-{\color{blue}{\bf Answer.} answer}
+{\color{blue}{\bf Answer.} We improved the abstract, making it clearer. We better contextualized ``mining sandbox approach'', presenting its definition e importance for Android malware analysis.}
 
 \vspace{0.2cm}
 
@@ -176,7 +177,7 @@ paths''. Do you mean all APIs? FlowDroid will never finish running.
 
 {\color{blue}{\bf Answer.} You are right: we actually use a curate set of sensitive sources and sinks
   that is available in the FlowDroid repository.
-  We changed the second paragraph of Section 3.3 to clarify this point. Thanks.
+  We changed the first paragraph of Section 3.3.1 to clarify this point. Thanks.
   We hope that the current version of our paper fixes this problem.}
 
 \vspace{0.2cm}
@@ -192,7 +193,7 @@ paths''. Do you mean all APIs? FlowDroid will never finish running.
   flows when considering two executions of FlowDroid: one execution using the benign version and
   one execution using the malicious version. The source-sink paths collected
   in the first execution of FlowDroid (benign version)
-  {\bf are not considered suspicious}. Only the paths in the second execution, which do not appear in the first execution, are considered suspect and are used to point out the malware. We changed Section 3.3 to
+  {\bf are not considered suspicious}. Only the paths in the second execution, which do not appear in the first execution, are considered suspect and are used to point out the malware. We changed Section 3.3.2 to
   detail our approach better.}
 
 \vspace{0.2cm}
@@ -277,7 +278,7 @@ Actually, many dynamic testing tools use static analysis to better guide their t
 
 \vspace{0.2cm}
 
-{\color{blue}{\bf Answer.} In the introduction, we rephrase paragraphs 5 and 6 to better clarify how our paper is an extension of DroidXP paper from SCAM 2020.}
+{\color{blue}{\bf Answer.} In the introduction, we rephrase paragraphs 4 to better clarify how our paper is an extension of DroidXP paper from SCAM 2020.}
 
 \vspace{0.2cm}
 
@@ -297,7 +298,7 @@ Please explain
 
 \vspace{0.2cm}
 
-{\color{blue}{\bf Answer.} We explained better the sentence at Introduction, paragraph 3, where we add the follow text: ``That is because many times codes can be interpreted, decrypted, or even downloaded at runtime. In these cases, the static analysis could be ineffective for mining sandboxes, since that if static analysis determines that some behavior will not occur, it no longer will be checked at runtime.''}
+{\color{blue}{\bf Answer.} We explained better the sentence at Introduction, paragraph 2.}
 
 \vspace{0.2cm}
 
@@ -307,7 +308,7 @@ What is DroidXP? It should be introduced to a reader who is not familiar.
 
 \vspace{0.2cm}
 
-{\color{blue}{\bf Answer.} We agree with that. To mitigate this issue, we introduced better DroidXP, contextualizing why its development was important for our study. Text improvement is present in the paragraph 5 of introduction}
+{\color{blue}{\bf Answer.} We agree with that. To mitigate this issue, we introduced better DroidXP at introduction, paragraph 4.}
 
 \vspace{0.2cm}
 
@@ -341,7 +342,7 @@ What is rooting?
 
 \vspace{0.2cm}
 
-{\color{blue}{\bf Answer.} Sensitive behaviors at Android context occurs when  an Android application functionality can result in accessing or leaking of Android users sensitive data. Example of sensitive behaviors: File accesses and network access. We improve the text with this definition at Background and related works Section, paragraph 6.}
+{\color{blue}{\bf Answer.} Sensitive behaviors at Android context occurs when an Android app functionality can result in accessing or leaking of users sensitive data. Example of sensitive behaviors: File accesses and network access. We improve the text with this definition at Section 2 (Background and related works), paragraph 6.}
 
 \vspace{0.2cm}
 
@@ -352,7 +353,7 @@ presents a proposal that can generate humans like tests inputs, using deep learn
 
 \vspace{0.2cm}
 
-{\color{blue}{\bf Answer.} We rephrase the text at Background and related works Section, paragraph 6, to better explain Humanoid test generation tool.}
+{\color{blue}{\bf Answer.} We rephrase the text at Section 2 (Background and related works) paragraph 6, to better explain Humanoid test generation tool.}
 
 \vspace{0.2cm}
 
@@ -362,7 +363,7 @@ presents a proposal that can generate humans like tests inputs, using deep learn
 
 \vspace{0.2cm}
 
-{\color{blue}{\bf Answer.} We agree that taint analysis explanation was very briefly. We reviewed our Background and related works Section, to better explain taint analysis from paragraph 8. We explained better the concept of ``source'' and ``sink'', and present how the analysis identifies sensitive information leakage, detecting taint flow between “source” and “sink”. To improve understanding, we also present a simple Listing (Listing 1), that present a simple data leakage example through data flows within source code Java. }
+{\color{blue}{\bf Answer.} We agree that taint analysis explanation was very briefly. We reviewed our Section 2 (Background and related works), to better explain taint analysis from paragraph 8. We explained better the concept of ``source'' and ``sink'', and present how the analysis identifies sensitive information leakage, detecting taint flow between “source” and “sink”. To improve understanding, we also present a simple Listing (Listing 1), that present a simple data leakage example through data flows within source code Java. }
 
 
 \vspace{0.2cm}
@@ -373,7 +374,7 @@ presents a proposal that can generate humans like tests inputs, using deep learn
 
 \vspace{0.2cm}
 
-{\color{blue}{\bf Answer.} To address this issue, we explained better how FastDroid improves the taint analysis efficiency at the last paragraph of Background and related works Section}
+{\color{blue}{\bf Answer.} To address this issue, we explained better how FastDroid improves the taint analysis efficiency at the last paragraph of Section 2 (Background and related works)}
 
 \vspace{0.2cm}
 
@@ -381,7 +382,7 @@ presents a proposal that can generate humans like tests inputs, using deep learn
 
 \vspace{0.2cm}
 
-{\color{blue}{\bf Answer.} Thanks for raising this point. The section 3.1 presented our Benchmark tool DroidXP. We understand that the tool description was important for the paper since it was helpful for our first study conduction. DroidXP helped us to easily integrate the different test generation tools, and understand the effect of the static analysis component at each integrated tool. It was useful for us and can be very useful for other researchers. We
+{\color{blue}{\bf Answer.} Thanks for raising this point. The section 3.1 presented our Benchmark tool DroidXP. We understand that the tool description was important for the paper since it was helpful for our first study conduction. DroidXP helped us to easily integrate the different test generation tools, and understand the effect of the static analysis component at each tool. It was useful for us and can be very useful for other researchers. We
 reviewed the first paragraph of section 3.1 to clarify the importance of DroidXP for our study conduction.}
 
 
