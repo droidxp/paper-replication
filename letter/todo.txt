@@ -3,5 +3,6 @@ TODO LIST
    * [] Review the paper title
    * [] Put more emphasis on the relevance of replication in software engineering
    * [] Review all the paper to highlight that we did not use Taint Analysis for mining sandboxes
-   * [] Create a section presenting the overall research methodology and the connections between the studie
+   * [] Create a section presenting the overall research methodology and the connections between the studies
+   * [] Review this statement from Introduction: "Jamrozik et al. [8] argue in favor of dynamic analysis for mining sandboxes, instead of using static analysis"
    
