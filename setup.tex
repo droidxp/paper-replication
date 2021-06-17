@@ -2,12 +2,26 @@
 
 %\kn{This paragraph requires a motivation. The details of Boa's study must be described upfront. Something like "Boa et al.'s study performs ..... Since their study also involved a static analysis component whose impact was not measured, we perform a non-exact replication to understand the impact static analysis may have had in the results...}
 
-
-In this section
-we present the settings of our study, whose goal is to build a general understanding of the implications of using static analysis algorithms
-to complement a dynamic analysis approach
-for mining Android sandboxes. % We also investigate how static analysis can improve the performance of mining sandboxes, in the task of identifying malicious behavior.
-To achieve this goal, we answer the following research questions.
+Our research work aims to better understand
+the use of static analysis to mine Android sandboxes
+and explore the benefits of combining taint analysis
+with the mine sandbox approach for identifying malicious
+behavior. 
+On the one hand, Jamrozik et al. suggest that a 
+static analysis approach for mining sandboxes
+might be ineffective---due to \emph{overapproximation
+problem}~\cite{DBLP:conf/icse/JamrozikSZ16The}.
+However, to the best of our knowledge,
+there is no empirical study comparing
+static and dynamic analysis for mining sandboxes.
+On the other hand, the \blls explored the mining sandbox approach by comparing
+the performance of {\bf dynamic analysis tools} for identifying
+malicious behavior. Nonetheless, their
+research also involved an external static analysis component (DroidFax)
+whose impact on the results was not measured.
+This lack of understanding about the implications of
+static analysis for mining sandboxes motivates
+our research, which investigates the following research questions.
 
 \begin{enumerate}[(RQ1)]
  
@@ -22,32 +36,49 @@ To achieve this goal, we answer the following research questions.
 
 %\kn{Droidfax comes out of nowhere. We should introduce this or if already introduced earlier, remind the readers of where it stands with the Bao study in the first line of this section when describing boas study}
 
-Answering the research questions RQ1 and RQ2 allows us to expose a possible overestimation in terms of the number of detected malware by each sandbox, constructed by the test
-generation tools explored in \blls. Ignoring the implications of DroidFax in the \blls might have introduced a possible threat to their conclusions. Answering research question RQ3
+Answering the research questions RQ1 and RQ2 allows us to better
+understand the relevance of combining static
+and dynamic analysis for mining Android sandboxes. Moreover,
+exploring RQ1 and RQ2 can reveal 
+a possible overestimation of the performance of the
+dynamic analysis tools in the \blls. Answering research question RQ3
 allows us to open up the possibility of finding new strategies for malware detection, complementing the performance of
 dynamic analysis through the use of static analysis algorithms.
-We conducted two studies to answer the research questions above. In the
-first study we leverage DroidXP~\cite{DBLP:conf/scam/CostaMCMVBC20} (Section~\ref{sec:droidxp}) to replicate
-the \blls. We present the settings of this first study in Section~\ref{sec:set1}.
-In the second study we use
+We conducted two empirical studies to answer the research questions above. We address
+the research questions RQ1 and RQ2 in the
+first empirical study, whose goal is to conduct a non-exact replication of
+the \blls. We conduct the first empirical study using
+DroidXP~\cite{DBLP:conf/scam/CostaMCMVBC20} (Section~\ref{sec:droidxp}), a
+tool that simplifies the execution of experiments
+that compare the performance of dynamic analysis tools
+in the task of identifying malwares, using a mining sandbox
+approach. We present the study settings of the first
+empirical study in Section~\ref{sec:set1}.
+In the second empirical study we use
 FlowDroid~\cite{DBLP:conf/pldi/ArztRFBBKTOM14} to investigate the 
-suitability of taint analysis algorithms to complement mining Android sandboxes. The main idea of this second study is explore the possibility of detected extra malware, do not detected at our first study, through another static analysis strategy based on taint analysis. We present the settings of the second study in Section~\ref{sec:set2}. 
+suitability of taint analysis algorithms to complement the mining sandbox
+approach for identifying malwares, and thus it targets our third
+research question (RQ3). We present the settings of the second
+empirical study in Section~\ref{sec:set2}. 
 
 
 \subsection{The DroidXP benchmark}\label{sec:droidxp}
 
-We used DroidXP to systematically assess and compare the performance of test generation tools for mining android sandboxes. DroidXP relies on a
-simple \emph{Command Line Interface} (CLI) that simplifies the integration of different test generation tools and favors the setup and execution 
-of the experiments. DroidXP also relies on DroidFax, which instruments Android apps and collects relevant information about
+We used DroidXP to systematically assess and compare the
+performance of test generation tools for mining android sandboxes. DroidXP relies on a
+simple \emph{Command Line Interface} (CLI) that simplifies the integration
+of different test generation tools and favors the setup and execution 
+of the experiments. DroidXP also relies on DroidFax, which instruments
+Android apps and collects relevant information about
 their execution, including the set of sensitive APIs a given
-app calls during a test execution. DroidFax also collects inter-component communication (ICC) using  static
+app calls during a test execution. DroidFax also collects
+inter-component communication (ICC) using  static
 program analysis.
-
 
 The DroidXP CLI provides commands for listing all test case
 generation tools (executing the project with the option ``list-tools'') that had been
-integrated into the benchmark and commands that execute the experiments. An
-experiment run can be configured according to several parameters, including:
+integrated into the tool and commands for executing the experiments. An
+\emph{experiment run} can be configured according to several parameters, including:
 
 \begin{itemize}
     \item \texttt{-tools}: Specifies the test tools used in the experiment
@@ -58,34 +89,42 @@ experiment run can be configured according to several parameters, including:
     \item \texttt{--disable-static-analysis}: Disable DroidFax static analysis phase (default: false)
 \end{itemize}
 
-Figure~\ref{fig:benchArq} shows the DroidXP architecture, based on the pipes-and-filters architectural style \cite{architecture-book}. 
+Figure~\ref{fig:benchArq} shows the DroidXP architecture, based on the pipes-and-filters
+architectural style \cite{architecture-book}. 
 The architecture includes three main components; where each component is responsible for a specific phase of the
-benchmark (instrumentation, execution, and result analysis).
+experiments execution (instrumentation, execution, and result analysis).
 
 \begin{figure*}[thb]
   \includegraphics[width=1\textwidth]{images/benchmark4.png}
   \label{benchArq}
-  \caption{Benchmark architecture}
+  \caption{DroidXP architecture}
   \label{fig:benchArq}
 \end{figure*}
+
 \subsubsection{Phase 1: Instrumentation}
 
-In the first phase, a researcher must define the corpus of APK files DroidXP should consider during a benchmark execution. After that, DroidXP starts the DroidFax service that instruments each APK file, so that DroidXP would be able to collect data about each execution. To improve the performance of the benchmark, the instrumentation phase runs only once for each APK. In this phase, the DroidFax tool also runs some static analysis procedures---when the option \texttt{--disable-static-analysis} is not set.
+In the first phase, a researcher must define the corpus of APK files DroidXP should consider during an
+experiment execution. After that, DroidXP starts the DroidFax service that instruments each APK file,
+so that DroidXP would be able to collect data (e.g., calls to sensitive APIs) about each execution.
+To improve the performance of DroidXP, the instrumentation phase runs only once for each APK.
+In this phase, the DroidFax tool also runs some static analysis procedures---when the
+option \texttt{--disable-static-analysis} is not set.
 
 \subsubsection{Phase 2: Execution}
 
 In this phase, DroidXP installs an (already instrumented) APK file into
 an Android emulator, and then executes a test case generation tool
 during a period of time. This process repeats for every test case generation
-tool and APK files. To provide repeatability of the experiment, DroidXP removes all data stored in the emulator before starting
+tool and APK files. To provide repeatability of the experiment, DroidXP
+removes all data stored in the emulator before starting
 a new execution. That is, every execution uses a \emph{fresh} emulator,
 without any information that might have been kept during
 previous executions. 
-
 It is relatively easy to add new test
-case generation tools into DroidXP. To achieve this goal, it leverages the Strategy Design
-pattern~\cite{patterns-book}, which sets a contract between a family of classes that, in our case, abstracts the particularities
-for running each tool we want to integrate into DroidXP.
+case generation tools into DroidXP. Indeed,
+every new tool must override two methods
+of a \texttt{Tool} abstract class (according to
+the Strategy Design pattern~\cite{patterns-book}.
 %To carry out our replication study, we successfully integrated all
 %test generation tools previously mentioned into DroidXP: Monkey, DroidBot, DroidMate, and
 %Humanoid. 
@@ -102,11 +141,11 @@ This data includes method coverage from the execution of each test generator too
 set of sensitive APIs the app calls during its execution. This set of calls to
 sensitive APIs is necessary to estimate the test generator performance in identifying malicious apps---by spotting
 differences between the sensitive API accessed by each version of an app (benign or malign).
-In the end, the benchmark outputs the results of the experiment, which gives the
+In the end, DroidXP outputs the results of the experiment, which gives the
 performance of one or more testing generator tools in mining sandboxes.
 
-We used the DroidXP infrastructure to conduct the replication of
-the \blls, whose settings we present in the following section. 
+We used the DroidXP infrastructure to conduct our
+first empirical study, whose settings we present in the following section. 
 
 \subsection{First Study: A replication of the \blls}\label{sec:set1}
 
@@ -124,7 +163,7 @@ executing each app from the test generation tool for three minutes (instead of o
 original work),
 and built the sandboxes after executing each test generation tool
 three times---the original work executed each test generation tool
-only once. That is, our goal here is not to conduct an
+only once. It is important to note that our goal here is not to conduct an
 exact replication of the \blls, but instead understand
 the role of the DroidFax static analysis algorithms in the
 performance of test case generation tools for mining sandboxes.
@@ -139,48 +178,104 @@ widely used test generation tool for Android~\cite{DBLP:conf/sigsoft/ZengLZXDLYX
 and does not require any additional installation effort. We included Humanoid in our study
 because it is a recent tool that emulates realistic users, creating human-like test inputs using deep learning techniques.
 
-\subsubsection{Sensitive APIs extraction process}
+\subsubsection{Data Collection}
+
+Similarly to the \blls, besides
+method coverage information, our experiments record every call
+to \emph{sensitive methods} of the Android
+platforms, while a given test case generation tool
+is running. We consider the
+same set of 97 sensitive methods 
+the AppGuard privacy-control framework
+uses~\cite{DBLP:conf/esorics/BackesGHMS13}.
+
+Here we take advantage of
+DroidXP to execute the different test case generation
+tools () in
+
+To answer the first two research questions
+(RQ1 and RQ2), we also included in our experiments
+a fake test case generation tool named
+Joker.
+
+We executed DroidXP using two
+configurations. In the first (WOS), we executed DroidXP
+using the dataset of 96 pairs of Android apps---each pair
+including a benign and a malign version,
+the four test case generation tools (DroidBot, DroidMate, Monkey, and Humanoid),
+and the \texttt{--disable-static-analysis} option of
+DroidFax, which disables the
+execution of the DroidFax static analysis
+component from the experiment. The WOS configuration
+runs the test case generation tools for three times, using
+a time limit of three minutes. 
+In the second configuration (WS), we executed DroidXP
+using the same dataset of 96 pairs of Android apps, though 
+executing only a fake test case generator tool (named Joker)
+{\bf without} the \texttt{--disable-static-analysis} option.
+Joker simulates a test tool that does not
+run the Android apps during an experiment execution.
+
+Using the WS configuration, the Execution Phase of
+DroidXP does not collect any call to 
+sensitive APIs, and thus we can estimate the performance of the
+static analysis component of DroidFax (and thus answer
+RQ1).
+Differently, the WOS configuration
+disables the static analysis component of DroidFax and
+we could better estimate the true performance of the test
+case generation tools for mining android sandboxes 
+(answering RQ2). 
 
 
-In our first study, sensitive APIs extraction process starts with monitoring of invocations of sensitive APIs during the apps (already instrumented) execution by test generation tools under analysis. This task is essential for the process since sensitive APIs are used to access resource sensitives and it call could be a clue of private data leakage. Our study based at a list of 97 sensitive APIs, defined by the AppGuard privacy-control framework~\cite{DBLP:conf/esorics/BackesGHMS13}. Initially, we performances the extraction process using the default settings of DroidXP, (e.g., using DroidFax static analysis component). We explored the four test case generation tools described earlier and a fake test case generation tool (named \joke). 
+\subsubsection{Data Analysis} 
 
-\joke simulates a test tool that does not execute the Android apps during the exploratory phase. Using this tool the results of the dynamic analysis are not considered, and we can compute the results with only the static analysis component of DroidFax (RQ1). Our study executed each 96 pair of
-Android app (B/M) in each test generation tool, including \joke, for three minutes, and for three times.
+DroidXP produces a
+dataset with the sensitive
+APIs that the benign / malign
+versions of an app call, during
+the execution of each test case
+generation tool. We estimate the
+performance of a test case generation
+tool by considering the percentage of
+malwares its \emph{sandbox} is able to
+identify.
 
-Then we repeated this process, however this time we used a DroidXP configuration that disables the DroidFax static analysis algorithm.
-With this new configuration, we monitored sensitive APIs invocations again, using the same 96 pair of Android app (B/M), the same execution time,
-and the same test case generation tools. With this new configuration, became possible computer the effective performance of each test generation tool, in terms of malware detected, discarding the contributions of DroidFax static analysis algorithm (RQ2). 
+Recall that we build a sandbox 
+during the exploratory of the mining
+sandbox approach. This exploratory
+phase records the set of 
+sensitive APIs a benign version of an
+app calls---during the execution of a test
+case generation tool. Similarly to the \blls,
+we consider that a sandbox of an
+app identifies a malware whenever the
+malicious version makes a call to a sensitive API  
+that has not been recorded during the exploratory
+phase. 
 
-\subsubsection{Sensitive APIs analysis procedures}
-
-After exploring all sensitive APIs by all test tools, we analyzed the \emph{performance} of these tools to detect malicious behaviors. The procedure starts with the analysis of each sandbox modeled by their respective test generation tools, based on the calls to sensitive APIs.
-
-The test generation tool \emph{performance} is measured as the total number of malware, your respective sandbox is able to identify when comparing the calls to sensitive APIs made by the benign and malign versions of the app. We raise a warning (a \emph{hit}) whenever a sandbox finds that the malicious version of an app calls additional sensitive APIs, in comparison to the calls from the corresponding benign version. Figure \ref{fig:setup} shows all the phases of our experiments, that explore all sensitive resources access by both apps (B/M), and the optional configuration DroidXP, which disables DroidFax static analysis.
-
-Assuming that our fake test case generation tool does not run the Android apps, its \emph{performance} analysis will reveal the DroidFax static algorithms impact at \blls, answering our first research question (RQ1). The analysis of the calls to sensitive APIs made by the 96 pair (B/M), when we disable the DroidFax static analysis component, will reveal the effective \emph{performance} of each test generation test tool under analysis, answering our second research question (RQ2).
-
-
-\begin{figure}[ht]
-  \centering{
-   \includegraphics[width=0.75\textwidth]{images/setup3.png}}
-   \label{Experiment setup}
-   \caption{Experiment setup}
-   \label{fig:setup}
- \end{figure}
+To sum up, in order to analyse the
+performance of the test case generation tools (including Joker),
+we just have to compare the calls to sensitive APIs made by
+the benign and malign versions of the apps, during
+the execution of the tools. We then use descriptive statistics
+and plots to compare the performance of the tools and
+answer RQ1 and RQ2. 
 
 \subsection{Second Study: Use of Taint Analysis for Malware Identification}\label{sec:set2}
 
-In the second study 
+In the second empirical study 
 we investigate whether or not a taint-based static analysis approach is also promising for
-identifying malwares, given a version of an app that we can assume to be secure.
+identifying malwares, given a version of an app that we can assume to be secure (goal of research
+question RQ3).
 To this end, we leverage the FlowDroid
-taint analysis algorithms for Android apps, at version 2.8, in order to identify dataflows
+taint analysis algorithms for Android apps (version 2.8), in order to identify dataflows
 that might lead to the leakage of sensitive information. Our
 goal here is to investigate if it is possible to detect malicious
-behavior by means of identifying the \emph{divergent} source-sink paths that FlowDroid reveals after
+behavior by means of the \emph{divergent} source-sink paths that FlowDroid reveals after
 analysing a benign and a malign versions of an Android app.
 
-\subsubsection{Source-sink paths extraction}
+\subsubsection{Data Collection}
 
 FlowDroid takes as input an Android Application Package (APK file) and
 a set of API methods marked either as {\bf source}
@@ -192,24 +287,23 @@ of the FlowDroid implementation~\cite{arzt:pldi-2014,rasthofer-source-sink},
 which involves a curate list of source and sink methods (including callbacks and
 other Android API methods of interest).
 FlowDroid then uses a \emph{context, flow, and field
-sensitive analysis} to identify all dataflow paths from sources to sinks~\cite{arzt:pldi-2014}.
+sensitive analysis} to identify dataflow paths from sources to sinks~\cite{arzt:pldi-2014}.
 
-Source-sink paths extraction involve two steps (see Figure~\ref{fig:settings2}). In the first, we execute FlowDroid to mine the source-sink paths from a benign version of an app, and then enumerate a set (S1) with the 
-possible dataflows between sources and sinks. All paths in S1 are considered secure for
-our future analysis. In the second step we repeat the FlowDroid execution, though
+Our data collection approach involves three steps (see Figure~\ref{fig:settings2}). In the first, we execute FlowDroid to mine the source-sink paths from a benign version of an app, and then enumerate a set (S1) with the 
+possible dataflows between sources and sinks. All paths in S1 are considered secure
+in our analysis. In the second step we repeat the FlowDroid execution, though
 considering the malicious APK version of the app.
 This leads to a second set (S2) of source-sink paths.
 
-\subsubsection{Source-sink paths analysis}
-
-For our analysis it is important to note that not all source-sink paths are malicious, and then we
-follow a specific methodology to identify malware in our work: we raise a warning (a \emph{hit}) whenever
+It is important to note that not all source-sink paths are malign, and then we
+follow a specific methodology to identify malwares using taint analysis. That is,
+we only report a malware when
 FlowDroid finds an additional source-sink path in the malicious version of an app, which
-has not been identified when analysing the benign version. For this end, we compute the difference (S3) between the sets S2 and S1 (i.e., $S3 = S2 \setminus S1$), in order to reveal the existence of additional paths in the malicious version (third step). If the set S3 is not empty, we conclude that FlowDroid
-identified the malware.
+has not been identified when analysing the benign version. To this end, in the third step we compute the difference (S3) between the sets S2 and S1 (i.e., $S3 = S2 \setminus S1$). If the set S3 is not empty, we assume that FlowDroid
+has identified the malware.
 
-We use two metrics in this second study:
-the total number of malicious apps FlowDroid is able to find and the execution time for running the taint analysis algorithm for each app. Moreover, in this second study we use the same dataset of $96$ pairs of Android apps (B/M) used in the First study. Our second study will lead to discover what is the capacity of malware detection of taint analysis algorithms compared to mining sandbox approach, and its potential to complement dynamic analysis for mining sandboxes, thus answering our last research question (RQ3).
+In this second study we use the same dataset of $96$ pairs of Android apps (B/M) used in the first empirical
+study.
 
 
 \begin{figure}
@@ -217,6 +311,21 @@ the total number of malicious apps FlowDroid is able to find and the execution t
   \caption{Overview of our approach in the second study.}
   \label{fig:settings2}
 \end{figure}
+
+
+\subsubsection{Data analysis}
+
+
+We use two metrics in this second study:
+the total number of malicious apps FlowDroid is able to
+find and the execution time for running the taint analysis algorithm
+for each app. Similarly to the first empirical study,
+we use descriptive statistics
+and plots to compare the performance of the taint analysis and
+mining sandbox approaches. 
+
+
+
 
 
 
