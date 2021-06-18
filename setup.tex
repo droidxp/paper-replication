@@ -65,9 +65,10 @@ empirical study in Section~\ref{sec:set2}.
 
 \subsection{The DroidXP benchmark}\label{sec:droidxp}
 
-\kn{Isnt DroidXP a contribution of our approach? If yes, we should start more confidently than saying we "used" it. We should introduce it as a contribution as such.}
-We used DroidXP to systematically assess and compare the
-performance of test generation tools for mining android sandboxes. DroidXP relies on a
+We designed and implemented DroidXP to systematically assess and compare the
+performance of test generation tools for mining android sandboxes. It allows
+the integration and comparison of test case generation tools for mining sandboxes, and simplifies
+the reproduction of the studies. DroidXP relies on a
 simple \emph{Command Line Interface} (CLI) that simplifies the integration
 of different test generation tools and favors the setup and execution 
 of the experiments. DroidXP also relies on DroidFax, which instruments
@@ -152,7 +153,7 @@ first empirical study, whose settings we present in the following section.
 \subsection{First Study: A replication of the \blls}\label{sec:set1}
 
 The \blls reports the results of an empirical study that compares the performance of test generation tools to mine Android
-sandboxes. Since the \blls does not
+sandboxes~\cite{DBLP:conf/wcre/BaoLL18}. Since the \blls does not
 compute the possible impact of DroidFax into the performance of the test generation tools,
 here we replicate their work to understand the impact of the DroidFax static analysis algorithms into the \blls results.
 
@@ -188,20 +189,11 @@ to \emph{sensitive methods} of the Android
 platforms, while a given test case generation tool
 is running. We consider the
 same set of 97 sensitive methods 
-the AppGuard privacy-control framework
+from the AppGuard privacy-control framework
 uses~\cite{DBLP:conf/esorics/BackesGHMS13}.
 
-Here we take advantage of
-DroidXP to execute the different test case generation
-tools () in
-
-To answer the first two research questions
-(RQ1 and RQ2), we also included in our experiments
-a fake test case generation tool named
-Joker.
-
 We executed DroidXP using two
-configurations. In the first (WOS), we executed DroidXP
+configurations. In the first (named WOS), we executed DroidXP
 using the dataset of 96 pairs of Android apps---each pair
 including a benign and a malign version,
 the four test case generation tools (DroidBot, DroidMate, Monkey, and Humanoid),
@@ -211,7 +203,7 @@ execution of the DroidFax static analysis
 component from the experiment. The WOS configuration
 runs the test case generation tools for three times, using
 a time limit of three minutes. 
-In the second configuration (WS), we executed DroidXP
+In the second configuration (named WS), we executed DroidXP
 using the same dataset of 96 pairs of Android apps, though 
 executing only a fake test case generator tool (named Joker)
 {\bf without} the \texttt{--disable-static-analysis} option.
@@ -221,13 +213,15 @@ run the Android apps during an experiment execution.
 Using the WS configuration, the Execution Phase of
 DroidXP does not collect any call to 
 sensitive APIs, and thus we can estimate the performance of the
-static analysis component of DroidFax (and thus answer
+static analysis component of DroidFax (answering
 RQ1).
 Differently, the WOS configuration
 disables the static analysis component of DroidFax and
 we could better estimate the true performance of the test
 case generation tools for mining android sandboxes 
-(answering RQ2). 
+(answering RQ2). For comparison purpose, we also
+executed the four test case generation tools using the
+DroidFax static analysis component. 
 
 
 \subsubsection{Data Analysis} 
@@ -240,11 +234,11 @@ the execution of each test case
 generation tool. We estimate the
 performance of a test case generation
 tool by considering the percentage of
-malwares its \emph{sandbox} is able to
-identify.
+malwares in our dataset
+its resulting sandbox is able to identify .
 
 Recall that we build a sandbox 
-during the exploratory of the mining
+during the exploratory phase of the mining
 sandbox approach. This exploratory
 phase records the set of 
 sensitive APIs a benign version of an
@@ -254,7 +248,13 @@ we consider that a sandbox of an
 app identifies a malware whenever the
 malicious version makes a call to a sensitive API  
 that has not been recorded during the exploratory
-phase. 
+phase (see Figure~\ref{fig:settings1}).
+
+\begin{figure}
+  \centering{\includegraphics[scale=0.4]{images/first-study-settings.pdf}}
+  \caption{Overview of our approach for malware identification in the first study.}
+  \label{fig:settings1}
+\end{figure}
 
 To sum up, in order to analyse the
 performance of the test case generation tools (including Joker),
@@ -282,7 +282,7 @@ analysing a benign and a malign versions of an Android app.
 FlowDroid takes as input an Android Application Package (APK file) and
 a set of API methods marked either as {\bf source}
 or {\bf sink} (or both). Source methods are those that access \emph{sensitive information} (e.g.,
-a method that access the address book), while sink methods are those 
+a method that access the user location), while sink methods are those 
 that \emph{might share information with external peers} (e.g., a method that
 sends messages to a recipient). We rely on the source-sink definitions
 of the FlowDroid implementation~\cite{arzt:pldi-2014,rasthofer-source-sink},
@@ -301,7 +301,7 @@ It is important to note that not all source-sink paths are malign, and then we
 follow a specific methodology to identify malwares using taint analysis. That is,
 we only report a malware when
 FlowDroid finds an additional source-sink path in the malicious version of an app, which
-has not been identified when analysing the benign version. To this end, in the third step we compute the difference (S3) between the sets S2 and S1 (i.e., $S3 = S2 \setminus S1$). If the set S3 is not empty, we assume that FlowDroid
+has not been identified when analysing the benign version. Therefore, in the third step we compute the difference (S3) between the sets S2 and S1 (i.e., $S3 = S2 \setminus S1$). If the set S3 is not empty, we assume that FlowDroid
 has identified the malware.
 
 In this second study we use the same dataset of $96$ pairs of Android apps (B/M) used in the first empirical
