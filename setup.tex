@@ -16,23 +16,28 @@ However, to the best of our knowledge,
 there is no empirical study comparing
 static and dynamic analysis for mining sandboxes.
 On the other hand, the \blls explored the mining sandbox approach by comparing
-the performance of {\bf dynamic analysis tools} for identifying
+the performance of five {\bf dynamic analysis tools} (DroidMate, DroidBot, PUMA,
+GUIRipper, and Monkey) for identifying
 malicious behavior. Nonetheless, their
 research also involved an external static analysis component (DroidFax)
-whose impact on the results was not measured.
+whose impact on the results was not measured---in terms of malware
+identification. 
 This lack of understanding about the implications of
 static analysis for mining sandboxes motivates
 our research, which investigates the following research questions.
 
 \begin{enumerate}[(RQ1)]
- 
- \item What is the impact of the DroidFax static analysis algorithms into the results of the \blls?
+
+\item What is the impact of the DroidFax static analysis algorithms on the results of the BLL-Study?
+  We estimate the impact in terms of the number of detected malwares. 
   
- \item What is the effective performance of each test generation tool\kn{Should we use the term sandboxes instead of test generation tools? Test generation is just part of sandboxes right?}, in terms of the number of detected malware, when we
+  
+ \item What is the effective performance of each sandbox, in terms of the number of detected malware, when we
    discard the contributions of the DroidFax static analysis algorithms?
 
  \item What are the benefits of using taint
- analysis algorithms to complement the dynamic analysis approach for mining sandboxes?
+   analysis algorithms to complement the dynamic analysis approach for mining sandboxes,
+   in terms of additional malwares identified?
 \end{enumerate}
 
 %\kn{Droidfax comes out of nowhere. We should introduce this or if already introduced earlier, remind the readers of where it stands with the Bao study in the first line of this section when describing boas study}
