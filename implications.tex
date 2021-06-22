@@ -1,0 +1,89 @@
+\section{Implications}\label{sec:implications}
+
+The results discussed so far bring evidence
+that the \blls study overestimated the
+performance of the dynamic analysis tools in
+malware identification using the mining sandboxes.
+This finding has implications for both
+researchers and practitioners. First,
+we revisit the literature showing that
+DroidFax alone is also effective for mining
+sandboxes, being able to identify 43.75\%
+of the malwares in our dataset. Moreover,
+DroidFax identifies malwares that
+none of the generated sandboxes
+were able to find, increasing the
+performance of the sandbox in at most $51.79\%$ (in the
+case of Humanoid).
+
+Table~\ref{tab:fs} in the previous section summarizes this finding: when
+executing the mining sandbox approach without the
+support of DroidFax static analysis, Humanoid's sandbox
+could identify only 27 malwares ($28.12\%$ of the
+malwares in our dataset).
+Conversely, the DroidBot sandbox achieved the best performance in
+terms of the number of detected malware without the DroidFax support for static analysis,
+being able to identify $63.54\%$ of the malwares.
+The message
+here is that researchers and practitioners should
+explore the use of DroidFax (or a similar tool) in conjunction 
+with dynamic analysis techniques for mining sandboxes---
+reviewing the findings of the \blls~\cite{DBLP:conf/wcre/BaoLL18}
+and enriching the discussion about
+the limitations of static analysis for
+mining sandboxes~\cite{DBLP:conf/icse/JamrozikSZ16}.
+
+In the second study we used FlowDroid
+to explore a novel approach for malware identification,
+which aims to compare the source-sink paths of two
+versions of an app (one known to
+be secure and another that might
+have been repackage or that might have
+an injected malicious behavior).
+Contrasting with the static
+analysis limitations discussed in~\cite{DBLP:conf/icse/JamrozikSZ16},
+our findings indicate that
+this approach is also effective for malware
+identification. Indeed, our taint
+analysis approach using FlowDroid
+detects several malwares
+that none of the sandboxes generated
+with the dynamic analysis tools (plus
+the DroidFax static analysis component)
+could identify (see Table~\ref{tab:taint}). These
+result has also implications
+for both academia and industry. First,
+this it reinforces the benefits
+of integrating both static and
+dynamic analysis for malware identification.
+Second, this finding suggests that
+practitioners can benefit from using
+an integrated approach that
+combines the mining sandbox approach
+with taint analysis for malware
+identification. 
+
+\begin{table}[ht]
+\centering
+\begin{tabular}{lccc}\toprule
+ Test Generation & FlowDroid & Total & \%\\
+ Tool & Increase  &  & \\ \midrule
+ DroidBot & 6 & 79 & 82.29\\
+ Monkey & 7 &  78 & 81.25 \\
+ DroidMate & 7 & 75 & 78.12  \\
+ Humanoid & 16 & 72 & 75.00 \\
+ Joker & 25 & 67 & 69.79  \\\midrule
+ 
+\end{tabular} 
+\caption{Malwares detected in 96 pair (B/M) increased by the taint analysis approach}
+\label{tab:taint}
+\end{table}
+
+% research community
+
+% practitioners
+
+%%here we also have to write about the intersection between droidfax and tainted analysis now, and about what 1 reveled and other dont, and otherwise. 
+
+
+%Here we can write about MOTIVATION EXAMPLES.
