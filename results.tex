@@ -134,7 +134,41 @@ Android sandboxes.
 Altogether, ignoring  \joke, our study reveals that from $58.33$\% (Humanoid)
 to $76.04$\% (DroidBot) of the malicious apps investigated in our study can be
 detected using the sandboxes generated after running the test case tools with the support of the
-DroidFax static analysis algorithms. Besides that, in the first execution (WS), none of the
+DroidFax static analysis algorithms. We also investigate if the use
+of the DroidFax static analysis component is statistically significant to identify
+malwares in our experiment. To this end, we build a logistic regression model
+in the form $Malware \sim Tool + StaticAnalysis + Repetition$. Table~\ref{tab:log-reg1}
+shows the results of the logistic regression analysis, highlighting the
+Humanoid has a negative and significant impact on malware identification and
+the use of DroidFax static analysis has a positive and significant
+impact on malware identification. 
+
+\begin{table}[ht]
+  \centering
+     \caption{Results of the Logistic Regression} 
+       \begin{small}
+     \begin{tabular}{lrlc}
+   \toprule
+  & \emph{Estimate} & \emph{p-value} & \emph{C.I.} \\ 
+   \midrule
+   Tool [DroidBot] & 0.1034 & 0.4718 & (-0.133$, $0.340) \\ 
+   Tool [DroidMate] & -0.0561 & 0.6955 & (-0.292$, $0.180) \\ 
+   Tool [Humanoid] & -0.8910  & 0.0000 $^{***}$ & (-1.131$, $-0.651) \\ 
+   Tool [Monkey] & -0.0110 & 0.9390 &  (-0.247$, $0.225)\\ 
+   DroidFax static analysis & 0.8867 & 0.0000 $^{***}$ & (0.743$, $1.031)\\ 
+   Repetition & -0.0171 & 0.7487 & (-0.105$, $0.071) \\ \midrule
+   AIC            & 3001.07     \\
+   Num. obs.      & 2304        \\
+   \bottomrule
+   \multicolumn{4}{l}{\scriptsize{$^{***}$ \emph{p-value} $<0.001$}}
+     \end{tabular}
+        \end{small}
+
+    \label{tab:log-reg1} 
+\end{table}
+
+
+Besides that, in the first execution (WS), none of the
 resulting sandboxes could detect 18 malwares in our dataset ($18.75$\%). According to
 the Euphony tool~\cite{hurier2017euphony}, $12$ of these $18$ malwares are \emph{adwares}, $3$ are \emph{trojans}, $2$ are
 PUPs (\emph{Potentially Unwanted Program}), and one is an \emph{exploit}.
