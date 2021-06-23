@@ -1,7 +1,7 @@
 \section{Results and discussion}
 
 In this section we detail the findings of our study. We present the results of the first and
-second studies in Section~\ref{sec:res-fs} and Section~\ref{sec:res-ss}, respectively. In Section~\ref{sec:discussion} we summarize the
+second studies in Section~\ref{sec:res-fs} and Section~\ref{sec:res-ss}, respectively. In Section~\ref{sec:implications} we summarize the
 implications of our study. 
 
 \subsection{Result of the first study: A \blls replication}\label{sec:res-fs}
@@ -134,18 +134,18 @@ Android sandboxes.
 Altogether, ignoring  \joke, our study reveals that from $58.33$\% (Humanoid)
 to $76.04$\% (DroidBot) of the malicious apps investigated in our study can be
 detected using the sandboxes generated after running the test case tools with the support of the
-DroidFax static analysis algorithms. We also investigate if the use
-of the DroidFax static analysis component is statistically significant to identify
-malwares in our experiment. To this end, we build a logistic regression model
+DroidFax static analysis algorithms. {\color{red}We also investigate if the use
+  of the DroidFax static analysis component leads to statistically significant benefit
+  on malware identification. To this end, we build a logistic regression model
 in the form $Malware \sim Tool + StaticAnalysis + Repetition$. Table~\ref{tab:log-reg1}
-shows the results of the logistic regression analysis, highlighting the
-Humanoid has a negative and significant impact on malware identification and
-the use of DroidFax static analysis has a positive and significant
-impact on malware identification. 
+shows the results of the logistic regression analysis, highlighting that
+(a) Humanoid has a negative, though significant impact on malware identification; and
+(b) the use of DroidFax static analysis has a positive and significant
+impact on malware identification.}
 
 \begin{table}[ht]
   \centering
-     \caption{Results of the Logistic Regression} 
+     \caption{Results of the Logistic Regression (first study)} 
        \begin{small}
      \begin{tabular}{lrlc}
    \toprule
@@ -163,7 +163,6 @@ impact on malware identification.
    \multicolumn{4}{l}{\scriptsize{$^{***}$ \emph{p-value} $<0.001$}}
      \end{tabular}
         \end{small}
-
     \label{tab:log-reg1} 
 \end{table}
 
@@ -180,9 +179,9 @@ computed the \emph{diffs} of the benign/malicious versions of the APPs.
 The results of this activity are available in our replication
 package.\footnote{https://github.com/droidxp/paper-replication-package/blob/master/diff/} 
 In what follows we dissect a few examples of malwares
-that at least one dynamic analysis tool was able to
-identify using the mining sandbox approach. After that,
-we present the characteristics of a malware that none of the tools
+that at least one of the resulting  was able to
+identify. After that,
+we present the characteristics of a malware that none of the sandboxes
 was able to detect. Our goal here is to provide
 a lower-level intuition about the classes of malware the
 mining sandbox approach is able to detect. A reader that
@@ -193,8 +192,11 @@ To start with, consider the malicious version of the app \texttt{com.andoop.flyr
 Humanoid sandboxes could detect in our analysis. 
 In this particular case, the malicious version changes the Android Manifest file,
 adding permissions to receive and send SMS messages
-(Listing~\ref{lst:androidManifest}). With these permissions, malicious apps may get money
+(Listing~\ref{lst:androidManifest}). Adding these permissions, a malicious app may get money
 fraudulently by sending messages without user confirmation, for instance.
+The pair \texttt{L:M} indicates
+a code segment that appears in line \texttt{L} of the malign (\texttt{M})
+version of an app.
 
 After decompiling this malware, we also observed that the malicious version of the
 \texttt{MainService} class introduces a
@@ -233,7 +235,7 @@ Equipment Identity, IMEI) and sends it using an SMS message
 \end{lstlisting}
 
 The malicious version of the app \texttt{com.happymaau.MathRef} also changes
-the manifest file to require additional permissions as well as change
+the Manifest file to require additional permissions as well as change
 the behavior of the app (with malicious code). All sandboxes were able to
 detect this malware.
 In this case, the malicious version of the app changes the Android Manifest file,
@@ -358,7 +360,7 @@ modifying the meta-data \texttt{ADMOB\_PUBLISHER\_ID}. The AdMob is a monetizing
 service provided by Google, and changing the AdMob \emph{publisher identifier} account redirects
 the advertisement's revenue to another destination. Based on
 this observation, we envision integrating a different approach that reasons
-about modifications to the Android manifest file and that might complement the mining sandbox
+about modifications to the Android Manifest file and that might complement the mining sandbox
 approach into the task for detecting malwares; since the mining
 sandbox approach is not able to detect malicious packages that
 do not introduce new method calls for sensitive APIs.
@@ -386,8 +388,8 @@ tool, which tracks how sensitive information flows through the apps using taint 
 Regarding accuracy, the taint analysis approach detected $58$ out of the $96$ pairs in our dataset ($60,42$\%). That is,
 using the taint analysis implementation of FlowDroid alone outperforms the Monkey, DroidMate,
 and Humanoid sandboxes computed in the second execution (without the DroidFax static analysis
-algorithms). This result shows that static analysis algorithms are promising to complement mining
-sandboxes, demystifying previous claims in the literature.
+algorithms). This result shows that static analysis algorithms are promising to complement
+the mining sandbox approach.
 
 \begin{finding}
   The performance of FlowDroid to identify malicious behavior
@@ -404,12 +406,40 @@ $67$ of the malicious apps ($69.79$\%), a result compatible
 to the performance we found as response to the first execution of the
 test case generation tools---which also considers the DroidFax
 static analysis algorithms. More interesting, from those $67$
-malicious apps identified, $33$ pairs had been found by
-both tools (FlowDroid and DroidFax), even though they follow
+malicious apps identified, $33$ malwares had been found by
+both FlowDroid and DroidFax, even though they follow
 a completely different static analysis approach. Furthermore,
 FlowDroid shows to be more effective than DroidFax alone, detecting $25$ malicious
 apps that had not been detected by DroidFax (while DroidFax detected $9$
-malicious apps that had not been detected by FlowDroid).
+malicious apps that had not been detected by FlowDroid). {\color{red}The results
+of a logistic regression analysis, considering the
+model $Malware \sim Tool$, where Malware is a response
+variable indicating if the malware has been detected or not and
+Tool is either FlowDroid or the sandbox DroidFax
+static analysis component generates, reveals the existence
+of a significant difference between
+the performance of both tools (see Table~\ref{tab:log-reg2}).}
+
+\begin{table}[ht]
+  \centering
+     \caption{Results of the Logistic Regression (second study)} 
+       \begin{small}
+     \begin{tabular}{lrlc}
+   \toprule
+  & \emph{Estimate} & \emph{p-value} & \emph{C.I.} \\ 
+   \midrule
+   Tool [FlowDroid] & 0.4229 & 0.0428 $^{**}$ & (0.080$, $0.766) \\
+   Tool [DroidFax static analysis component] & -1.2730 & 0.0000 $^{***}$ & (-1.560$, $-0.986) \\ \midrule
+   AIC            & 334.61     \\
+   Num. obs.      & 288        \\
+   \bottomrule
+   \multicolumn{4}{l}{\scriptsize{$^{***}$ \emph{p-value} $<0.001$; $^{***}$ \emph{p-value} $<0.05$}}
+     \end{tabular}
+        \end{small}
+
+    \label{tab:log-reg2} 
+\end{table}
+
 
 \begin{finding}
   Integrating the results of static analysis tools

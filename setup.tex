@@ -272,9 +272,10 @@ range [1..3]), a boolean value reporting the use of the
 DroidFax static analysis component, and a boolean value indicating
 whether or not the malware has been identified. We use descriptive statistics
 and plots to compare the performance of the tools and
-answer RQ1 and RQ2. We also use \emph{Logistic Regression} to understand
-the relevance of the features (tool, repetition, DroidFax static analysis
-component) to predict the malware identification. 
+answer RQ1 and RQ2. We also use \emph{Logistic Regression}~\cite[Chapter~4]{statistical-learning}
+to understand the statistical relevance and
+the contribution of each feature (tool, repetition, DroidFax static analysis
+component) to malware identification. 
 
 \subsection{Second Study: Use of Taint Analysis for Malware Identification}\label{sec:set2}
 
@@ -336,7 +337,12 @@ find and the execution time for running the taint analysis algorithm
 for each app. Similarly to the first empirical study,
 we use descriptive statistics
 and plots to compare the performance of the taint analysis and
-mining sandbox approaches. 
+mining sandbox approaches. We also use \emph{Logistic Regression}~\cite[Chapter~4]{statistical-learning}
+to better understand the statistical
+significance of the benefits of using FlowDroid
+(in comparison to the DroidFax static analysis
+component only). 
+
 
 
 
