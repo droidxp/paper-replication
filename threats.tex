@@ -1,9 +1,76 @@
 \section{Threats}
 
-As any empirical work, this work also has limitations and threats to its validity.
+As any empirical work, this work also has
+limitations and threats to its validity. We
+organize this section using the taxonomy
+of Wohlin et al.~\cite[Chapter 8]{10.5555/2349018}.
 
-\textbf{Internal Validity.} Due to the randomization behavior presented by each chosen tool, we should not validate the results of this experiment without considering the presence of random events in the execution. To mitigate this, we have used a configuration of the benchmark DroidXP tool that runs multiple times each test and computes the average result from those executions. So, the comparison between the results of this experiment and the experiment presented by Bao et al. could be more precise. Beyond that, we tested only 96 of the original 102 pairs of apps in this experiment because the benchmark could not execute those six pairs of apps due to crashes in the Android emulator. This difference threatens the validity of the comparison between the Bao et al.'s experiment and ours.
+\textbf{Conclusion Validity} is concerned with
+the issues that might compromise the
+correct conclusion about the causal relation
+between the treatment and the outputs of an
+experiment. The use of inadequate statistical
+methods and low statistical significance
+are examples of threats to the conclusion validity.
+Besides using descriptive statistics and
+plots, we also leverage
+binomial logistic regression to support our conclusions
+in our two empirical studies. Indeed, the results of our logistic
+regression analysis give evidence about the existence
+of a true pattern in the data, indicating that the DroidFax
+static analysis component increases the performance of the sandboxes
+we built from the execution of the dynamic
+analysis tools (first study) and that FlowDroid outperforms
+the DroidFax static analysis component in the
+task of identifying malwares (second study).
 
-\textbf{External Validity.} As this is a replication study, it brings some of the same threats \blls had presented. This study used the same set of apps, which were from a piggy-backed app dataset released by Li et al.~\cite{li2017understanding} So, using this dataset, we could not cover all categories of Android malware. Besides that, we only used a small number of test case generation tools in this study. To mitigate these threats and enrich our research data, we plan to test more apps and use other test case generation tools.
+\textbf{Internal Validity} relates to external factors that might
+impact the independent variables without the researchers' 
+knowledge. Our two empirical studies are \emph{technology-oriented}~\cite{10.5555/2349018,expruna},
+which are not subject to learning effect threats. Nonetheless,
+due to the random behavior of the test case generation tools,
+we should not validate the results of this experiment without considering the presence of
+random events in the execution. To mitigate this threat, we have used a configuration of
+DroidXP that runs multiple times each tool and computes the average result
+from those executions. So, we could adequately compare the results of our experiment with
+the results of the \blls. Beyond that,
+we tested only 96 of the original 102 pairs of apps in this experiment because the we
+could not execute those six pairs of apps due to crashes in the Android emulator.
+However, our goal here is not to conduct an exact replication of the previous work,
+but actually to better understand how static analysis supports and complements
+the mining sandbox approach for malware identification. 
 
-In this study, we used a single tool for Tainted Analysis. With such a small number of tools, we could not have a sample of what a static analysis tool could help in Tainted Analysis. So, we plan to use more tools to mitigate this threat.
+\textbf{Construct Validity} concerns possible issues that might
+prevent a researcher to draw a conclusion from the experimental
+results. The design of our first study involves one treatment
+(a two-level factor indicating the use or not of the
+DroidFax static analysis component) and three independent
+variables: {\bf app id} (96 level factor), the test
+case generation tool (4-level factor, including DroidBot,
+DroidMate, Monkey, and Humanoid), and the 3-level factor repetition
+(we executed every tool three times for all apps, with and without
+the DroidFax static analysis component). The dependent variable
+indicates if a malware has been identified by the sandbox
+of a given test case generation tool built with (or without) the
+DroidFax static analysis component (in a particular repetition). This
+design leads to a total of 2304 observations, which is in conformance with the recommendations
+of Arcuri and Briand~\cite{arcuri:icse11} for this kind of experiment.
+Our second study presents a more straightforward design, comprising a two
+factor treatment (FlowDroid x the DroidFax static analysis) and   
+the same set of 96 apps of the first study. The dependent variable
+indicates if a malware has been identified by FlowDroid
+or by the sandbox the DroidFax static analysis component generates. This
+design leads to a smaller number of runs,
+but we still believe that it is sufficient to draw our conclusions
+(as the results of the logistic regression indicate).
+
+\textbf{External Validity} concerns whether or not the
+researchers can generalize the results for different scenarios.
+Our study shares some of the threats the
+\blls had presented. In particular, here we used the same set of pairs of apps from a \emph{piggy-backed} dataset
+released by Li et al.~\cite{li2017understanding}. That is, using this dataset, we could not
+cover all categories of Android malware. Besides that, we only used a small number of four test
+case generation tools in this study. To mitigate these threats and enrich
+the generalization of our research, we make available DroidXP, which does allow future
+experiments to evaluate other test case generation tools in different malware
+datasets.

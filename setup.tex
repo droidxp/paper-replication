@@ -28,7 +28,7 @@ our research, which investigates the following research questions.
 
 \begin{enumerate}[(RQ1)]
 
-\item What is the impact of the DroidFax static analysis algorithms on the results of the BLL-Study?
+\item What is the impact of the DroidFax static analysis algorithms on the results of the \blls?
   We estimate the impact in terms of the number of detected malwares. 
   
   
@@ -275,7 +275,9 @@ and plots to compare the performance of the tools and
 answer RQ1 and RQ2. We also use \emph{Logistic Regression}~\cite[Chapter~4]{statistical-learning}
 to understand the statistical relevance and
 the contribution of each feature (tool, repetition, DroidFax static analysis
-component) to malware identification. 
+component) to malware identification. Our hypothesis here is that
+the DroidFax static analysis component has a positive
+effect on the performance of the sandboxes to identify malwares. 
 
 \subsection{Second Study: Use of Taint Analysis for Malware Identification}\label{sec:set2}
 
@@ -341,15 +343,7 @@ mining sandbox approaches. We also use \emph{Logistic Regression}~\cite[Chapter~
 to better understand the statistical
 significance of the benefits of using FlowDroid
 (in comparison to the DroidFax static analysis
-component only). 
-
-
-
-
-
-
-
-
-
-
-
+component only). Our hypothesis here is that
+FlowDroid outperforms, in terms of the number of
+detected malware, the sandbox generated
+by the DroidFax static analysis component. 
