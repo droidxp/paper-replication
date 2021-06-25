@@ -6,3 +6,23 @@ TODO LIST
    * [] Create a section presenting the overall research methodology and the connections between the studies
    * [] Review this statement from Introduction: "Jamrozik et al. [8] argue in favor of dynamic analysis for mining sandboxes, instead of using static analysis"
    
+-----------------------------------------------------------------
+
+Handrick's update
+
+
+Revised Section 1 (Introduction) – Paragraph 1 - "Malware samples grow from just three families and 100 samples in 2010 to more than hundred families with thousandsof samples in 2013 [3, 4]" (Observation: Krishna)
+Revised Section 1 (Introduction) – Paragraph 2 - "Jamrozik et al.  proposed BOXMATE tool [8], which with dynamic approaches, during an exploratory phase, one leverages an automatic test case generator tool that ..." (Observation: Krishna)
+Revised Section 1 (Introduction) – Paragraph 3 - "The same lack of understanding about static and dynamic analysis complementing each other also appearsin the work of Bao et al." (Observation: Krishna)
+Revised Section 2 (Background) - Paragraph 1 - Insert the first Paragraph. "In this background session, we present information that is important to understand the remainder of this paper." (Observation: Krishna)
+Revised Section 3.2.1. (Data Collection) - "Joker simulates a test tool that does not run the Android apps during an experiment execution, and your use revealed the performance of static analysis component of DroidFax." (Observation: Prof. Marcio)
+Revised Section 4 (Results and discussion) when talk about Humanoid -  "This might suggest that, since Humanoid learn how humans interact with apps, and use the learned model to guidetest generation, at simulate environment, this method to generate test inputs are less effective to build Android sandbox, in comparison with techniques that rely on random testing (such as Monkey)." (Observation: Prof. Marcio)
+Revised response letter.
+
+---------------------------------------------------------------
+Pending
+
+1. Put test generation tools version (Droidmate , droidbot ...)
+2. Insert histogram graph (APP x Time)
+3. Review the paper title - I update the Title to: "Understanding the Role of Dynamic and Static Analysis for Mining Android Sandboxes". But we must discuss if it is suitable.
+
