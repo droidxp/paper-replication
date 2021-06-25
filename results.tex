@@ -72,13 +72,20 @@ Next we discuss the result of each individual test generation tool.
     52 out of the 96 pairs of Android apps.
     
   \item[Humanoid] showed the worst performance, even though a previous work~\cite{DBLP:conf/kbse/LiY0C19} presented that it leads to
-    the highest number of lines coverage in comparison to Monkey, DroidBot, and DroidMate. This might suggest that test generation
-    tools that try to simulate the human behavior, such as Humanoid, are less effective to build Android sand boxes, in comparison
-    with techniques that rely on random testing (such as Monkey). In the first execution (Exec. (WS)),
+    the highest number of lines coverage in comparison to Monkey, DroidBot, and DroidMate. This might suggest that, since Humanoid learn how humans interact with apps, and use the learned model to guide test generation, at simulate environment, this method to generate test inputs are less effective to build Android sandbox, in comparison with techniques that rely on random testing (such as Monkey). In the first execution (Exec. (WS)),
     the resulting Humanoid sandbox identified $56$ malwares in our dataset ($58.33$\%). Humanoid was the most affected in the second
     execution (Exec. (WOS)), whose resulting sandbox presents a reduction of $51.79$\%  in the number of detected malwares.
     Since the \blls did not explore Humanoid,
     we do not have a baseline for comparison with the previous work.
+    
+    
+    an automated GUI test
+generator that is able to learn how humans interact with
+mobile apps and then use the learned model to guide test
+generation as a human tester.
+    
+    
+    
 
   \item[\joke] is our fake test case generation tool that help us understand the performance of the DroidFax static analysis algorithm for mining sandboxes. 
   %\kn{joke seems to be defined here but used before}
@@ -195,7 +202,7 @@ adding permissions to receive and send SMS messages
 (Listing~\ref{lst:androidManifest}). Adding these permissions, a malicious app may get money
 fraudulently by sending messages without user confirmation, for instance.
 The pair \texttt{L:M} indicates
-a code segment that appears in line \texttt{L} of the malign (\texttt{M})
+a code segment that appears in line \texttt{L} of the malicious (\texttt{M})
 version of an app.
 
 After decompiling this malware, we also observed that the malicious version of the
@@ -368,7 +375,7 @@ do not introduce new method calls for sensitive APIs.
 \begin{lstlisting}[caption={Diff in the file \texttt{com.andoop.flyracing}
       AndroidManifest file of the malicious version.
       \texttt{B} stands for
-      the benign version, while \texttt{M} stands for the malign version.}, language=XML,
+      the benign version, while \texttt{M} stands for the malicious version.}, language=XML,
     basicstyle=\fontsize{8}{6}\selectfont\ttfamily,label={lst:app65b}]
 
 1:B < <meta-data android:name="ADMOB_\PUBLISHER_\ID"
@@ -462,7 +469,34 @@ The execution of FlowDroid is also feasible: the analysis takes only
 32.08 seconds per app on average, totaling a processing time of 52
 minutes to analyze all 96 pairs of Android apps.
 Even though the time to execute the FlowDroid analysis depends on the size
-of the app, the longest run took only 437 seconds. 
+of the app, the longest run took only 437 seconds.
+
+
+\pgfplotsset{compat=1.9}% supress warning
+\begin{filecontents*}{result.csv}
+   App,Detected,Benign Source-Sinks,Malicious Source-Sinks,Execution Time (s)
+   
+
+
+\end{filecontents*}
+
+
+
+
+%\begin{table}[ht]
+%    \centering
+%    \begin{tiny}
+%        \begin{tabular}{c|c|c|c|c}%
+%            \bfseries Pair App & \bfseries Detected & %\bfseries Source-sink (Benign) & \bfseries Source-sink %(Malicious) & \bfseries Execution Time (s)% specify %table head
+%            \csvreader[head to column %names]{result.csv}{}% use head of csv as column names
+%            {\\\hline\csvcoli&\csvcolii&\csvcoliii&\csvc%oliv&\csvcolv}% specify your coloumns here
+%        \end{tabular}
+%     \end{tiny}
+%        \caption{Malwares detected in 96 pair (B/M) by %the taint analysis approach}
+%        \label{tab:taintDetec}
+%\end{table}
+
+
 
 Finally, we highlight that FlowDroid was able to detect $4$ malwares among the $18$ malicious Android apps that had not
 been detected by the sandboxes constructed in the first study. Among these
