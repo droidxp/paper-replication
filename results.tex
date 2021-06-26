@@ -461,19 +461,17 @@ The execution of FlowDroid is also feasible: the analysis takes only
 32.08 seconds per app on average, totaling a processing time of 52
 minutes to analyze all 96 pairs of Android apps.
 Even though the time to execute the FlowDroid analysis depends on the size
-of the app, the longest run took only 437 seconds.
+of the app, the longest run took only 437 seconds. Figure~\ref{fig:histogram}
+summarizes the FlowDroid execution time---which most often
+concludes the execution in less than 50 seconds (32.11 seconds
+on average, with a standard deviation of 70.04). 
 
-
-\pgfplotsset{compat=1.9}% supress warning
-\begin{filecontents*}{result.csv}
-   App,Detected,Benign Source-Sinks,Malicious Source-Sinks,Execution Time (s)
-   
-
-
-\end{filecontents*}
-
-
-
+\begin{figure}
+  \centering{
+  \includegraphics[scale=0.5]{images/histogram.pdf}}
+  \caption{Histogram summarizing the time to execute FlowDroid}
+  \label{fig:histogram}
+\end{figure}
 
 %\begin{table}[ht]
 %    \centering
