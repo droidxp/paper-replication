@@ -210,10 +210,11 @@ runs the test case generation tools for three times, using
 a time limit of three minutes. 
 In the second configuration (named WS), we executed DroidXP
 using the same dataset of 96 pairs of Android apps, though 
-executing only a fake test case generator tool (named Joker)
+also executing a fake test case generator tool (named Joker)
 {\bf without} the \texttt{--disable-static-analysis} option.
 Joker simulates a test tool that does not
-run the Android apps during an experiment execution, and your use revealed the performance of static analysis component of DroidFax.
+run the Android apps during an experiment execution, and its usage
+allow us to estimate the actual performance of the DroidFax static analysis component.
 
 Using the WS configuration, the Execution Phase of
 DroidXP does not collect any call to 
