@@ -133,14 +133,14 @@ Android sandboxes.
 Altogether, ignoring  \joke, our study reveals that from $58.33$\% (Humanoid)
 to $76.04$\% (DroidBot) of the malicious apps investigated in our study can be
 detected using the sandboxes generated after running the test case tools with the support of the
-DroidFax static analysis algorithms. {\color{red}We also investigate if the use
-  of the DroidFax static analysis component leads to statistically significant benefit
+DroidFax static analysis algorithms. We also investigate if the use
+  of the DroidFax static analysis component leads to a statistically significant benefit
   on malware identification. To this end, we build a logistic regression model
 in the form $Malware \sim Tool + StaticAnalysis + Repetition$. Table~\ref{tab:log-reg1}
 shows the results of the logistic regression analysis, highlighting that
 (a) Humanoid has a negative, though significant impact on malware identification; and
 (b) the use of DroidFax static analysis has a positive and significant
-impact on malware identification.}
+impact on malware identification.
 
 \begin{table}[ht]
   \centering
@@ -410,14 +410,14 @@ both FlowDroid and DroidFax, even though they follow
 a completely different static analysis approach. Furthermore,
 FlowDroid shows to be more effective than DroidFax alone, detecting $25$ malicious
 apps that had not been detected by DroidFax (while DroidFax detected $9$
-malicious apps that had not been detected by FlowDroid). {\color{red}The results
+malicious apps that had not been detected by FlowDroid). The results
 of a logistic regression analysis, considering the
 model $Malware \sim Tool$, where Malware is a response
 variable indicating if the malware has been detected or not and
 Tool is either FlowDroid or the sandbox DroidFax
 static analysis component generates, reveals the existence
 of a significant difference between
-the performance of both tools (see Table~\ref{tab:log-reg2}).}
+the performance of both tools (see Table~\ref{tab:log-reg2}).
 
 \begin{table}[ht]
   \centering

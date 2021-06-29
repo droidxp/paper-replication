@@ -13,7 +13,7 @@ Within the Android ecosystem, least privilege is realized through sandboxing pro
 
 Nowadays, malware becomes more stealthy and hackers learn how to avoid anti-virus signature checks, for instance by obfuscating calls to native code that is allowed to make system calls~\cite{DBLP:journals/corr/abs-2002-04540} or conducting side attacks to make system calls from a benign app.
 
-\subsection{Mining Android Sandbox}
+\subsection{Mining Android Sandbox}\label{sec:android-sandbox}
 
 The mining Android sandbox approach~\cite{DBLP:conf/icse/JamrozikSZ16} relies on test generator tools to explore an Android app's dynamic behavior, and thus mine a set of sensitive resources the app needs. The sandbox uses this set of sensitive APIs to ensure the app execution's security by restricting the resources that are allowed to use. The mining sandbox approach works in two phases. In the first, named exploratory phase, a practitioner uses test generator tools to execute a benign version of an app and record the set of sensitive APIs the app calls. In the second phase, named execution, the sandbox constraints the app to access only the sensitive APIs mined in the first phase. Accordingly, the sandbox ensures that a malicious app could not call any sensitive API, besides those calls to APIs recorded in the first phase.
 
