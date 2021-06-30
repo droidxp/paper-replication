@@ -7,8 +7,7 @@ exploratory phase, in which a practitioner takes advantage of automatic test cas
 . This set of senstivie calls comprises a sandbox infrastructure. After the exploratory phase, the sandbox might then monitor any call to sensitive APIs while a user is running the app, blocking the calls that have not been identified during the exploratory phase---thereby protecting Android users from additional malicious behavior~\cite{DBLP:conf/icse/JamrozikSZ16}.
 Jamrozik et al. argue in favor of dynamic analysis for mining sandboxes, instead of using static analysis---mostly because of the overapproximation problem: ``static analysis often assume that more behaviors are possible than actually would be''~\cite{DBLP:conf/icse/JamrozikSZ16}. In addition, code that uses dynamic features (such as reflection) poses additional challenges to static analysis algorithms---even though \emph{dynamic features} of programming languages are often used to introduce malicious behavior. Even though these claims are reasonable, previous research results do not present empirical assessments about the limitations of static analysis to mine sandboxes. Consequently, it is not clear whether and how both approaches (dynamic and static analysis) could complement each other in the process of mining Android sandboxes.
 
-The lack of understanding about static and dynamic analysis complementing each other also appears in the work of Bao et al.~\cite{DBLP:conf/wcre/BaoLL18} (hereafter \blls), which presents an empirical study that explores the performance of dynamic analysis for identifying malicious behavior using the mining sandbox approach.  %\kn{The use of word same here makes me wonder if readers could be confused. IMO the problem of how Static and dynamic analysis complement each other AND the role of static analysis in dynamic approaches are different (even if they sound similar), right? Reason I simply did not remove the word "same" is that I feel we need a bridge sentence here to make this transition of two similar sounding problems clear, because we only explore one of them.}
-Their study leverages DroidFax~\cite{DBLP:conf/icsm/CaiR17a} to instrument $102$ pairs of Android apps (each pair comprising a benign and a malicious version of an App) and to collect the information needed to mine sandboxes (that is, the calls to sensitive APIs).
+The lack of understanding about static and dynamic analysis complementing each other also appears in the work of Bao et al.~\cite{DBLP:conf/wcre/BaoLL18} (hereafter \blls), which presents an empirical study that explores the performance of dynamic analysis for identifying malicious behavior using the mining sandbox approach. Their study leverages DroidFax~\cite{DBLP:conf/icsm/CaiR17a} to instrument $102$ pairs of Android apps (each pair comprising a benign and a malicious version of an App) and to collect the information needed to mine sandboxes (that is, the calls to sensitive APIs).
 Although the authors report a precision of at most 70\% of dynamic analysis tools to differentiate the benign and malicious versions of the apps, the authors ignore the fact that DroidFax statically analyzes the Android apps and also records calls to sensitive APIs (besides instrumenting the apps). As we discuss in this paper, this DroidFax static analysis component leads to an overestimation of the performance of the dynamic analysis tools for mining sandboxes and might have introduced a possible threat to the conclusions of that work. In the security domain, overestimating the performance of a technique for malware identification brings serious risks, and we show here that DroidFax inflated significantly the performance of the dynamic analysis tools for mining sandboxes, as reported in the \blls.
 
 The goal of this paper is two fold. First we present the results of an
@@ -28,23 +27,6 @@ that reveal the actual performance of the
 dynamic analysis tools. Section~\ref{sec:droidxp} revisit the
 DroidXP design, while Section~\ref{sec:set1} discuss
 the setup of our replication study.
-
-
-%% In summary, our current study differs fromthe original work in three aspects: 
-
-%% \begin{enumerate}[(a)]
-%%   \item We isolate the effect of the static analysis component of DroidFax.
-%%    \item We included a fake test
-%% case generation tool (named \joke). \joke simulates a test tool that does not execute Android apps during DroidXP execution, disregarding the effects of dynamic analysis, and computing the results with only static analysis DroidFax component.
-%% \item We extend the execution time and the number of executions of each test case generator tool for all apps
-%% in our dataset.
-
-%% \end{enumerate}
-%% where offers direct access to all source code, installation process, dependencies, and how to run. We presented and evaluated DroidXP in a conference paper~\cite{DBLP:conf/scam/CostaMCMVBC20}, and here we discuss the results of a broader investigation that also uses DroidXP to explain the performance of static and dynamic analysis approaches for mining sandboxes. Our goal is to understand how static analysis algorithms might complement dynamic analysis approaches in the process of mining Android sandboxes. This work is an extension of SCAM 2020 paper, since that for our actual study, we had to adapt DroiXP to allow it to isolate the effects of static analysis component of DroidFax, and take into account this effect at our analysis.
-
-%% Our research work presents the results of two empirical studies that aim to
-%% address our research goal. In the
-%% first study, we conduct a replication of the \blls, as presented at {\color{red}SCAN 2020} conference~\cite{DBLP:conf/scam/CostaMCMVBC20}, though 
 
 Second, in this paper we also explore how a static analysis approach
 (based on taint analysis) compares and complements the mining sandbox technique
