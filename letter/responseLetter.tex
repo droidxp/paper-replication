@@ -267,32 +267,61 @@ conclusions and/or inspirations can be drawn from such listings?
 
 \begin{itemize}
 
+\item ``The authors state that dynamic analysis exceeds static analysis on mining Android sandboxes because the
+analysis must often assume that additional behaviors are possible than actually would be.''
+Please explain
+
+\vspace{0.2cm}
+
+\item Please rephrase:
+``Those are kind of attack that usually tackled with the Android Mining Sandbox''
+``For instance, Whaley et al. [18] combine dynamic and static analysis for API mining and so extract interface from software components.''
+
+\vspace{0.2cm}
+
+\item Please rephrase:
+``From the same authors, another test generator tool for Android, described as Humanoid [23], is a DroidBot evolution and
+presents a proposal that can generate humans like tests inputs, using deep learning.''
+
+\vspace{0.2cm}
+
+\item Briefly explain the taint analysis
+``Taint analysis is a special type of static analysis that enables tracking of sensitive data within programs''
+
+\vspace{0.2cm}
+
+\item Please explain:
+``FastDroid [28] mitigates this issue by introducing an intermediate light-weight abstraction to perform the analysis.''
+
+\vspace{0.2cm}
+
+\item Please rephrase: ``After that, we executed the analysis again, though disabling the DroidFax static analysis algorithm''
+
+\vspace{0.2cm}
+
+\item There are several other typos and grammatical errors.
+
+\vspace{0.2cm}
+
+{\color{blue}{\bf Answer.} Reviewer 3 suggested several improvements to the article. To mitigate the improvements pointed, we reviewed the current version of the paper to better clarify Section 1 (Introduction) and Section 3 (Study Settings). We also present more details on FastDroid and Taint Analysis in Section 2 (Background and related work), and we have revised the entire text, correcting several errors that have gone unnoticed.}
+
+\vspace{0.2cm}
+
+
 \item It is not clear how this paper can be considered an extension of the DroidXP paper presented in SCAM 2020.
 
 
 \vspace{0.2cm}
 
-{\color{blue}{\bf Answer.} In the introduction, we rephrase paragraphs 4 to better clarify how our paper is an extension of DroidXP paper from SCAM 2020.}
+{\color{blue}{\bf Answer.} In the Section 1 (Introduction) we rephrase paragraphs 4 to better clarify how our paper is an extension of DroidXP paper from SCAM 2020.}
 
 \vspace{0.2cm}
 
 \item Introduction, para 3 is repeating para 2
 
-
 \vspace{0.2cm}
 
 {\color{blue}{\bf Answer.} Paragraphs 2 and 3 have indeed similar content. We reviewed Section 1 (Introduction) and removed paragraph 3.}
-
-\vspace{0.2cm}
-
-\item ``The authors state that dynamic analysis exceeds static analysis on mining Android sandboxes because the
-analysis must often assume that additional behaviors are possible than actually would be.''
-Please explain
-
-
-\vspace{0.2cm}
-
-{\color{blue}{\bf Answer.} We explained better this sentence at introduction, paragraph 2. Thanks for raising this issue.}
 
 \vspace{0.2cm}
 
@@ -302,7 +331,7 @@ What is DroidXP? It should be introduced to a reader who is not familiar.
 
 \vspace{0.2cm}
 
-{\color{blue}{\bf Answer.} We agree. To mitigate this issue, we introduced better DroidXP at introduction, paragraph 4.}
+{\color{blue}{\bf Answer.} We agree. To mitigate this issue, we introduced better DroidXP at Section 1 (Introduction), paragraph 4.}
 
 \vspace{0.2cm}
 
@@ -310,7 +339,6 @@ What is DroidXP? It should be introduced to a reader who is not familiar.
 * java - Java / android - Android
 * ``Another approach to rooting''
 What is rooting?
-
 
 \vspace{0.2cm}
 
@@ -320,19 +348,7 @@ What is rooting?
 
 \vspace{0.2cm}
 
-\item Please rephrase:
-``Those are kind of attack that usually tackled with the Android Mining Sandbox''
-``For instance, Whaley et al. [18] combine dynamic and static analysis for API mining and so extract interface from software components.''
-
-
-\vspace{0.2cm}
-
-{\color{blue}{\bf Answer.} With respect to the first sentence, we decided to remove it, since we realized that it was misleading. The second sentence we rephrase like : ``For instance Whaley et al. [18] combine dynamic and static analysis for API mining and so infer program behavior based on an example use of a Java class.''}
-
-\vspace{0.2cm}
-
 \item What are sensitive behaviors? ``showed that DroidBot is able to trigger an amount of sensitive behaviors''
-
 
 \vspace{0.2cm}
 
@@ -340,53 +356,12 @@ What is rooting?
 
 \vspace{0.2cm}
 
-\item Please rephrase:
-``From the same authors, another test generator tool for Android, described as Humanoid [23], is a DroidBot evolution and
-presents a proposal that can generate humans like tests inputs, using deep learning.''
-
-
-\vspace{0.2cm}
-
-{\color{blue}{\bf Answer.} We rephrase the text at Section 2 (Background and related works) paragraph 7, to better explain Humanoid test generation tool.}
-
-\vspace{0.2cm}
-
-\item Briefly explain the taint analysis
-``Taint analysis is a special type of static analysis that enables tracking of sensitive data within programs''
-
-
-\vspace{0.2cm}
-
-{\color{blue}{\bf Answer.} We agree that taint analysis explanation was very briefly. We reviewed our Section 2 (Background and related works), to better explain taint analysis from paragraph 9. We explained better the concept of ``source'' and ``sink'', and present how the analysis identifies sensitive information leakage, detecting taint flow between “source” and “sink”. To improve understanding, we also present a simple Listing (Listing 1), that present a simple data leakage example through data flows. }
-
-
-\vspace{0.2cm}
-
-\item Please explain:
-``FastDroid [28] mitigates this issue by introducing an intermediate light-weight abstraction to perform the analysis.''
-
-
-\vspace{0.2cm}
-
-{\color{blue}{\bf Answer.} To address this issue, we explained better how FastDroid improves the taint analysis efficiency at the last paragraph of Section 2 (Background and related works)}
-
-\vspace{0.2cm}
-
 \item Section 3.1, the help text is not adding much value
 
 \vspace{0.2cm}
 
-{\color{blue}{\bf Answer.} Thanks for raising this point. The section 3.1 presented our Benchmark tool DroidXP. The tool description was important for the paper since it was helpful for our first study conduction. DroidXP helped us to easily integrate different test generation tools, and understand the effect of the static analysis component at each tool. It was useful for us and can be very useful for other researchers. We
-reviewed the first paragraph of section 3.1 to clarify the importance of DroidXP for our study conduction.}
+{\color{blue}{\bf Answer.} The section 3.1 presented our Benchmark tool DroidXP. The tool description was important for the paper since it was helpful for our first study conduction. DroidXP helped us to easily integrate different test generation tools, and understand the effect of the static analysis component at each tool. It was useful for us and can be very useful for other researchers. We reviewed the first paragraph of section 3.1 to clarify the importance of DroidXP for our study conduction. We included references to DroidXP GitHub repository in the Section 1 (Introduction), since it might be very useful for both researchers and practitioner.}
 
-
-\vspace{0.2cm}
-
-\item Please rephrase: ``After that, we executed the analysis again, though disabling the DroidFax static analysis algorithm''
-
-\vspace{0.2cm}
-
-{\color{blue}{\bf Answer.} We reviewed the Section 3 (Study Settings) in full and so, we better explain the methodology. With this update, we removed this sentence.}
 
 \vspace{0.2cm}
 
@@ -395,19 +370,7 @@ reviewed the first paragraph of section 3.1 to clarify the importance of DroidXP
 
 \vspace{0.2cm}
 
-{\color{blue}{\bf Answer.} Thanks for raising this issue. Actually our purpose was to present the characteristics of malware that have or have not been identified using the mining sandbox approach. Our goal is to provide a lower-level intuition about the classes of malware, the mining sandbox approach is good enough, and which ones it fails. We rephrased the section 4.1 at this point, to clarify this issue about malware discussion.}
-
-\vspace{0.2cm}
-
-\item There are several other typos and grammatical errors.
-
-
-\vspace{0.2cm}
-
-{\color{blue}{\bf Answer.} Sorry about these typos and grammar. We revised all the text, and corrected several mistakes that went unnoticed.}
-
-
-
+{\color{blue}{\bf Answer.} Thanks for raising this issue. Actually our purpose was to present the characteristics of malware that have or have not been identified using the mining sandbox approach. Our goal is to provide a lower-level intuition about the classes of malware, the mining sandbox approach is effective, and which ones it fails. We rephrased the section 4.1 at this point, to clarify this issue about malware discussion.}
 
 
 \end{itemize}
