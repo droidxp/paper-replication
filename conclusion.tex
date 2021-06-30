@@ -1,1 +1,60 @@
-\section{conclusion}
+\section{Conclusions}
+
+In this paper we reported the
+results of two empirical studies that explore
+techniques for Android malware identification.
+The first study is a non-exact replication of a
+previous research work~\cite{DBLP:conf/wcre/BaoLL18},
+which investigates the Android mining sandbox
+approach for malware identification. There,
+Bao et al. report that more than 70\% of
+the malwares in their dataset can be
+detected by the sandboxes built from the
+execution of five test case generation
+tools (such as Monkey and DroidMate). Our replication
+study revealed that this performance is only
+achieved if we enable a static
+analysis component from DroidFax that was supposed to only
+instrument the Android \texttt{apk} files,
+though that independently contributes to
+building the sandboxes statically. As such,
+the use of DroidFax leads to an
+overestimation of the performance of the
+mining sandbox approach supported by dynamic analysis.
+Indeed, the execution of DroidFax alone enabled
+us to generate a sandbox that can
+identify 43.75\% of the malwares from 
+their dataset. 
+
+In the second study we investigated
+a new approach based on taint analysis
+for malware identification, which
+leads to promising results. First,
+the taint based static analysis approach
+detected 60.42\% of the
+malwares in the dataset. When combining
+taint analysis with the
+mining sandbox approach, we were
+able to identify 82.29\% of the
+malwares in the dataset. These results
+have implications for both researchers and
+practitioners. First, we review the literature
+showing, for the first time, empirical evidence
+that the mining sandbox approach benefits
+from using both dynamic and static analysis. Second,
+practitioners can improve malware identification using
+a combination of 
+the mining sandbox approach with taint analysis.
+Nonetheless, both the mining sandbox approach and
+taint analysis present limitations. In particular,
+we are not able to identify a malware that
+uses the same set of calls to sensitive APIs of the
+benign version of an app, using
+the mining sandbox approach. Similarly, we are not
+able to identify a malware that presents the same
+paths from sources to sinks of the corresponding benign version of
+an app, using the taint analysis approach. 
+To mitigate these limitations, we envision the use of other approaches---such as machine learning
+algorithms to classify changes in non-code assets (e.g., Android
+manifest files) and symbolic execution to differentiate
+malicious calls or source-sink paths.
