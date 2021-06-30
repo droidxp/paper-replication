@@ -265,86 +265,38 @@ conclusions and/or inspirations can be drawn from such listings?
 
 {\bf Reviewer 3}
 
+ {\color{blue}{\bf Answer.} Reviewer 3 suggested several improvements to the article and clarifications. Thanks for that. We reviewed the current version of the paper to better clarify Section 1 (Introduction) and Section 3 (Study Settings). We also present more details about DroidXP, FastDroid and Taint Analysis in Section 2 (Background and Related Work), and we have revised the entire text, correcting several errors that have gone unnoticed.}
+
 \begin{itemize}
-
-\item ``The authors state that dynamic analysis exceeds static analysis on mining Android sandboxes because the
-analysis must often assume that additional behaviors are possible than actually would be.''
-Please explain
-
-\vspace{0.2cm}
-
-\item Please rephrase:
-``Those are kind of attack that usually tackled with the Android Mining Sandbox''
-``For instance, Whaley et al. [18] combine dynamic and static analysis for API mining and so extract interface from software components.''
-
-\vspace{0.2cm}
-
-\item Please rephrase:
-``From the same authors, another test generator tool for Android, described as Humanoid [23], is a DroidBot evolution and
-presents a proposal that can generate humans like tests inputs, using deep learning.''
-
-\vspace{0.2cm}
-
-\item Briefly explain the taint analysis
-``Taint analysis is a special type of static analysis that enables tracking of sensitive data within programs''
-
-\vspace{0.2cm}
-
-\item Please explain:
-``FastDroid [28] mitigates this issue by introducing an intermediate light-weight abstraction to perform the analysis.''
-
-\vspace{0.2cm}
-
-\item Please rephrase: ``After that, we executed the analysis again, though disabling the DroidFax static analysis algorithm''
-
-\vspace{0.2cm}
-
-\item There are several other typos and grammatical errors.
-
-\vspace{0.2cm}
-
-{\color{blue}{\bf Answer.} Reviewer 3 suggested several improvements to the article. To mitigate the improvements pointed, we reviewed the current version of the paper to better clarify Section 1 (Introduction) and Section 3 (Study Settings). We also present more details on FastDroid and Taint Analysis in Section 2 (Background and related work), and we have revised the entire text, correcting several errors that have gone unnoticed.}
-
-\vspace{0.2cm}
-
 
 \item It is not clear how this paper can be considered an extension of the DroidXP paper presented in SCAM 2020.
 
+\vspace{0.2cm}
+
+{\color{blue}{\bf Answer.} Thanks for raising this question. In our previous paper,
+  the DroidXP's evaluation revealed a possible
+overestimation in the performance of the dynamic analysis tools as
+reported in the Bao et al. work~\cite{DBLP:conf/wcre/BaoLL18}---which in the end motivated us to
+conduct the non-exact replication of that study. In this current paper, 
+we extended DroidXP with a new feature to enable / disable the
+static analysis component of DroidFax and integrated an additional
+tool (Joker), which allowed us
+to reproduce the Bao et al. research by means of a set of new experiments
+that reveal the actual performance of the dynamic analysis tools.
+In addition, we investigate in this paper the effect of using
+taint analysis to complement the mining sandbox approach for
+malware identification. In the current version of this paper
+we better explain the paper's extension.}
 
 \vspace{0.2cm}
 
-{\color{blue}{\bf Answer.} In the Section 1 (Introduction) we rephrase paragraphs 4 to better clarify how our paper is an extension of DroidXP paper from SCAM 2020.}
+\item ``Another approach to rooting'' What is rooting?
 
 \vspace{0.2cm}
 
-\item Introduction, para 3 is repeating para 2
-
-\vspace{0.2cm}
-
-{\color{blue}{\bf Answer.} Paragraphs 2 and 3 have indeed similar content. We reviewed Section 1 (Introduction) and removed paragraph 3.}
-
-\vspace{0.2cm}
-
-\item ``We presented and evaluated DroidXP in a conference paper [11]''
-What is DroidXP? It should be introduced to a reader who is not familiar.
-
-
-\vspace{0.2cm}
-
-{\color{blue}{\bf Answer.} We agree. To mitigate this issue, we introduced better DroidXP at Section 1 (Introduction), paragraph 4.}
-
-\vspace{0.2cm}
-
-\item Google play - Google Play
-* java - Java / android - Android
-* ``Another approach to rooting''
-What is rooting?
-
-\vspace{0.2cm}
-
-{\color{blue}{\bf Answer.} Sorry about these typos. We corrected all of them. Thank one more time. With respect to ``rooting'': It's a process performed on Android devices like smartphones or tablets, which allows users of the Android mobile operating system, to execute privileged commands that are typically unavailable at its default configuration. The term comes from the fact that Android system is based on Linux, and this system has a (superuser), called root, which has access to administrative permissions as on Linux. We insert a footnote with a link that better explain this term at page 5.\newline
-(https://en.wikipedia.org/wiki/Rooting(Android))
-}
+{\color{blue}{\bf Answer.} Rooting is a process performed on Android devices that allows
+  users of the Android mobile operating system, to execute privileged commands that are typically unavailable.
+  The term comes from the fact that Android system is based on Linux, whose superuser (root) has access to administrative permissions on Linux. Since the ``rooting'' term is not well known, we reviewed the text to avoid its use. Thanks for your comment. }
 
 \vspace{0.2cm}
 
@@ -352,25 +304,16 @@ What is rooting?
 
 \vspace{0.2cm}
 
-{\color{blue}{\bf Answer.} Sensitive behaviors at Android context occurs when an Android app functionality can result in accessing or leaking of users sensitive data. Example of sensitive behaviors: File accesses and network access. We improve the text with this definition at Section 2 (Background and related works), paragraph 7.}
+{\color{blue}{\bf Answer.} We used the term ``sensitive behaviors'' to represent calls to APIs that access private information of an Android user. Access to a sensitive API (such as location or address book) might lead to privacy issues and the leakage of confidential data. We agree that this terminology is not so precise, so we prefer to use the term ``access to sensitive'' APIs through the paper, instead of sensitive behavior.}
 
 \vspace{0.2cm}
 
-\item Section 3.1, the help text is not adding much value
+\item Section 4.1 can be written more concisely. It is not clear what is the value of the malware
+  discussion between pages 13 and 15. It may be removed.
 
 \vspace{0.2cm}
 
-{\color{blue}{\bf Answer.} The section 3.1 presented our Benchmark tool DroidXP. The tool description was important for the paper since it was helpful for our first study conduction. DroidXP helped us to easily integrate different test generation tools, and understand the effect of the static analysis component at each tool. It was useful for us and can be very useful for other researchers. We reviewed the first paragraph of section 3.1 to clarify the importance of DroidXP for our study conduction. We included references to DroidXP GitHub repository in the Section 1 (Introduction), since it might be very useful for both researchers and practitioner.}
-
-
-\vspace{0.2cm}
-
-\item Section 4.1 can be written more concisely.
-* It is not clear what is the value of the malware discussion between pages 13 and 15. It may be removed.
-
-\vspace{0.2cm}
-
-{\color{blue}{\bf Answer.} Thanks for raising this issue. Actually our purpose was to present the characteristics of malware that have or have not been identified using the mining sandbox approach. Our goal is to provide a lower-level intuition about the classes of malware, the mining sandbox approach is effective, and which ones it fails. We rephrased the section 4.1 at this point, to clarify this issue about malware discussion.}
+{\color{blue}{\bf Answer.}Thanks for raising this issue. Actually, our goal in this part of the paper is to characterize the malwares that have or have not been identified using the mining sandbox approach. We then provide a lower-level intuition about the classes of malware the mining sandbox approach is effective to identify and which ones it fails. We reviewed Section 4.1 to motivate this discussion better. Nonetheless, we can remove this part of the paper if the reviewers agree that we should remove it.}
 
 
 \end{itemize}
